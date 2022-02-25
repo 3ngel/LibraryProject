@@ -25,11 +25,22 @@ namespace LibraryProject.Pages
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Кнопка перехода на страницу "Регестрация"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RegButtonClick(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new RegPage());
         }
 
+        /// <summary>
+        /// Кнопка входа
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EntranceButtonClick(object sender, RoutedEventArgs e)
         {
             Core db = new Core();
@@ -39,11 +50,14 @@ namespace LibraryProject.Pages
             int countRecord = 0;
             try
             {
+                //Проверка на наличие логина
                 if (acount==1)
                 {
                     arrayReader = db.context.Reader.Where(x => x.Login == LoginTextBox.Text).ToList();
+                    //Если есть данный логин, проверка пароля при этом логине 
                     countRecord = arrayReader.Where(x => x.Login == LoginTextBox.Text && x.Password == PasswordTextBox.Password).Count();
                 }
+                //При совпдании занесение логина в запись приложения и переход на главную страницу
                 if (countRecord==1)
                 {
                     Properties.Settings.Default.loginClient = LoginTextBox.Text;

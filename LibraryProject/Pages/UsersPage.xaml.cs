@@ -24,22 +24,38 @@ namespace LibraryProject.Pages
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Событие переноса на страницу "О нас"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AboutUsTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.NavigationService.Navigate(new AboutUsPage());
         }
-
+        /// <summary>
+        /// Событие переноса на страницу "Личный кабинет"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PersonalAreaTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.NavigationService.Navigate(new PersonalAreaPage());
         }
-
+        /// <summary>
+        /// Событие переноса на страницу "Книги"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BookTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.NavigationService.Navigate(new BookPage());
         }
-
+        /// <summary>
+        /// Событие переноса на страницу "Читательские билеты"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ReaderBilletsTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.NavigationService.Navigate(new ReaderBilletsPage());

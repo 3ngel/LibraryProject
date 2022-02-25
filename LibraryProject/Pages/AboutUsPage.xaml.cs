@@ -26,6 +26,9 @@ namespace LibraryProject.Pages
             InitializeComponent();
             Core db = new Core();
             Reader arrayReader;
+            //Логика отображения вкладок в меню
+            //Если пользователь не авторизован, то ему не видны страницы:
+            //Читательский билет, Пользователи, Личный кабинет
             if (Properties.Settings.Default.loginClient == String.Empty)
             {
                 ReaderBilettsTextBlock.Visibility = Visibility.Hidden;
@@ -34,20 +37,24 @@ namespace LibraryProject.Pages
             }
             else
             {
-
+                //Отображение вкладок в соотвествии с рангом пользователя 
+                //(пользователь, библиотекарь, администратор)
                 arrayReader = db.context.Reader.Where(x => x.Login == Properties.Settings.Default.loginClient).First();
                 PersonalAreaTextBlock.Visibility = Visibility.Visible;
                 int rank = arrayReader.IdRank;
+                //пользователь
                 if (rank == 1)
                 {
                     ReaderBilettsTextBlock.Visibility = Visibility.Hidden;
                     UsersTextBlock.Visibility = Visibility.Hidden;
                 }
+                //Библиотекарь 
                 if (rank == 2)
                 {
                     ReaderBilettsTextBlock.Visibility = Visibility.Visible;
                     UsersTextBlock.Visibility = Visibility.Hidden;
                 }
+                //Администратор
                 else if (rank == 3)
                 {
                     UsersTextBlock.Visibility = Visibility.Visible;
@@ -55,21 +62,38 @@ namespace LibraryProject.Pages
                 }
             }
         }
+        /// <summary>
+        /// Событие переноса на страницу "Личный кабинет"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PersonalAreaTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.NavigationService.Navigate(new PersonalAreaPage());
         }
-
+        /// <summary>
+        /// Событие переноса на страницу "Читательсктй билет"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ReaderBilletsTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.NavigationService.Navigate(new ReaderBilletsPage());
         }
-
+        /// <summary>
+        /// Событие переноса на страницу "Пользователи"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UsersTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.NavigationService.Navigate(new UsersPage());
         }
-
+        /// <summary>
+        /// Событие переноса на страницу "Книги"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BookTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.NavigationService.Navigate(new BookPage());

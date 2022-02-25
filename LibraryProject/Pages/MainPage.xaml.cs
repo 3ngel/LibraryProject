@@ -26,6 +26,9 @@ namespace LibraryProject.Pages
             InitializeComponent();
             Core db = new Core();
             Reader arrayReader;
+            //Логика отображения вкладок в меню
+            //Если пользователь не авторизован, то ему не видны страницы:
+            //Читательский билет, Пользователи, Личный кабинет
             if (Properties.Settings.Default.loginClient == String.Empty)
             {
                 ReaderBilettsTextBlock.Visibility = Visibility.Hidden;
@@ -34,6 +37,8 @@ namespace LibraryProject.Pages
             }
             else
             {
+                //Отображение вкладок в соотвествии с рангом пользователя 
+                //(пользователь, библиотекарь, администратор)
                 arrayReader = db.context.Reader.Where(x => x.Login == Properties.Settings.Default.loginClient).First();
                 PersonalAreaTextBlock.Visibility = Visibility.Visible;
                 int rank = arrayReader.IdRank;

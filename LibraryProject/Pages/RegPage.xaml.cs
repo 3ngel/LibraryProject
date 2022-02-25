@@ -48,9 +48,11 @@ namespace LibraryProject.Pages
             }
         }
 
+        //Генерация пароля
         private void GenerationPasswordButtonClick(object sender, RoutedEventArgs e)
         {
-            
+            GenerationString obj = new GenerationString();
+            PasswordPasswordTextBox.Password = obj.RandomPassword();
         }
     }
 }

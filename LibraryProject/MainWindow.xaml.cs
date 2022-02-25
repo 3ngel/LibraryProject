@@ -41,16 +41,21 @@ namespace LibraryProject
         /// </summary>
         private void MainFrameNavigated(object sender, NavigationEventArgs e)
         {
+            //Логика появление кнопок Назад, Выйти, Войти
             var activePage = e.Content;
             if (activePage is AutoPage)
             {
                 EntranceButton.Visibility = Visibility.Hidden;
             }
+            //Отображение кнопки "Войти", если пользователь авторизован
+            //и не отображение кнопки "Выйти" при авторизованном пользователе
             else if (Properties.Settings.Default.loginClient == String.Empty)
             {
                 EntranceButton.Visibility = Visibility.Visible;
                 ExitButton.Visibility = Visibility.Hidden;
             }
+            //Не отображение кнопки "Войти", если пользователь авторизован
+            //и отображение кнопки "Выйти" при авторизованном пользователе
             if (Properties.Settings.Default.loginClient!=String.Empty)
             {
                 EntranceButton.Visibility = Visibility.Hidden;
@@ -85,31 +90,11 @@ namespace LibraryProject
             this.NavigatedFrame.Navigate(new AutoPage());
         }
 
-        private void AboutUsTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.NavigatedFrame.Navigate(new AboutUsPage());
-        }
-
-        private void PersonalAreaTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.NavigatedFrame.Navigate(new PersonalAreaPage());
-        }
-
-        private void BookTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.NavigatedFrame.Navigate(new BookPage());
-        }
-
-        private void ReaderBilletsTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.NavigatedFrame.Navigate(new ReaderBilletsPage());
-        }
-
-        private void UsersTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.NavigatedFrame.Navigate(new UsersPage());
-        }
-
+        /// <summary>
+        /// Выход из приложения без закрытия приложения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExitButtonClick(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.loginClient = String.Empty;
