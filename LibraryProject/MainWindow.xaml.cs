@@ -1,0 +1,120 @@
+﻿using LibraryProject.Pages;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace LibraryProject
+{
+    /// <summary>
+    /// Логика взаимодействия для MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            NavigatedFrame.Navigate(new MainPage());
+        }
+        /// <summary>
+        /// Выход из приложения 
+        /// </summary>
+        private void WindowClosed(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.loginClient = String.Empty;
+            Properties.Settings.Default.Save();
+        }
+
+        /// <summary>
+        /// Логика появление кнопки "Войти"
+        /// </summary>
+        private void MainFrameNavigated(object sender, NavigationEventArgs e)
+        {
+            var activePage = e.Content;
+            if (activePage is AutoPage)
+            {
+                EntranceButton.Visibility = Visibility.Hidden;
+            }
+            else if (Properties.Settings.Default.loginClient == String.Empty)
+            {
+                EntranceButton.Visibility = Visibility.Visible;
+                ExitButton.Visibility = Visibility.Hidden;
+            }
+            if (Properties.Settings.Default.loginClient!=String.Empty)
+            {
+                EntranceButton.Visibility = Visibility.Hidden;
+                ExitButton.Visibility = Visibility.Visible;
+            }
+            if (activePage is MainPage)
+            {
+                BackButton.Visibility = Visibility.Hidden;
+            }
+            else 
+            {
+                BackButton.Visibility = Visibility.Visible;
+            }
+
+        }
+
+        /// <summary>
+        /// Логика взаимодействия кнопки назад
+        /// </summary>
+        private void BackButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (NavigatedFrame.CanGoBack)
+            {
+                NavigatedFrame.GoBack();
+            }
+        }
+        /// <summary>
+        /// Логика взаимодействия кнопки Войти
+        /// </summary>
+        private void EntranceButonClick(object sender, RoutedEventArgs e)
+        {
+            this.NavigatedFrame.Navigate(new AutoPage());
+        }
+
+        private void AboutUsTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigatedFrame.Navigate(new AboutUsPage());
+        }
+
+        private void PersonalAreaTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigatedFrame.Navigate(new PersonalAreaPage());
+        }
+
+        private void BookTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigatedFrame.Navigate(new BookPage());
+        }
+
+        private void ReaderBilletsTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigatedFrame.Navigate(new ReaderBilletsPage());
+        }
+
+        private void UsersTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigatedFrame.Navigate(new UsersPage());
+        }
+
+        private void ExitButtonClick(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.loginClient = String.Empty;
+            Properties.Settings.Default.Save();
+            this.NavigatedFrame.Navigate(new MainPage());
+        }
+    }
+}

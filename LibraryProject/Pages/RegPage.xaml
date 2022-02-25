@@ -1,0 +1,42 @@
+﻿<Page x:Class="LibraryProject.Pages.RegPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LibraryProject.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RegPage">
+
+    <Grid Background="{StaticResource WhiteColor}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <UniformGrid Columns="2" Grid.Column="1" VerticalAlignment="Center">
+            <TextBlock Text="Фамилия" Style="{StaticResource AutoTextBlock}"/>
+            <TextBox x:Name="LastNameTextBox" Style="{StaticResource AutoTextBox}"/>
+            <TextBlock Text="Имя" Style="{StaticResource AutoTextBlock}"/>
+            <TextBox x:Name="NameTextBox" Style="{StaticResource AutoTextBox}"/>
+            <TextBlock Text="Отчество" Style="{StaticResource AutoTextBlock}"/>
+            <TextBox x:Name="FastNameTextBox" Style="{StaticResource AutoTextBox}"/>
+            <TextBlock Text="Номер телефона" Style="{StaticResource AutoTextBlock}"/>
+            <TextBox x:Name="NumberPhoneTextBox" Style="{StaticResource AutoTextBox}"/>
+            <TextBlock Text="Дата рождения" Style="{StaticResource AutoTextBlock}"/>
+            <DatePicker x:Name="BirthdayDatePicker" Style="{StaticResource RegDatePicker}"/>
+            <TextBlock Text="Место учёбы или работы" Style="{StaticResource AutoTextBlock}"/>
+            <TextBox x:Name="StudyOrWorkTextBox" Style="{StaticResource AutoTextBox}"/>
+            <TextBlock Text="Место жительства" Style="{StaticResource AutoTextBlock}"/>
+            <TextBox x:Name="AdressTextBox" Style="{StaticResource AutoTextBox}"/>
+            <TextBlock Text="Логин" Style="{StaticResource AutoTextBlock}"/>
+            <TextBox x:Name="LoginTextBox" Style="{StaticResource AutoTextBox}"/>
+            <TextBlock Text="Пароль" Style="{StaticResource AutoTextBlock}"/>
+            <PasswordBox x:Name="PasswordPasswordTextBox" Style="{StaticResource AutoPasswodBox}"/>
+            <TextBlock Text="Повторите пароль" Style="{StaticResource AutoTextBlock}"/>
+            <PasswordBox x:Name="ReturnPasswordPasswordTextBox" Style="{StaticResource AutoPasswodBox}"/>
+            <Button x:Name="GenegationPasswordButton" Content="Генерация пароля" Click="GenerationPasswordButtonClick" Style="{StaticResource RegButton}"/>
+            <Button x:Name="RegButton" Style="{StaticResource RegButton}" Click="RegButtonClick" Content="Регистрация"/>
+        </UniformGrid>
+    </Grid>
+</Page>
