@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryProjestLibrary
 {
+    //Класс на проверку правильного введённого поля
     public class CheckStringClass
     {
         /// <summary>
@@ -220,6 +221,7 @@ namespace LibraryProjestLibrary
             return true;
         }
     }
+    //Класс для генерации 
     public class GenerationString
     {
         /// <summary>
@@ -266,6 +268,10 @@ namespace LibraryProjestLibrary
             }
             return randompassword;
         }
+        /// <summary>
+        /// Генерация ISBN индефикатора для книг
+        /// </summary>
+        /// <returns></returns>
         public string ISBNGeneration() 
         {
             string str = String.Empty;
@@ -278,12 +284,18 @@ namespace LibraryProjestLibrary
             str = $"{one}-{two}-{three}-{control}";
             return str;
         }
+
+        /// <summary>
+        /// Генерация контрольной цифры для ISBN индефикатора
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
         public int ControlNumberGeneration(string number)
         {
             int control = 0;
             for (int i = 0; i <number.Length; i++)
             {
-                control += number[i] * (10 - i);
+                control += Convert.ToInt32(number.Substring(i,1)) * (10 - i);
             }
             int ost = control % 11;
             return ost;

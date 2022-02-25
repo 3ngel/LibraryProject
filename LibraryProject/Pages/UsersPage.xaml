@@ -22,7 +22,42 @@
             <TextBlock x:Name="UsersTextBlock" Text="Пользователи" Style="{StaticResource ActivePage}"/>
         </StackPanel>
         <StackPanel Grid.Column="1">
-
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <ListView x:Name="UsersListView" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="10">
+                                <Grid>
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock x:Name="LastNameTextBlock" Text="{Binding LastName}" Style="{StaticResource AutoTextBlock}"/>
+                                            <TextBlock x:Name="NameTextBlock" Text="{Binding Name}" Style="{StaticResource AutoTextBlock}"/>
+                                            <TextBlock x:Name="PatronymicNameTextBlock" Text="{Binding PatronymicName}" Style="{StaticResource AutoTextBlock}"/>
+                                        </StackPanel>
+                                        <UniformGrid Columns="2">
+                                            <TextBlock Text="День рождения:" Style="{StaticResource AutoTextBlock}"/>
+                                            <TextBlock x:Name="BirthdayTextBlock" Text="{Binding Birthday}" Style="{StaticResource AutoTextBlock}"/>
+                                            <TextBlock Text="Адресс" Style="{StaticResource AutoTextBlock}"/>
+                                            <TextBlock x:Name="AdressTextBlock" Text="{Binding Adress}" Style="{StaticResource AutoTextBlock}"/>
+                                            <TextBlock Text="Место учёбы или работы:" Style="{StaticResource AutoTextBlock}"/>
+                                            <TextBlock x:Name="StudyOrWorkTextBlock" Text="{Binding StudyOrWork}" Style="{StaticResource AutoTextBlock}"/>
+                                            <TextBlock Text="Номер телефона:" Style="{StaticResource AutoTextBlock}"/>
+                                            <TextBlock x:Name="NumberPhoneTextBlock" Text="{Binding NumberPhone}" Style="{StaticResource AutoTextBlock}"/>
+                                            <TextBlock Text="Ранг доступа" Style="{StaticResource AutoTextBlock}"/>
+                                            <TextBlock x:Name="RankTextBlock" Text="{Binding IdRank}" Style="{StaticResource AutoTextBlock}"/>
+                                        </UniformGrid>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel HorizontalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </ScrollViewer>
         </StackPanel>
     </Grid>
 </Page>

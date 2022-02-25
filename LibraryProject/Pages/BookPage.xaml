@@ -47,22 +47,23 @@
                     </ComboBox>
                 </StackPanel>
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                    <ListView x:Name="BookListView" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled"> 
+                    <ListView x:Name="BookListView" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10"> 
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Border>
                                     <Grid>
                                         <StackPanel>
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock x:Name="TitleTextBlock" Text="{Binding Title}"/>
-                                                <TextBlock x:Name="AuthorTextBlock" Text="{Binding Author}"/>
+                                                <TextBlock x:Name="TitleTextBlock" Text="{Binding Title}" Style="{StaticResource AutoTextBlock}"/>
+                                                <TextBlock x:Name="AuthorTextBlock" Text="{Binding Author}" Style="{StaticResource AutoTextBlock}"/>
                                             </StackPanel>
-                                            <TextBlock x:Name="HousePublication" Text="{Binding HousePublication}"/>
-                                            <TextBlock x:Name="CityTextBlock" Text="{Binding City}"/>
-                                            <TextBlock x:Name="YearTextBlock" Text="{Binding Year}"/>
-                                            <TextBlock x:Name="PageCountsTextBlock" Text="{Binding }"/>
-                                            <TextBlock x:Name="BBKTextBlock" Text="{Binding }"/>
-                                            <TextBlock x:Name="ISBNTextBlock" Text="{Binding }"/>
+                                            <TextBlock x:Name="HousePublication" Text="{Binding HousePublication}" Style="{StaticResource AutoTextBlock}"/>
+                                            <TextBlock x:Name="CityTextBlock" Text="{Binding IdCity}" Style="{StaticResource AutoTextBlock}"/>
+                                            <TextBlock x:Name="YearTextBlock" Text="{Binding YearOfPublication}" Style="{StaticResource AutoTextBlock}"/>
+                                            <TextBlock x:Name="PageCountsTextBlock" Text="{Binding PageCounts}" Style="{StaticResource AutoTextBlock}"/>
+                                            <TextBlock x:Name="BBKTextBlock" Text="{Binding BBK}" Style="{StaticResource AutoTextBlock}"/>
+                                            <TextBlock x:Name="ISBNTextBlock" Text="{Binding ISBN}" Style="{StaticResource AutoTextBlock}"/>
+                                            <Button x:Name="AddBookButton" Content="Добавить" Click="AddBookButtonClick" Style="{StaticResource RegButton}"/>
                                         </StackPanel>
                                     </Grid>
                                 </Border>

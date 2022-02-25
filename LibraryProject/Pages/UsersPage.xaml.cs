@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,22 @@ namespace LibraryProject.Pages
     /// </summary>
     public partial class UsersPage : Page
     {
+        Core db = new Core();
+        List<Reader> arrayUsers; 
         public UsersPage()
         {
             InitializeComponent();
+            arrayUsers = db.context.Reader.ToList();
+            UsersListView.ItemsSource = arrayUsers;
+            ShowTable();
+        }
+        /// <summary>
+        /// Отображение данных из таблицы "Books"
+        /// </summary>
+        private void ShowTable()
+        {
+            arrayUsers = db.context.Reader.ToList();
+            UsersListView.ItemsSource = arrayUsers;
         }
         /// <summary>
         /// Событие переноса на страницу "О нас"

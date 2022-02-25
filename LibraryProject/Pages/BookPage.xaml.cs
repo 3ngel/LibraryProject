@@ -23,6 +23,7 @@ namespace LibraryProject.Pages
     {
         Core db = new Core();
         List<Books> arrayBooks;
+        List<BBK> arrayBBK;
         public BookPage()
         {
             InitializeComponent();
@@ -62,7 +63,10 @@ namespace LibraryProject.Pages
                     ReaderBilettsTextBlock.Visibility = Visibility.Visible;
                 }
             }
-            //Попытка отображения ListView
+            arrayBooks = db.context.Books.ToList();
+            arrayBBK = db.context.BBK.ToList(); 
+            BookListView.ItemsSource = arrayBooks;
+            // отображения ListView
             ShowTable();
         }
         
@@ -109,6 +113,11 @@ namespace LibraryProject.Pages
         private void UsersTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.NavigationService.Navigate(new UsersPage());
+        }
+        //Кнопка добавления книги
+        private void AddBookButtonClick(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
