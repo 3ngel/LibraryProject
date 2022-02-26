@@ -26,23 +26,24 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="Поиск" VerticalAlignment="Center"/>
                     <TextBox x:Name="SearchTextBox" Background="{StaticResource LightBlueColor}" Height="30" Width="200"/>
                     <TextBlock Text="Сортировать по" VerticalAlignment="Center"/>
-                    <ComboBox Width="200" Height="30" Background="{StaticResource LightBlueColor}">
+                    <ComboBox Width="200" Height="30" Background="{StaticResource LightBlueColor}" x:Name="SortingComboBox" SelectionChanged="SortingComboBoxSelectionChanged">
                         <ComboBoxItem>
-                            <TextBlock Text="Кол-ву страниц"/>
+                            <TextBlock Text="Кол-ву страниц (по возрастинию)"/>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock Text="По направляениям"/>
+                            <TextBlock Text="Кол-ву страниц (по убыванию)"/>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock Text="По году выпуска"/>
+                            <TextBlock Text="По году выпуска (по возрастанию)"/>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock Text="По дому печати"/>
+                            <TextBlock Text="По году выпуска (по убыванию)"/>
                         </ComboBoxItem>
                     </ComboBox>
                 </StackPanel>
@@ -76,6 +77,9 @@
                         </ListView.ItemsPanel>
                     </ListView>
                 </ScrollViewer>
+                <StackPanel Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                    <Button x:Name="BookAddButton" Click="BookAddButtonClick" Style="{StaticResource RegButton}" Content="Добавить книгу"/>
+                </StackPanel>
             </Grid>
         </StackPanel>
     </Grid>

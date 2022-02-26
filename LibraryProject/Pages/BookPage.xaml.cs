@@ -49,18 +49,21 @@ namespace LibraryProject.Pages
                 {
                     ReaderBilettsTextBlock.Visibility = Visibility.Hidden;
                     UsersTextBlock.Visibility = Visibility.Hidden;
+                    BookAddButton.Visibility = Visibility.Hidden;
                 }
                 //Библиотекарь
                 if (rank == 2)
                 {
                     ReaderBilettsTextBlock.Visibility = Visibility.Visible;
                     UsersTextBlock.Visibility = Visibility.Hidden;
+                    BookAddButton.Visibility = Visibility.Visible;
                 }
                 //Администратор
                 else if (rank == 3)
                 {
                     UsersTextBlock.Visibility = Visibility.Visible;
                     ReaderBilettsTextBlock.Visibility = Visibility.Visible;
+                    BookAddButton.Visibility = Visibility.Visible;
                 }
             }
             arrayBooks = db.context.Books.ToList();
@@ -114,10 +117,27 @@ namespace LibraryProject.Pages
         {
             this.NavigationService.Navigate(new UsersPage());
         }
-        //Кнопка добавления книги
+        //Кнопка добавления книги к себе
         private void AddBookButtonClick(object sender, RoutedEventArgs e)
         {
 
+        }
+        //Сортировка книг
+        private void SortingComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SortingComboBox.SelectedIndex==0)
+            {
+
+            }
+        }
+        /// <summary>
+        /// Логика добавления новой книги
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BookAddButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new BookAddPage());
         }
     }
 }
