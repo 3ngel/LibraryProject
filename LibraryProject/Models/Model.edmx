@@ -64,7 +64,7 @@
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PatronymicName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="Birthday" Type="datetime" Nullable="false" />
           <Property Name="Adress" Type="nvarchar(max)" Nullable="false" />
           <Property Name="StudyOrWork" Type="nvarchar(max)" Nullable="false" />
           <Property Name="NumberPhone" Type="nchar" MaxLength="11" Nullable="false" />
@@ -261,7 +261,7 @@
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PatronymicName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StudyOrWork" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NumberPhone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />

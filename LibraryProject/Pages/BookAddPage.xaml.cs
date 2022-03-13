@@ -55,6 +55,9 @@ namespace LibraryProject.Pages
                     ReaderBilettsTextBlock.Visibility = Visibility.Visible;
                 }
             }
+            int count = db.context.BBK.Count();
+            BBK bbk = db.context.BBK.First();
+            BBKComboBoxox.DataSource = db.context.BBK.ToList();
         }
         /// <summary>
         /// Кнопка переноса на страницу "О нас"

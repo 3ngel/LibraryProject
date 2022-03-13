@@ -64,10 +64,14 @@ namespace LibraryProject.Pages
                     Properties.Settings.Default.Save();
                     this.NavigationService.Navigate(new MainPage());
                 }
+                else
+                {
+                    MessageBox.Show("Неверный пароль или логин");
+                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Не верный пароль или логин");
+                throw;
             }
         }
     }

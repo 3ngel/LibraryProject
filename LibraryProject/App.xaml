@@ -71,5 +71,13 @@
             <Setter Property="Background" Value="{StaticResource LightBlueColor}"/>
             <Setter Property="Foreground" Value="{StaticResource LightBlueColor}"/>
         </Style>
+        <Style x:Key="MainComboBox" TargetType="ComboBox">
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="{StaticResource MainColor}"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
     </Application.Resources>
 </Application>

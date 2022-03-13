@@ -1,6 +1,7 @@
 ﻿using LibraryProject.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,7 @@ namespace LibraryProject.Pages
                 ReaderBilettsTextBlock.Visibility = Visibility.Hidden;
                 UsersTextBlock.Visibility = Visibility.Hidden;
                 PersonalAreaTextBlock.Visibility = Visibility.Hidden;
+                BookAddButton.Visibility = Visibility.Hidden;
             }
             else
             {
@@ -67,7 +69,7 @@ namespace LibraryProject.Pages
                 }
             }
             arrayBooks = db.context.Books.ToList();
-            arrayBBK = db.context.BBK.ToList(); 
+            arrayBBK = db.context.BBK.ToList();
             BookListView.ItemsSource = arrayBooks;
             // отображения ListView
             ShowTable();
@@ -117,27 +119,71 @@ namespace LibraryProject.Pages
         {
             this.NavigationService.Navigate(new UsersPage());
         }
-        //Кнопка добавления книги к себе
-        private void AddBookButtonClick(object sender, RoutedEventArgs e)
-        {
-
-        }
         //Сортировка книг
         private void SortingComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (SortingComboBox.SelectedIndex==0)
             {
-
+                arrayBooks = arrayBooks.OrderBy(x=>x.PageCounts).ToList();
             }
+            else if (SortingComboBox.SelectedIndex==1)
+            {
+                arrayBooks = arrayBooks.OrderByDescending(x => x.PageCounts).ToList();
+            }
+
+            BookListView.ItemsSource = arrayBooks;
         }
         /// <summary>
-        /// Логика добавления новой книги
+        /// Логика перехода на старницу для добавления новой книги
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void BookAddButtonClick(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new BookAddPage());
+        }
+        //Добавление новой книги в читательский билет
+        private void AddBookButtonClick(object sender, RoutedEventArgs e)
+        {
+            //Определить какая кнопку какой книги нажали
+            Button activeButton = sender as Button;
+            Books activeBook = activeButton.DataContext as Books;
+            string ISBN = activeBook.ISBN;
+            //Какой сегодня день и когда вернуть книгу
+            DateTime today = DateTime.Now;
+            DateTime returnDate = today.AddDays(14);
+            //Подсчёт строк в таблице, потому что я дебил, который забыл поставить автозаполнение
+            int count = db.context.Extradition.Count()+1;
+            Reader activeReader = db.context.Reader.Where(x => x.Login == Properties.Settings.Default.loginClient).First();
+            int ID = activeReader.IdReader;
+            Extradition extr = new Extradition 
+            {
+                IdReaderBillet = count,
+                IdBook = ISBN,
+                DateOfIssue = today,
+                ReturnDate = returnDate,
+                IdReader = ID
+            };
+            db.context.Extradition.Add(extr);
+            try
+            {
+                db.context.SaveChanges();
+                if (db.context.SaveChanges() == 0)
+                {
+                    MessageBox.Show("Книга успешно добавлена");
+                }
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
+                {
+                    MessageBox.Show("Object: " + validationError.Entry.Entity.ToString());
+                    foreach (DbValidationError err in validationError.ValidationErrors)
+                    {
+                        MessageBox.Show(err.ErrorMessage + "");
+                    }
+                }
+            }
         }
     }
 }

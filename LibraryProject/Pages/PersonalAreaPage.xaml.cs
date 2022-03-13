@@ -68,6 +68,11 @@ namespace LibraryProject.Pages
             AdressTextBlock.Text = arrayReader.Adress; //Адресс проживания
             StudyOrWorkTextBlock.Text = arrayReader.StudyOrWork; //Место учёбы или работы
             NumberPhoneTextBlock.Text = arrayReader.NumberPhone; //Номер телефона
+            //Вывод взятых книг
+            int ID = arrayReader.IdReader;
+            List<Extradition> arrayBillets;
+            arrayBillets = db.context.Extradition.Where(x=>x.IdReader==ID).ToList();
+            ReaderBilletsListView.ItemsSource = arrayBillets;
         }
         /// <summary>
         /// Событие переноса на страницу "О нас"

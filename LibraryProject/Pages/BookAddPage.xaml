@@ -29,11 +29,11 @@
             <TextBlock x:Name="YearOfPublicationTextBlock" Text="Год выхода: " Style="{StaticResource AutoTextBlock}"/>
             <TextBox x:Name="YearOfPublicationTextBox" Style="{StaticResource AutoTextBox}"/>
             <TextBlock x:Name="BBKTextBlock" Text="ББК: " Style="{StaticResource AutoTextBlock}"/>
-            <TextBox x:Name="BBKTextBox" Style="{StaticResource AutoTextBox}"/>
+            <ComboBox x:Name="BBKComboBoxox" Style="{StaticResource MainComboBox}"/>
             <TextBlock x:Name="PageCountsTextBlock" Text="Кол-во страниц:" Style="{StaticResource AutoTextBlock}"/>
             <TextBox x:Name="PageCountsTextBox" Style="{StaticResource AutoTextBox}"/>
             <TextBlock x:Name="HousePublicationTextBlock" Text="Дом печати: " Style="{StaticResource AutoTextBlock}"/>
-            <TextBox x:Name="HousePublicationTextBox" Style="{StaticResource AutoTextBox}"/>
+            <ComboBox x:Name="HousePublicationComboBoxox" Style="{StaticResource MainComboBox}"/>
             <Button x:Name="BookAddButton" Style="{StaticResource RegButton}" Content="Добавить книгу" Click="BookAddButtonClick"/>
         </UniformGrid>
     </Grid>

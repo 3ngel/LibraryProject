@@ -21,8 +21,38 @@
             <TextBlock x:Name="ReaderBilettsTextBlock" Text="Читателские билеты" Style="{StaticResource ActivePage}"/>
             <TextBlock x:Name="UsersTextBlock" Text="Пользователи" Style="{StaticResource TextMenu}" MouseLeftButtonDown="UsersTextBlockMouseLeftButtonDown"/>
         </StackPanel>
-        <StackPanel>
-
+        <StackPanel Grid.Column="1">
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <ListView x:Name="ReaderBilletsListView" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <Grid>
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <UniformGrid Columns="2">
+                                                <TextBlock Text="Книга" Style="{StaticResource AutoTextBlock}"/>
+                                                <TextBlock x:Name="BookTextBlock" Style="{StaticResource AutoTextBlock}" Text="{Binding IdBook}"/>
+                                                <TextBlock Text="Кто взял" Style="{StaticResource AutoTextBlock}"/>
+                                                <TextBlock x:Name="ReaderTextBlock" Style="{StaticResource AutoTextBlock}" Text="{Binding IdReader}"/>
+                                                <TextBlock Text="Когда взяли" Style="{StaticResource AutoTextBlock}"/>
+                                                <TextBlock x:Name="DateOfIssueTextBlock" Style="{StaticResource AutoTextBlock}" Text="{Binding DateOfIssue}"/>
+                                                <TextBlock Text="Когда вернуть" Style="{StaticResource AutoTextBlock}"/>
+                                                <TextBlock x:Name="ReturnTextBlock" Style="{StaticResource AutoTextBlock}" Text="{Binding ReturnDate}"/>
+                                            </UniformGrid>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel HorizontalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </ScrollViewer>
         </StackPanel>
     </Grid>
 </Page>

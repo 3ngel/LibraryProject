@@ -16,25 +16,25 @@
         </Grid.ColumnDefinitions>
         <UniformGrid Columns="2" Grid.Column="1" VerticalAlignment="Center">
             <TextBlock Text="Фамилия" Style="{StaticResource AutoTextBlock}"/>
-            <TextBox x:Name="LastNameTextBox" Style="{StaticResource AutoTextBox}"/>
+            <TextBox x:Name="LastNameTextBox" Style="{StaticResource AutoTextBox}" Text="Леунов"/>
             <TextBlock Text="Имя" Style="{StaticResource AutoTextBlock}"/>
-            <TextBox x:Name="NameTextBox" Style="{StaticResource AutoTextBox}"/>
+            <TextBox x:Name="NameTextBox" Style="{StaticResource AutoTextBox}" Text="Кирилл"/>
             <TextBlock Text="Отчество" Style="{StaticResource AutoTextBlock}"/>
-            <TextBox x:Name="FastNameTextBox" Style="{StaticResource AutoTextBox}"/>
+            <TextBox x:Name="FastNameTextBox" Style="{StaticResource AutoTextBox}" Text="Александрович"/>
             <TextBlock Text="Номер телефона" Style="{StaticResource AutoTextBlock}"/>
-            <TextBox x:Name="NumberPhoneTextBox" Style="{StaticResource AutoTextBox}"/>
+            <TextBox x:Name="NumberPhoneTextBox" Style="{StaticResource AutoTextBox}" Text="89827396243"/>
             <TextBlock Text="Дата рождения" Style="{StaticResource AutoTextBlock}"/>
             <DatePicker x:Name="BirthdayDatePicker" Style="{StaticResource RegDatePicker}"/>
             <TextBlock Text="Место учёбы или работы" Style="{StaticResource AutoTextBlock}"/>
-            <TextBox x:Name="StudyOrWorkTextBox" Style="{StaticResource AutoTextBox}"/>
+            <TextBox x:Name="StudyOrWorkTextBox" Style="{StaticResource AutoTextBox}" Text="ЕМК"/>
             <TextBlock Text="Место жительства" Style="{StaticResource AutoTextBlock}"/>
-            <TextBox x:Name="AdressTextBox" Style="{StaticResource AutoTextBox}"/>
+            <TextBox x:Name="AdressTextBox" Style="{StaticResource AutoTextBox}" Text="Екатеринбург"/>
             <TextBlock Text="Логин" Style="{StaticResource AutoTextBlock}"/>
-            <TextBox x:Name="LoginTextBox" Style="{StaticResource AutoTextBox}"/>
+            <TextBox x:Name="LoginTextBox" Style="{StaticResource AutoTextBox}" Text="ReeLune"/>
             <TextBlock Text="Пароль" Style="{StaticResource AutoTextBlock}"/>
-            <PasswordBox x:Name="PasswordPasswordTextBox" Style="{StaticResource AutoPasswodBox}"/>
+            <TextBox x:Name="PasswordTextBox" Style="{StaticResource AutoTextBox}"/>
             <TextBlock Text="Повторите пароль" Style="{StaticResource AutoTextBlock}"/>
-            <PasswordBox x:Name="ReturnPasswordPasswordTextBox" Style="{StaticResource AutoPasswodBox}"/>
+            <TextBox x:Name="ReturnPasswordTextBox" Style="{StaticResource AutoTextBox}"/>
             <Button x:Name="GenegationPasswordButton" Content="Генерация пароля" Click="GenerationPasswordButtonClick" Style="{StaticResource RegButton}"/>
             <Button x:Name="RegButton" Style="{StaticResource RegButton}" Click="RegButtonClick" Content="Регистрация"/>
         </UniformGrid>

@@ -59,6 +59,9 @@ namespace LibraryProject.Pages
                     ReaderBilettsTextBlock.Visibility = Visibility.Visible;
                 }
             }
+            List<Extradition> extraditions;
+            extraditions = db.context.Extradition.ToList();
+            ReaderBilletsListView.ItemsSource = extraditions;
         }
         /// <summary>
         /// Событие переноса на страницу "О нас"

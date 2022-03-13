@@ -220,6 +220,34 @@ namespace LibraryProjestLibrary
                 throw new Exception("Длина пароля должна быть от 8 до 20 символов");
             return true;
         }
+        public bool AdressCheck(string adress)
+        {
+            if (adress == String.Empty)
+            {
+                throw new Exception("Вы не введи адрес");
+            }
+            string correctSymbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя1234567890, ";
+            adress = adress.ToLower();
+            if (!adress.All(x => correctSymbols.Contains(x)))
+            {
+                throw new Exception("Адрес содержит недоступные символы. Писать на кириллице");
+            }
+            return true;
+        }
+        public bool StudyOrWorkCheck(string text) 
+        {
+            if (text == String.Empty)
+            {
+                throw new Exception("Вы не введи место учёбы/работы");
+            }
+            string correctSymbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя ,1234567890";
+            text = text.ToLower();
+            if (!text.All(x => correctSymbols.Contains(x)))
+            {
+                throw new Exception("Наименование места учёбы/работы содержит недоступные символы. Писать на кириллице");
+            }
+            return true;
+        }
     }
     //Класс для генерации 
     public class GenerationString
