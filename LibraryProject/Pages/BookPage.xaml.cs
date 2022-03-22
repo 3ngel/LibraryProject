@@ -1,5 +1,4 @@
-﻿using LibraryProject.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
@@ -14,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using LibraryProject.Models;
 
 namespace LibraryProject.Pages
 {
@@ -24,7 +25,6 @@ namespace LibraryProject.Pages
     {
         Core db = new Core();
         List<Books> arrayBooks;
-        List<BBK> arrayBBK;
         public BookPage()
         {
             InitializeComponent();
@@ -68,21 +68,8 @@ namespace LibraryProject.Pages
                     BookAddButton.Visibility = Visibility.Visible;
                 }
             }
-            arrayBooks = db.context.Books.ToList();
-            arrayBBK = db.context.BBK.ToList();
-            BookListView.ItemsSource = arrayBooks;
-            // отображения ListView
-            ShowTable();
         }
-        
-        /// <summary>
-        /// Отображение данных из таблицы "Books"
-        /// </summary>
-        private void ShowTable ()
-        {   
-            arrayBooks = db.context.Books.ToList();
-            BookListView.ItemsSource = arrayBooks;
-        }
+
         /// <summary>
         /// Событие переноса на страницу "О нас"
         /// </summary>
@@ -122,11 +109,11 @@ namespace LibraryProject.Pages
         //Сортировка книг
         private void SortingComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (SortingComboBox.SelectedIndex==0)
+            if (SortingComboBox.SelectedIndex == 0)
             {
-                arrayBooks = arrayBooks.OrderBy(x=>x.PageCounts).ToList();
+                arrayBooks = arrayBooks.OrderBy(x => x.PageCounts).ToList();
             }
-            else if (SortingComboBox.SelectedIndex==1)
+            else if (SortingComboBox.SelectedIndex == 1)
             {
                 arrayBooks = arrayBooks.OrderByDescending(x => x.PageCounts).ToList();
             }
@@ -145,45 +132,103 @@ namespace LibraryProject.Pages
         //Добавление новой книги в читательский билет
         private void AddBookButtonClick(object sender, RoutedEventArgs e)
         {
-            //Определить какая кнопку какой книги нажали
-            Button activeButton = sender as Button;
-            Books activeBook = activeButton.DataContext as Books;
-            string ISBN = activeBook.ISBN;
-            //Какой сегодня день и когда вернуть книгу
-            DateTime today = DateTime.Now;
-            DateTime returnDate = today.AddDays(14);
-            //Подсчёт строк в таблице, потому что я дебил, который забыл поставить автозаполнение
-            int count = db.context.Extradition.Count()+1;
-            Reader activeReader = db.context.Reader.Where(x => x.Login == Properties.Settings.Default.loginClient).First();
-            int ID = activeReader.IdReader;
-            Extradition extr = new Extradition 
+            if (Properties.Settings.Default.loginClient!=String.Empty)
             {
-                IdReaderBillet = count,
-                IdBook = ISBN,
-                DateOfIssue = today,
-                ReturnDate = returnDate,
-                IdReader = ID
-            };
-            db.context.Extradition.Add(extr);
-            try
-            {
-                db.context.SaveChanges();
-                if (db.context.SaveChanges() == 0)
+                //Определить какая кнопку какой книги нажали
+                Button activeButton = sender as Button;
+                BooksList activeBook = activeButton.DataContext as BooksList;
+                string ISBN = activeBook.ISBN;
+                Reader activeReader = db.context.Reader.Where(x => x.Login == Properties.Settings.Default.loginClient).First();
+                int ID = activeReader.IdReader;
+                if (db.context.Extradition.Where(x=>x.IdReader==ID).Count()==0)
                 {
-                    MessageBox.Show("Книга успешно добавлена");
+                    //Какой сегодня день и когда вернуть книгу
+                    DateTime today = DateTime.Now;
+                    DateTime returnDate = today.AddDays(14);
+                    //Подсчёт строк в таблице, потому что я дебил, который забыл поставить автозаполнение
+                    int count = db.context.Extradition.Count() + 1;
+                    Extradition extr = new Extradition
+                    {
+                        IdReaderBillet = count,
+                        IdBook = ISBN,
+                        DateOfIssue = today,
+                        ReturnDate = returnDate,
+                        IdReader = ID
+                    };
+                    db.context.Extradition.Add(extr);
+                    try
+                    {
+                        db.context.SaveChanges();
+                        if (db.context.SaveChanges() == 0)
+                        {
+                            MessageBox.Show("Книга успешно добавлена");
+                        }
+                    }
+                    catch (DbEntityValidationException ex)
+                    {
+                        foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
+                        {
+                            MessageBox.Show("Object: " + validationError.Entry.Entity.ToString());
+                            foreach (DbValidationError err in validationError.ValidationErrors)
+                            {
+                                MessageBox.Show(err.ErrorMessage + "");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Вы уже читаете данную книгу");
                 }
             }
-            catch (DbEntityValidationException ex)
+            else
             {
-                foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
+                MessageBox.Show("Чтобы добавить книгу, авторизуйтесь");
+            }
+        }
+
+        private void WindowLoaded(object sender, RoutedEventArgs e)
+        {
+            LibraryEntities obj = new LibraryEntities();
+            var questy =
+                from Books in obj.Books
+                join BBK in obj.BBK on Books.BBK equals BBK.IdBBK
+                join HousePublication in obj.HousePublication on Books.HousePublication equals HousePublication.IdHouse
+                join City in obj.City on Books.IdCity equals City.IdCity
+                select new {Books.ISBN, Books.Author, Books.Title, BBK.TitleBBK, HousePublication.NameHouse, City.NameCity, Books.YearOfPublication, Books.PageCounts};
+            if (questy.Count() != 0) 
+            { 
+                string repeatName = String.Empty;
+                //
+                foreach (var item in questy)
                 {
-                    MessageBox.Show("Object: " + validationError.Entry.Entity.ToString());
-                    foreach (DbValidationError err in validationError.ValidationErrors)
+                    BooksList books = new BooksList()
                     {
-                        MessageBox.Show(err.ErrorMessage + "");
-                    }
+                        ISBN = item.ISBN,
+                        Title = item.Title,
+                        Author = item.Author,
+                        TitleBBK = item.TitleBBK,
+                        NameHouse = item.NameHouse,
+                        NameCity = item.NameCity,
+                        YearOfPublication = item.YearOfPublication,
+                        PageCounts = item.PageCounts
+                    };
+                    BookListView.Items.Add(books);
                 }
             }
         }
+    }
+
+    public class BooksList
+    {
+        List<Books> books = new List<Books> { };
+        public string ISBN { get; set;}
+        public string Title { get; set;}
+        public string Author { get; set;}
+        public string TitleBBK { get; set;}
+        public string NameHouse { get; set;}
+        public string NameCity {get; set;}
+        public int YearOfPublication { get; set;}
+        public int PageCounts { get; set;}
     }
 }

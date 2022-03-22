@@ -99,5 +99,10 @@ namespace LibraryProject.Pages
         {
             this.NavigationService.Navigate(new UsersPage());
         }
+
+        private void WindowLoaded(object sender, RoutedEventArgs e)
+        {
+            LibraryEntities obj = new LibraryEntities();
+        }
     }
 }

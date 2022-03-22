@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:LibraryProject.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ReaderBilletsPage">
+      Title="ReaderBilletsPage" Loaded="WindowLoaded">
 
     <Grid Background="{StaticResource WhiteColor}">
         <Grid.ColumnDefinitions>

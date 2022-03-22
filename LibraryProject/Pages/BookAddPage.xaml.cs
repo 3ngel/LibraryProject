@@ -22,6 +22,9 @@ namespace LibraryProject.Pages
     public partial class BookAddPage : Page
     {
         Core db = new Core();
+        List<BBK> arrayBBK;
+        List<HousePublication> arrayHouse;
+        List<City> arrayCity;
         public BookAddPage()
         {
             InitializeComponent();
@@ -56,8 +59,34 @@ namespace LibraryProject.Pages
                 }
             }
             int count = db.context.BBK.Count();
-            BBK bbk = db.context.BBK.First();
-            BBKComboBoxox.DataSource = db.context.BBK.ToList();
+            //Вывод ComboBox
+            arrayBBK = db.context.BBK.ToList();
+            List<string> indexBBK = new List<string> { };
+            arrayHouse = db.context.HousePublication.ToList();
+            List<int> indexHouse = new List<int> { };
+            arrayCity = db.context.City.ToList();
+            List<int> indexCity = new List<int> { };
+            foreach (var item in arrayBBK)
+            {
+                int i = 0;
+                BBKComboBoxox.Items.Add(item.TitleBBK);
+                indexBBK.Add(item.IdBBK);
+                i++;
+            }
+            foreach (var item in arrayHouse)
+            {
+                int i = 0;
+                HousePublicationComboBoxox.Items.Add(item.NameHouse);
+                indexHouse.Add(item.IdHouse);
+                i++;
+            }
+            foreach (var item in arrayCity)
+            {
+                int i = 0;
+                CityComboBox.Items.Add(item.NameCity);
+                indexCity.Add(item.IdCity);
+                i++;
+            }
         }
         /// <summary>
         /// Кнопка переноса на страницу "О нас"

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище LibraryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище LibraryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BBK">
           <Key>
             <PropertyRef Name="IdBBK" />
@@ -38,8 +38,8 @@
           </Key>
           <Property Name="IdReaderBillet" Type="int" Nullable="false" />
           <Property Name="IdBook" Type="nchar" MaxLength="13" Nullable="false" />
-          <Property Name="DateOfIssue" Type="date" Nullable="false" />
-          <Property Name="ReturnDate" Type="date" Nullable="false" />
+          <Property Name="DateOfIssue" Type="datetime" Nullable="false" />
+          <Property Name="ReturnDate" Type="datetime" Nullable="false" />
           <Property Name="IdReader" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="HousePublication">
@@ -188,7 +188,8 @@
             <End Role="Reader" EntitySet="Reader" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LibraryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -231,8 +232,8 @@
           </Key>
           <Property Name="IdReaderBillet" Type="Int32" Nullable="false" />
           <Property Name="IdBook" Type="String" MaxLength="13" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="DateOfIssue" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ReturnDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateOfIssue" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReturnDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IdReader" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Books" Relationship="Self.FK_Extradition_Books" FromRole="Extradition" ToRole="Books" />
           <NavigationProperty Name="Reader" Relationship="Self.FK_Extradition_Reader" FromRole="Extradition" ToRole="Reader" />

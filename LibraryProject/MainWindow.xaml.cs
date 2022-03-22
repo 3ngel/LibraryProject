@@ -24,7 +24,6 @@ namespace LibraryProject
         public MainWindow()
         {
             InitializeComponent();
-
             NavigatedFrame.Navigate(new MainPage());
         }
         /// <summary>
@@ -69,7 +68,6 @@ namespace LibraryProject
             {
                 BackButton.Visibility = Visibility.Visible;
             }
-
         }
 
         /// <summary>

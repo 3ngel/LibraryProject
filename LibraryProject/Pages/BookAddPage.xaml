@@ -21,20 +21,24 @@
             <TextBlock x:Name="ReaderBilettsTextBlock" Text="Читателские билеты" Style="{StaticResource TextMenu}" MouseLeftButtonDown="ReaderBilletsTextBlockMouseLeftButtonDown"/>
             <TextBlock x:Name="UsersTextBlock" Text="Пользователи" Style="{StaticResource TextMenu}" MouseLeftButtonDown="UsersTextBlockMouseLeftButtonDown"/>
         </StackPanel>
-        <UniformGrid Columns="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock x:Name="AuthorTextBlock" Text="Автор: " Style="{StaticResource AutoTextBlock}"/>
-            <TextBox x:Name="AuthorTextBox" Style="{StaticResource AutoTextBox}"/>
-            <TextBlock x:Name="TitleTextBlock" Text="Название: " Style="{StaticResource AutoTextBlock}"/>
-            <TextBox x:Name="TitleTextBox" Style="{StaticResource AutoTextBox}"/>
-            <TextBlock x:Name="YearOfPublicationTextBlock" Text="Год выхода: " Style="{StaticResource AutoTextBlock}"/>
-            <TextBox x:Name="YearOfPublicationTextBox" Style="{StaticResource AutoTextBox}"/>
-            <TextBlock x:Name="BBKTextBlock" Text="ББК: " Style="{StaticResource AutoTextBlock}"/>
-            <ComboBox x:Name="BBKComboBoxox" Style="{StaticResource MainComboBox}"/>
-            <TextBlock x:Name="PageCountsTextBlock" Text="Кол-во страниц:" Style="{StaticResource AutoTextBlock}"/>
-            <TextBox x:Name="PageCountsTextBox" Style="{StaticResource AutoTextBox}"/>
-            <TextBlock x:Name="HousePublicationTextBlock" Text="Дом печати: " Style="{StaticResource AutoTextBlock}"/>
-            <ComboBox x:Name="HousePublicationComboBoxox" Style="{StaticResource MainComboBox}"/>
+        <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <UniformGrid Columns="2">
+                <TextBlock x:Name="AuthorTextBlock" Text="Автор: " Style="{StaticResource AutoTextBlock}"/>
+                <TextBox x:Name="AuthorTextBox" Style="{StaticResource AutoTextBox}"/>
+                <TextBlock x:Name="TitleTextBlock" Text="Название: " Style="{StaticResource AutoTextBlock}"/>
+                <TextBox x:Name="TitleTextBox" Style="{StaticResource AutoTextBox}"/>
+                <TextBlock x:Name="YearOfPublicationTextBlock" Text="Год выхода: " Style="{StaticResource AutoTextBlock}"/>
+                <TextBox x:Name="YearOfPublicationTextBox" Style="{StaticResource AutoTextBox}"/>
+                <TextBlock x:Name="BBKTextBlock" Text="ББК: " Style="{StaticResource AutoTextBlock}"/>
+                <ComboBox x:Name="BBKComboBoxox" Style="{StaticResource MainComboBox}"/>
+                <TextBlock x:Name="PageCountsTextBlock" Text="Кол-во страниц:" Style="{StaticResource AutoTextBlock}"/>
+                <TextBox x:Name="PageCountsTextBox" Style="{StaticResource AutoTextBox}"/>
+                <TextBlock x:Name="HousePublicationTextBlock" Text="Дом печати: " Style="{StaticResource AutoTextBlock}"/>
+                <ComboBox x:Name="HousePublicationComboBoxox" Style="{StaticResource MainComboBox}"/>
+                <TextBlock Text="Город" Style="{StaticResource AutoTextBlock}"/>
+                <ComboBox x:Name="CityComboBox" Style="{StaticResource MainComboBox}"/>
+            </UniformGrid>
             <Button x:Name="BookAddButton" Style="{StaticResource RegButton}" Content="Добавить книгу" Click="BookAddButtonClick"/>
-        </UniformGrid>
+        </StackPanel>
     </Grid>
 </Page>

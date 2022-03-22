@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:LibraryProject.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="BookPage">
+      Title="BookPage"
+      Loaded="WindowLoaded">
 
     <Grid Background="{StaticResource WhiteColor}">
         <Grid.ColumnDefinitions>
@@ -48,28 +49,28 @@
                     </ComboBox>
                 </StackPanel>
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                    <ListView x:Name="BookListView" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10"> 
+                    <ListView x:Name="BookListView" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Border>
                                     <Grid>
                                         <StackPanel>
-                                            <StackPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Vertical">
                                                 <UniformGrid Columns="2">
                                                     <TextBlock Text="Название " Style="{StaticResource AutoTextBlock}"/>
                                                     <TextBlock x:Name="TitleTextBlock" Text="{Binding Title}" Style="{StaticResource AutoTextBlock}"/>
                                                     <TextBlock Text="Автор " Style="{StaticResource AutoTextBlock}"/>
                                                     <TextBlock x:Name="AuthorTextBlock" Text="{Binding Author}" Style="{StaticResource AutoTextBlock}"/>
                                                     <TextBlock Text="Дом публикации " Style="{StaticResource AutoTextBlock}"/>
-                                                    <TextBlock x:Name="HousePublication" Text="{Binding HousePublication}" Style="{StaticResource AutoTextBlock}"/>
+                                                    <TextBlock x:Name="HousePublication" Text="{Binding NameHouse}" Style="{StaticResource AutoTextBlock}"/>
                                                     <TextBlock Text="Город " Style="{StaticResource AutoTextBlock}"/>
-                                                    <TextBlock x:Name="CityTextBlock" Text="{Binding IdCity}" Style="{StaticResource AutoTextBlock}"/>
+                                                    <TextBlock x:Name="CityTextBlock" Text="{Binding NameCity}" Style="{StaticResource AutoTextBlock}"/>
                                                     <TextBlock Text="Год выхода " Style="{StaticResource AutoTextBlock}"/>
                                                     <TextBlock x:Name="YearTextBlock" Text="{Binding YearOfPublication}" Style="{StaticResource AutoTextBlock}"/>
                                                     <TextBlock Text="Количество страниц " Style="{StaticResource AutoTextBlock}"/>
                                                     <TextBlock x:Name="PageCountsTextBlock" Text="{Binding PageCounts}" Style="{StaticResource AutoTextBlock}"/>
                                                     <TextBlock Text="Направление" Style="{StaticResource AutoTextBlock}"/>
-                                                    <TextBlock x:Name="BBKTextBlock" Text="{Binding BBK}" Style="{StaticResource AutoTextBlock}"/>
+                                                    <TextBlock x:Name="BBKTextBlock" Text="{Binding TitleBBK}" Style="{StaticResource AutoTextBlock}"/>
                                                     <TextBlock Text="Индификатор" Style="{StaticResource AutoTextBlock}"/>
                                                     <TextBlock x:Name="ISBNTextBlock" Text="{Binding ISBN}" Style="{StaticResource AutoTextBlock}"/>
                                                 </UniformGrid>
