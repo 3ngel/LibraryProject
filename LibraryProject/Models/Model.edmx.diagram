@@ -4,15 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e6e399097b8a44c5ad9d18a7c67281d7" Name="Diagram1">
-        <EntityTypeShape EntityType="LibraryModel.BBK" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+      <Diagram DiagramId="ece91e76df254d27bef540ddbac803d9" Name="Diagram1">
+        <EntityTypeShape EntityType="LibraryModel.Author" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.BBK" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryModel.Books" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryModel.City" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryModel.Extradition" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryModel.HousePublication" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryModel.Rank" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryModel.Reader" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.City" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.Extradition" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.HousePublication" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.Rank" Width="1.5" PointX="0.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.Reader" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="LibraryModel.FK_Books_Author" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryModel.FK_Books_BBK" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryModel.FK_Books_City" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryModel.FK_Books_HousePublication" ManuallyRouted="false" />

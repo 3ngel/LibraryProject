@@ -1,6 +1,8 @@
 ﻿using LibraryProject.Models;
+using LibraryProjestLibrary;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +27,11 @@ namespace LibraryProject.Pages
         List<BBK> arrayBBK;
         List<HousePublication> arrayHouse;
         List<City> arrayCity;
+        List<Author> arrayAuthor;
+        List<string> indexBBK;
+        List<int> indexHouse;
+        List<int> indexCity;
+        List<int> indexAuthor;
         public BookAddPage()
         {
             InitializeComponent();
@@ -61,31 +68,32 @@ namespace LibraryProject.Pages
             int count = db.context.BBK.Count();
             //Вывод ComboBox
             arrayBBK = db.context.BBK.ToList();
-            List<string> indexBBK = new List<string> { };
+            indexBBK = new List<string> { };
             arrayHouse = db.context.HousePublication.ToList();
-            List<int> indexHouse = new List<int> { };
+            indexHouse = new List<int> { };
             arrayCity = db.context.City.ToList();
-            List<int> indexCity = new List<int> { };
+            indexCity = new List<int> { };
+            arrayAuthor = db.context.Author.ToList();
+            indexAuthor = new List<int> { };
             foreach (var item in arrayBBK)
             {
-                int i = 0;
-                BBKComboBoxox.Items.Add(item.TitleBBK);
+                BBKComboBox.Items.Add(item.TitleBBK);
                 indexBBK.Add(item.IdBBK);
-                i++;
             }
             foreach (var item in arrayHouse)
             {
-                int i = 0;
                 HousePublicationComboBoxox.Items.Add(item.NameHouse);
                 indexHouse.Add(item.IdHouse);
-                i++;
             }
             foreach (var item in arrayCity)
             {
-                int i = 0;
                 CityComboBox.Items.Add(item.NameCity);
                 indexCity.Add(item.IdCity);
-                i++;
+            }
+            foreach (var item in arrayAuthor)
+            {
+                AuthorComboBox.Items.Add(item.FullNameAuthor);
+                indexAuthor.Add(item.IdAuthor);
             }
         }
         /// <summary>
@@ -95,7 +103,7 @@ namespace LibraryProject.Pages
         /// <param name="e"></param>
         private void AboutUsTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (AuthorTextBox.Text != String.Empty || TitleTextBox.Text!=String.Empty || 
+            if (AuthorComboBox.SelectedItem == null || TitleTextBox.Text!=String.Empty || 
                 YearOfPublicationTextBox.Text!=String.Empty || PageCountsTextBox.Text!=String.Empty)
             {
                 string message = "Вы уверены, что хотите покинуть страницу?";
@@ -118,7 +126,7 @@ namespace LibraryProject.Pages
         /// <param name="e"></param>
         private void PersonalAreaTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (AuthorTextBox.Text != String.Empty || TitleTextBox.Text != String.Empty ||
+            if (AuthorComboBox.SelectedItem == null || TitleTextBox.Text != String.Empty ||
                 YearOfPublicationTextBox.Text != String.Empty || PageCountsTextBox.Text != String.Empty)
             {
                 string message = "Вы уверены, что хотите покинуть страницу?";
@@ -141,7 +149,7 @@ namespace LibraryProject.Pages
         /// <param name="e"></param>
         private void BookTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (AuthorTextBox.Text != String.Empty || TitleTextBox.Text != String.Empty ||
+            if (AuthorComboBox.SelectedItem == null || TitleTextBox.Text != String.Empty ||
                 YearOfPublicationTextBox.Text != String.Empty || PageCountsTextBox.Text != String.Empty)
             {
                 string message = "Вы уверены, что хотите покинуть страницу?";
@@ -164,7 +172,7 @@ namespace LibraryProject.Pages
         /// <param name="e"></param>
         private void ReaderBilletsTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (AuthorTextBox.Text != String.Empty || TitleTextBox.Text != String.Empty ||
+            if (AuthorComboBox.SelectedItem == null || TitleTextBox.Text != String.Empty ||
                 YearOfPublicationTextBox.Text != String.Empty || PageCountsTextBox.Text != String.Empty)
             {
                 string message = "Вы уверены, что хотите покинуть страницу?";
@@ -187,7 +195,7 @@ namespace LibraryProject.Pages
         /// <param name="e"></param>
         private void UsersTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (AuthorTextBox.Text != String.Empty || TitleTextBox.Text != String.Empty ||
+            if (AuthorComboBox.SelectedItem == null || TitleTextBox.Text != String.Empty ||
                 YearOfPublicationTextBox.Text != String.Empty || PageCountsTextBox.Text != String.Empty)
             {
                 string message = "Вы уверены, что хотите покинуть страницу?";
@@ -211,7 +219,89 @@ namespace LibraryProject.Pages
         /// <param name="e"></param>
         private void BookAddButtonClick(object sender, RoutedEventArgs e)
         {
-
+            GenerationString obj = new GenerationString();
+            CheckStringClass check = new CheckStringClass();
+            string isbn = obj.ISBNGeneration();
+            BookAddPage add = new BookAddPage();
+            try
+            {
+                if (AuthorComboBox.SelectedItem!=null)
+                {
+                    if (check.TitleCheck(TitleTextBox.Text) == true)
+                    {
+                        if (check.YearCheck(YearOfPublicationTextBox.Text) == true)
+                        {
+                            if (check.PageCountsCheck(PageCountsTextBox.Text) == true)
+                            {
+                                if (BBKComboBox.SelectedItem != null)
+                                {
+                                    if (HousePublicationComboBoxox.SelectedItem != null)
+                                    {
+                                        if (isbn.Length == 13)
+                                        {
+                                            if (CityComboBox.SelectedItem != null)
+                                            {
+                                                Books book = new Books()
+                                                {
+                                                    ISBN = isbn,
+                                                    Author = indexAuthor[AuthorComboBox.SelectedIndex],
+                                                    Title = TitleTextBox.Text,
+                                                    BBK = indexBBK[BBKComboBox.SelectedIndex],
+                                                    HousePublication = indexHouse[HousePublicationComboBoxox.SelectedIndex],
+                                                    IdCity = indexCity[CityComboBox.SelectedIndex],
+                                                    PageCounts =Convert.ToInt32(PageCountsTextBox.Text),
+                                                    YearOfPublication =Convert.ToInt32(YearOfPublicationTextBox.Text)
+                                                };
+                                                db.context.Books.Add(book);
+                                                try
+                                                {
+                                                    db.context.SaveChanges();
+                                                    if (db.context.SaveChanges() == 0)
+                                                    {
+                                                        MessageBox.Show("Вы успешно добавили книгу");
+                                                        this.NavigationService.Navigate(new BookPage());
+                                                    }
+                                                }
+                                                catch (DbEntityValidationException ex)
+                                                {
+                                                    foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
+                                                    {
+                                                        MessageBox.Show("Object: " + validationError.Entry.Entity.ToString());
+                                                        foreach (DbValidationError err in validationError.ValidationErrors)
+                                                        {
+                                                            MessageBox.Show(err.ErrorMessage + "");
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Вы не выбрали город");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show(isbn);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Вы не выбрали дом печати");
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Вы не выбрали направление книги");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

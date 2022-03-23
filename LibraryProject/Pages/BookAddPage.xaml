@@ -24,13 +24,13 @@
         <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <UniformGrid Columns="2">
                 <TextBlock x:Name="AuthorTextBlock" Text="Автор: " Style="{StaticResource AutoTextBlock}"/>
-                <TextBox x:Name="AuthorTextBox" Style="{StaticResource AutoTextBox}"/>
+                <ComboBox x:Name="AuthorComboBox" Style="{StaticResource MainComboBox}"/>
                 <TextBlock x:Name="TitleTextBlock" Text="Название: " Style="{StaticResource AutoTextBlock}"/>
                 <TextBox x:Name="TitleTextBox" Style="{StaticResource AutoTextBox}"/>
                 <TextBlock x:Name="YearOfPublicationTextBlock" Text="Год выхода: " Style="{StaticResource AutoTextBlock}"/>
                 <TextBox x:Name="YearOfPublicationTextBox" Style="{StaticResource AutoTextBox}"/>
                 <TextBlock x:Name="BBKTextBlock" Text="ББК: " Style="{StaticResource AutoTextBlock}"/>
-                <ComboBox x:Name="BBKComboBoxox" Style="{StaticResource MainComboBox}"/>
+                <ComboBox x:Name="BBKComboBox" Style="{StaticResource MainComboBox}"/>
                 <TextBlock x:Name="PageCountsTextBlock" Text="Кол-во страниц:" Style="{StaticResource AutoTextBlock}"/>
                 <TextBox x:Name="PageCountsTextBox" Style="{StaticResource AutoTextBox}"/>
                 <TextBlock x:Name="HousePublicationTextBlock" Text="Дом печати: " Style="{StaticResource AutoTextBlock}"/>

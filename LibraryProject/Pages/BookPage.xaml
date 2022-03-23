@@ -55,7 +55,7 @@
                                 <Border>
                                     <Grid>
                                         <StackPanel>
-                                            <StackPanel Orientation="Vertical">
+                                            <StackPanel Orientation="Vertical" Margin="15">
                                                 <UniformGrid Columns="2">
                                                     <TextBlock Text="Название " Style="{StaticResource AutoTextBlock}"/>
                                                     <TextBlock x:Name="TitleTextBlock" Text="{Binding Title}" Style="{StaticResource AutoTextBlock}"/>

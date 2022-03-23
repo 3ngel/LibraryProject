@@ -45,6 +45,105 @@ namespace LibraryProjestLibrary
             return true;
         }
         /// <summary>
+        /// Проверка ФИО автора
+        /// </summary>
+        /// <param name="name">
+        /// 
+        /// </param>
+        /// <returns>
+        /// true если введено верно
+        /// false введено не верно
+        /// </returns>
+        public bool AuthorCheck(string name)
+        {
+            string correctSymbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя- ";
+            string nameOne = name;
+            name = name.ToLower();
+            if (!name.All(x => correctSymbols.Contains(x)))
+            {
+                throw new Exception("ФИО автора содержит недоступные символы. Писать на кириллице");
+            }
+            if (name == String.Empty)
+            {
+                throw new Exception("Вы не ввели ФИО автора");
+            }
+            if (name.EndsWith("-") & name.StartsWith("-"))
+            {
+                throw new Exception("ФИО автора содержит знак 'дефис' только в середине");
+            }
+            name = nameOne;
+            char symbol = name[0];
+            if (Char.IsLower(symbol))
+            {
+                throw new Exception("ФИО автора должно начинаться с заглавной буквы");
+            }
+            return true;
+        }
+        /// <summary>
+        /// Проверка Названия книги
+        /// </summary>
+        /// <param name="name">
+        /// 
+        /// </param>
+        /// <returns>
+        /// true если введено верно
+        /// false введено не верно
+        /// </returns>
+        public bool TitleCheck(string name)
+        {
+            string correctSymbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя- :,;.";
+            string nameOne = name;
+            name = name.ToLower();
+            if (!name.All(x => correctSymbols.Contains(x)))
+            {
+                throw new Exception("Название содержит недоступные символы. Писать на кириллице");
+            }
+            if (name == String.Empty)
+            {
+                throw new Exception("Вы не ввели Название");
+            }
+            if (name.EndsWith("-") & name.StartsWith("-"))
+            {
+                throw new Exception("Название содержит знак 'дефис' только в середине");
+            }
+            return true;
+        }
+        public bool YearCheck(string year) 
+        {
+            if (year == String.Empty)
+            {
+                throw new Exception("Вы не ввели год выхода");
+            }
+            string correct = "1234567890";
+            if (!year.All(x=> correct.Contains(x)))
+            {
+                throw new Exception("Не корректный год");
+            }
+            else
+            {
+                int yearcont = Convert.ToInt32(year);
+                int today = DateTime.Now.Year;
+                if (yearcont>today)
+                {
+                    throw new Exception("Неверный год выхода");
+                }
+            }
+            return true;
+        }
+        public bool PageCountsCheck(string year)
+        {
+            string correct = "1234567890";
+            if (!year.All(x => correct.Contains(x)))
+            {
+                throw new Exception("Не корректный год");
+            }
+            if (year==String.Empty)
+            {
+                throw new Exception("Вы не ввели кол-во страниц");
+            }
+            return true;
+        }
+        /// <summary>
         /// Проверка номера
         /// </summary>
         /// <param name="number">
@@ -304,9 +403,9 @@ namespace LibraryProjestLibrary
         {
             string str = String.Empty;
             Random x = new Random();
-            int one = x.Next(1, 10);
-            int two = x.Next(100,1000);
-            int three = x.Next(10000, 1000000);
+            int one = x.Next(1, 9);
+            int two = x.Next(100,999);
+            int three = x.Next(10000, 999999);
             GenerationString obj = new GenerationString();
             int control = obj.ControlNumberGeneration($"{one}{two}{three}");
             str = $"{one}-{two}-{three}-{control}";
@@ -325,7 +424,15 @@ namespace LibraryProjestLibrary
             {
                 control += Convert.ToInt32(number.Substring(i,1)) * (10 - i);
             }
-            int ost = control % 11;
+            int ost = 0;
+            if (control%11>9)
+            {
+                ost = control % 10;
+            }
+            else
+            {
+                ost = control % 11;
+            }
             return ost;
         }
     }

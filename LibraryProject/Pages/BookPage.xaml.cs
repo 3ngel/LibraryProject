@@ -25,6 +25,7 @@ namespace LibraryProject.Pages
     {
         Core db = new Core();
         List<Books> arrayBooks;
+        List<Books> books;
         public BookPage()
         {
             InitializeComponent();
@@ -109,16 +110,70 @@ namespace LibraryProject.Pages
         //Сортировка книг
         private void SortingComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //Сортировка по возрастанию кол-ва страниц
             if (SortingComboBox.SelectedIndex == 0)
             {
-                arrayBooks = arrayBooks.OrderBy(x => x.PageCounts).ToList();
+                LibraryEntities obj = new LibraryEntities();
+                var sorting =
+                    from Books in obj.Books
+                    join BBK in obj.BBK on Books.BBK equals BBK.IdBBK
+                    join HousePublication in obj.HousePublication on Books.HousePublication equals HousePublication.IdHouse
+                    join City in obj.City on Books.IdCity equals City.IdCity
+                    join Author in obj.Author on Books.Author equals Author.IdAuthor
+                    orderby Books.PageCounts
+                    select new { Books.ISBN, Author.FullNameAuthor, Books.Title, BBK.TitleBBK, HousePublication.NameHouse, City.NameCity, Books.YearOfPublication, Books.PageCounts };
+                BookListView.Items.Clear();
+                if (sorting.Count() != 0)
+                {
+                    foreach (var item in sorting)
+                    {
+                        BooksList books = new BooksList()
+                        {
+                            ISBN = item.ISBN,
+                            Title = item.Title,
+                            Author = item.FullNameAuthor,
+                            TitleBBK = item.TitleBBK,
+                            NameHouse = item.NameHouse,
+                            NameCity = item.NameCity,
+                            YearOfPublication = item.YearOfPublication,
+                            PageCounts = item.PageCounts
+                        };
+                        BookListView.Items.Add(books);
+                    }
+                }
             }
+            //Сортировка по убыванию кол-ва страниц
             else if (SortingComboBox.SelectedIndex == 1)
             {
-                arrayBooks = arrayBooks.OrderByDescending(x => x.PageCounts).ToList();
+                LibraryEntities obj = new LibraryEntities();
+                var sorting =
+                    from Books in obj.Books
+                    join BBK in obj.BBK on Books.BBK equals BBK.IdBBK
+                    join HousePublication in obj.HousePublication on Books.HousePublication equals HousePublication.IdHouse
+                    join City in obj.City on Books.IdCity equals City.IdCity
+                    join Author in obj.Author on Books.Author equals Author.IdAuthor
+                    orderby Books.PageCounts descending
+                    select new { Books.ISBN, Author.FullNameAuthor, Books.Title, BBK.TitleBBK, HousePublication.NameHouse, City.NameCity, Books.YearOfPublication, Books.PageCounts };
+                BookListView.Items.Clear();
+                if (sorting.Count() != 0)
+                {
+                    foreach (var item in sorting)
+                    {
+                        BooksList books = new BooksList()
+                        {
+                            ISBN = item.ISBN,
+                            Title = item.Title,
+                            Author = item.FullNameAuthor,
+                            TitleBBK = item.TitleBBK,
+                            NameHouse = item.NameHouse,
+                            NameCity = item.NameCity,
+                            YearOfPublication = item.YearOfPublication,
+                            PageCounts = item.PageCounts
+                        };
+                        BookListView.Items.Add(books);
+                    }
+                }
             }
-
-            BookListView.ItemsSource = arrayBooks;
         }
         /// <summary>
         /// Логика перехода на старницу для добавления новой книги
@@ -195,18 +250,17 @@ namespace LibraryProject.Pages
                 join BBK in obj.BBK on Books.BBK equals BBK.IdBBK
                 join HousePublication in obj.HousePublication on Books.HousePublication equals HousePublication.IdHouse
                 join City in obj.City on Books.IdCity equals City.IdCity
-                select new {Books.ISBN, Books.Author, Books.Title, BBK.TitleBBK, HousePublication.NameHouse, City.NameCity, Books.YearOfPublication, Books.PageCounts};
+                join Author in obj.Author on Books.Author equals Author.IdAuthor
+                select new {Books.ISBN, Author.FullNameAuthor, Books.Title, BBK.TitleBBK, HousePublication.NameHouse, City.NameCity, Books.YearOfPublication, Books.PageCounts};
             if (questy.Count() != 0) 
             { 
-                string repeatName = String.Empty;
-                //
                 foreach (var item in questy)
                 {
                     BooksList books = new BooksList()
                     {
                         ISBN = item.ISBN,
                         Title = item.Title,
-                        Author = item.Author,
+                        Author = item.FullNameAuthor,
                         TitleBBK = item.TitleBBK,
                         NameHouse = item.NameHouse,
                         NameCity = item.NameCity,
