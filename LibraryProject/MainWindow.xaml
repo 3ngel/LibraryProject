@@ -5,22 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryProject"
         mc:Ignorable="d"
-        Title="Азбука знаний" Height="450" Width="800"
+        Title="Азбука знаний" Height="450" Width="800" MinHeight="700" MinWidth="1000"
         Closed="WindowClosed">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="5*"></RowDefinition>
         </Grid.RowDefinitions>
-        <UniformGrid Background="{StaticResource MainColor}" Columns="3" >
-            <Image Source="Images/logo.png" HorizontalAlignment="Left" Margin="10 0 0 0"/>
-            <Label Content="Азбука знаний" Style="{StaticResource Title}"/>
-            <StackPanel HorizontalAlignment="Right"  VerticalAlignment="Center" Margin="0,-1" Width="104">
+        <Grid Background="{StaticResource MainColor}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="Assets/Images/logo.png" HorizontalAlignment="Left" Margin="10 0 0 0" Grid.Column="0"/>
+            <Viewbox Grid.Column="1" MinWidth="24">
+                <Label Content="Азбука знаний" Style="{StaticResource Title}"/>
+            </Viewbox>
+            <StackPanel HorizontalAlignment="Right"  VerticalAlignment="Center" Margin="0,-1" Width="104" Grid.Column="2">
                 <Button x:Name="EntranceButton" Click="EntranceButonClick" Content="Войти" Style="{StaticResource MainButton}"/>
                 <Button x:Name="ExitButton" Click="ExitButtonClick" Content="Выйти" Style="{StaticResource MainButton}"/>
                 <Button x:Name="BackButton" Click="BackButtonClick" Content="Назад" Style="{StaticResource MainButton}"/>
             </StackPanel>
-        </UniformGrid>
+        </Grid>
         <Frame x:Name="NavigatedFrame" Grid.Row="1" NavigationUIVisibility="Hidden" Navigated="MainFrameNavigated"/>
     </Grid>
 </Window>

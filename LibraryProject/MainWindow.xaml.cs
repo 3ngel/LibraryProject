@@ -24,7 +24,7 @@ namespace LibraryProject
         public MainWindow()
         {
             InitializeComponent();
-            NavigatedFrame.Navigate(new MainPage());
+            NavigatedFrame.Navigate(new AutoPage());
         }
         /// <summary>
         /// Выход из приложения 
@@ -60,7 +60,7 @@ namespace LibraryProject
                 EntranceButton.Visibility = Visibility.Hidden;
                 ExitButton.Visibility = Visibility.Visible;
             }
-            if (activePage is MainPage)
+            if (activePage is AboutUsPage)
             {
                 BackButton.Visibility = Visibility.Hidden;
             }
@@ -97,7 +97,7 @@ namespace LibraryProject
         {
             Properties.Settings.Default.loginClient = String.Empty;
             Properties.Settings.Default.Save();
-            this.NavigatedFrame.Navigate(new MainPage());
+            this.NavigatedFrame.Navigate(new AboutUsPage());
         }
     }
 }
