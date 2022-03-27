@@ -20,45 +20,56 @@
             <TextBlock x:Name="ReaderBilettsTextBlock" Text="Читателские билеты" Style="{StaticResource ActivePage}"/>
             <TextBlock x:Name="UsersTextBlock" Text="Пользователи" Style="{StaticResource TextMenu}" MouseLeftButtonDown="UsersTextBlockMouseLeftButtonDown"/>
         </UniformGrid>
-        <StackPanel Grid.Column="1">
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible">
-                <ListView x:Name="ReaderBilletsListView" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Border CornerRadius="10" Background="{StaticResource BlueColor}">
-                                <Grid>
-                                    <StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <UniformGrid Columns="2" Background="{StaticResource LightBlueColor}">
-                                                <TextBlock Text="Автор" Style="{StaticResource LightText}"/>
-                                                <TextBlock x:Name="AuthorTextBlock" Style="{StaticResource LightText}" Text="{Binding Author}"/>
-                                                <TextBlock Text="Название" Style="{StaticResource LightText}"/>
-                                                <TextBlock x:Name="TitleTextBlock" Style="{StaticResource LightText}" Text="{Binding Title}"/>
-                                                <TextBlock Text="Кто взял" Style="{StaticResource LightText}"/>
-                                                <StackPanel Orientation="Vertical">
-                                                    <TextBlock Text="{Binding LastName}" Style="{StaticResource LightText}"/>
-                                                    <TextBlock Text="{Binding Name}" Style="{StaticResource LightText}"/>
-                                                    <TextBlock Text="{Binding PatronymicName}" Style="{StaticResource LightText}"/>
-                                                </StackPanel>
-                                                <TextBlock Text="Когда взяли" Style="{StaticResource LightText}"/>
-                                                <TextBlock x:Name="DateOfIssueTextBlock" Style="{StaticResource LightText}" Text="{Binding DateOfIssue}"/>
-                                                <TextBlock Text="Когда вернуть" Style="{StaticResource LightText}"/>
-                                                <TextBlock x:Name="ReturnTextBlock" Style="{StaticResource LightText}" Text="{Binding ReturnDate}"/>
-                                            </UniformGrid>
-                                            <Button x:Name="DeleteBilletButton" Click="DeleteBilletButtonClick" Style="{StaticResource RegButton}" Content="Вернул(а)"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="8">
+                <Button x:Name="ReaderBilletAddButton" Click="ReaderBilletAddButtonClick" Style="{StaticResource RegButton}" Content="   Добавить читательский билет  "/>
+                <TextBlock Text="  Поиск   " VerticalAlignment="Center"/>
+                <TextBox x:Name="SearchTextBox" Background="{StaticResource LightBlueColor}" Height="30" Width="200"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible">
+                    <ListView x:Name="ReaderBilletsListView" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="10" Background="{StaticResource BlueColor}">
+                                    <Grid>
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <UniformGrid Columns="2" Background="{StaticResource LightBlueColor}">
+                                                    <TextBlock Text="Автор" Style="{StaticResource LightText}"/>
+                                                    <TextBlock x:Name="AuthorTextBlock" Style="{StaticResource LightText}" Text="{Binding Author}"/>
+                                                    <TextBlock Text="Название" Style="{StaticResource LightText}"/>
+                                                    <TextBlock x:Name="TitleTextBlock" Style="{StaticResource LightText}" Text="{Binding Title}"/>
+                                                    <TextBlock Text="Кто взял" Style="{StaticResource LightText}"/>
+                                                    <StackPanel Orientation="Vertical">
+                                                        <TextBlock Text="{Binding LastName}" Style="{StaticResource LightText}"/>
+                                                        <TextBlock Text="{Binding Name}" Style="{StaticResource LightText}"/>
+                                                        <TextBlock Text="{Binding PatronymicName}" Style="{StaticResource LightText}"/>
+                                                    </StackPanel>
+                                                    <TextBlock Text="Когда взяли" Style="{StaticResource LightText}"/>
+                                                    <TextBlock x:Name="DateOfIssueTextBlock" Style="{StaticResource LightText}" Text="{Binding DateOfIssue}"/>
+                                                    <TextBlock Text="Когда вернуть" Style="{StaticResource LightText}"/>
+                                                    <TextBlock x:Name="ReturnTextBlock" Style="{StaticResource LightText}" Text="{Binding ReturnDate}"/>
+                                                </UniformGrid>
+                                                <Button x:Name="DeleteBilletButton" Click="DeleteBilletButtonClick" Style="{StaticResource RegButton}" Content="Вернул(а)"/>
+                                            </StackPanel>
                                         </StackPanel>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel HorizontalAlignment="Center"/>
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                </ListView>
-            </ScrollViewer>
-        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel HorizontalAlignment="Center"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </ScrollViewer>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

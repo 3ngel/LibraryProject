@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using LibraryProject.Assets.Models;
 using LibraryProject.Models;
+using LibraryProject.Assets.View.Pages;
 
 namespace LibraryProject.Pages
 {
@@ -333,6 +334,11 @@ namespace LibraryProject.Pages
                     BookListView.Items.Add(books);
                 }
             }
+        }
+
+        private void NewBookAddButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new NewBookAddPage());
         }
     }
 

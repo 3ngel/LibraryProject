@@ -66,7 +66,6 @@
             <Setter Property="Background" Value="{StaticResource MainColor}"/>
             <Setter Property="Foreground" Value="{StaticResource WhiteColor}"/>
             <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="Margin" Value="0 0 0 10"/>
         </Style>
         <!--Стиль для DatePicker--> 
         <Style x:Key="RegDatePicker" TargetType="DatePicker">

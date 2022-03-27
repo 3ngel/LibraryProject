@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace LibraryProjestLibrary
 {
     //Класс для генерации 
-    class GenerationString
+    public class GenerationString
     {
         /// <summary>
         /// Генерация случайного пароля

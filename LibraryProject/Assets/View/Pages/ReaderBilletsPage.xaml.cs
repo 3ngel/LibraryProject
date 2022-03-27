@@ -180,6 +180,11 @@ namespace LibraryProject.Pages
                 }
             }
         }
+
+        private void ReaderBilletAddButtonClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
     public class ReaderBillets 
     {

@@ -224,19 +224,19 @@ namespace LibraryProject.Assets.View.Pages
             CheckStringClass check = new CheckStringClass();
             try
             {
-                if (AuthorComboBox.SelectedItem != null)
+                if (check.ISBNcheck(ISBNTextBox.Text) == true)
                 {
-                    if (check.TitleCheck(TitleTextBox.Text) == true)
+                    if (AuthorComboBox.SelectedItem != null)
                     {
-                        if (check.YearCheck(YearOfPublicationTextBox.Text) == true)
+                        if (check.TitleCheck(TitleTextBox.Text) == true)
                         {
-                            if (check.PageCountsCheck(PageCountsTextBox.Text) == true)
+                            if (check.YearCheck(YearOfPublicationTextBox.Text) == true)
                             {
-                                if (BBKComboBox.SelectedItem != null)
+                                if (check.PageCountsCheck(PageCountsTextBox.Text) == true)
                                 {
-                                    if (HousePublicationComboBoxox.SelectedItem != null)
+                                    if (BBKComboBox.SelectedItem != null)
                                     {
-                                        if (isbn.Length == 13)
+                                        if (HousePublicationComboBoxox.SelectedItem != null)
                                         {
                                             if (CityComboBox.SelectedItem != null)
                                             {
@@ -280,17 +280,13 @@ namespace LibraryProject.Assets.View.Pages
                                         }
                                         else
                                         {
-                                            MessageBox.Show(isbn);
+                                            MessageBox.Show("Вы не выбрали дом печати");
                                         }
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Вы не выбрали дом печати");
+                                        MessageBox.Show("Вы не выбрали направление книги");
                                     }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Вы не выбрали направление книги");
                                 }
                             }
                         }

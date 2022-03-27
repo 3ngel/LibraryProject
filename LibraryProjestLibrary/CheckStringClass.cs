@@ -319,6 +319,7 @@ namespace LibraryProjestLibrary
                 throw new Exception("Длина пароля должна быть от 8 до 20 символов");
             return true;
         }
+        //Проверка корректности ввода места жительства
         public bool AdressCheck(string adress)
         {
             if (adress == String.Empty)
@@ -333,6 +334,7 @@ namespace LibraryProjestLibrary
             }
             return true;
         }
+        //Проверка корректности ввода места учёбы/работы
         public bool StudyOrWorkCheck(string text) 
         {
             if (text == String.Empty)
@@ -347,6 +349,55 @@ namespace LibraryProjestLibrary
             }
             return true;
         }
+        /// <summary>
+        /// Проверка индикатора книги
+        /// </summary>
+        /// <param name="isbn"></param>
+        /// <returns></returns>
+        public bool ISBNcheck(string isbn)
+        {
+            if (isbn.Length!=13)
+            {
+                throw new Exception("Длина ISBN невернаая");
+            }
+            string control = "1234567890-";
+            char t = '-';
+            if (!isbn.All(x=>control.Contains(x)))
+            {
+                throw new Exception("В ISBN не корректные символы");
+            }
+            bool trie = (isbn[1]==t && isbn[6] == t && isbn[11] == t) &&
+                (isbn[0] != t && isbn[2] != t && isbn[3] != t && isbn[4] != t && isbn[5] != t && isbn[7] != t && isbn[8] != t && isbn[9] != t && isbn[10] != t && isbn[12] != t);
+            if (trie==false)
+            {
+                throw new Exception("Неверный формат ISBN");
+            }
+            string number = $"{isbn[0]}{isbn[2]}{isbn[3]}{isbn[4]}{isbn[5]}{isbn[7]}{isbn[8]}{isbn[9]}{isbn[10]}";
+            int[] numb = new int[9];
+            for (int i = 0; i < number.Length; i++)
+            {
+                numb[i] = Convert.ToInt32(number.Substring(i,1));
+            }
+            int controlNumb = 0;
+            int summ = 0;
+            int[] koff = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            for (int i = 0; i < number.Length; i++)
+            {
+                summ = summ+numb[i] * koff[i];
+            }
+            if (summ % 11 == 10)
+            {
+                controlNumb = summ % 10;
+            }
+            else
+            {
+                controlNumb = summ % 11;
+            }
+            if (isbn.Substring(12,1)!=controlNumb.ToString())
+            {
+                throw new Exception($"{controlNumb}");
+            }
+            return true;
+        }
     }
-    
 }
