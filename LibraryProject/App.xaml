@@ -4,83 +4,11 @@
              xmlns:local="clr-namespace:LibraryProject"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <!--Цвета-->
-        <SolidColorBrush x:Key="LightBlueColor" Color="#99ccff"/>
-        <SolidColorBrush x:Key="BlueColor" Color="#3399ff"/>
-        <SolidColorBrush x:Key="MainColor"  Color="#1164b4"/>
-        <SolidColorBrush x:Key="WhiteColor" Color="White"/>
-        <!--Стиль для заголовка в шапке-->
-        <Style x:Key="Title" TargetType="Label">
-            <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="Foreground" Value="{StaticResource WhiteColor}"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
-        <!--Стиль для кнопок в шапке-->
-        <Style x:Key="MainButton" TargetType="Button">
-            <Setter Property="Background" Value="{StaticResource WhiteColor}"/>
-            <Setter Property="Foreground" Value="#005da8"/>
-            <Setter Property="Margin" Value="8"/>
-            <Setter Property="Height" Value="Auto"/>
-        </Style>
-        <!--Стиль слов для меню слева--> 
-        <Style x:Key="TextMenu" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="0 10 0 2"/>
-        </Style>
-        <!--Стиль слова активной страницы-->
-        <Style x:Key="ActivePage" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="Foreground" Value="#003366"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="0 10 0 2"/>
-            <Setter Property="TextDecorations" Value="Underline"/>
-        </Style>
-        <!--Стиль для TextBlock В регестрации и авторизации-->
-        <Style x:Key="AutoTextBlock" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Foreground" Value="{StaticResource MainColor}"/>
-        </Style>
-        <Style x:Key="LightText" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Foreground" Value="{StaticResource WhiteColor}"/>
-        </Style>
-        <!--Стиль для TextBox в Регистрации и входа в систему-->
-        <Style x:Key="AutoTextBox" TargetType="TextBox">
-            <Setter Property="Width" Value="150"/>
-            <Setter Property="Margin" Value="0 0 0 10"/>
-            <Setter Property="Background" Value="{StaticResource LightBlueColor}"/>
-        </Style>
-        <!--Стиль для PasswordBox в Регистрации и входа в систему-->
-        <Style x:Key="AutoPasswodBox" TargetType="PasswordBox">
-            <Setter Property="Width" Value="150"/>
-            <Setter Property="Margin" Value="0 0 0 10"/>
-            <Setter Property="Background" Value="{StaticResource LightBlueColor}"/>
-        </Style>
-        <!--Стиль для кнопки регистрации и авторизации-->
-        <Style x:Key="RegButton" TargetType="Button">
-            <Setter Property="Background" Value="{StaticResource MainColor}"/>
-            <Setter Property="Foreground" Value="{StaticResource WhiteColor}"/>
-            <Setter Property="FontFamily" Value="Verdana"/>
-        </Style>
-        <!--Стиль для DatePicker--> 
-        <Style x:Key="RegDatePicker" TargetType="DatePicker">
-            <Setter Property="Width" Value="150"/>
-            <Setter Property="Margin" Value="0 0 0 10"/>
-            <Setter Property="Background" Value="{StaticResource LightBlueColor}"/>
-            <Setter Property="Foreground" Value="{StaticResource LightBlueColor}"/>
-        </Style>
-        <Style x:Key="MainComboBox" TargetType="ComboBox">
-            <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Foreground" Value="{StaticResource MainColor}"/>
-            <Setter Property="Width" Value="150"/>
-            <Setter Property="Margin" Value="5"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Assets/Dictionaries/ButtonDictionary.xaml"/>
+                <ResourceDictionary Source="Assets/Dictionaries/TextDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

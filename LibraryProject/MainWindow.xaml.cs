@@ -24,7 +24,7 @@ namespace LibraryProject
         public MainWindow()
         {
             InitializeComponent();
-            NavigatedFrame.Navigate(new AutoPage());
+            NavigatedFrame.Navigate(new AboutUsPage());
         }
         /// <summary>
         /// Выход из приложения 

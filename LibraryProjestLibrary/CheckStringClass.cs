@@ -356,22 +356,24 @@ namespace LibraryProjestLibrary
         /// <returns></returns>
         public bool ISBNcheck(string isbn)
         {
+            isbn = isbn.Replace(" ", "");
+            isbn = isbn.Replace("x", "X").Replace("х","X").Replace("Х","X");
             if (isbn.Length!=13)
             {
                 throw new Exception("Длина ISBN невернаая");
             }
-            string control = "1234567890-";
+            string control = "1234567890-X";
             char t = '-';
             if (!isbn.All(x=>control.Contains(x)))
             {
                 throw new Exception("В ISBN не корректные символы");
             }
-            bool trie = (isbn[1]==t && isbn[6] == t && isbn[11] == t) &&
-                (isbn[0] != t && isbn[2] != t && isbn[3] != t && isbn[4] != t && isbn[5] != t && isbn[7] != t && isbn[8] != t && isbn[9] != t && isbn[10] != t && isbn[12] != t);
-            if (trie==false)
-            {
-                throw new Exception("Неверный формат ISBN");
-            }
+            //bool trie = (isbn[1]==t && isbn[6] == t && isbn[11] == t) &&
+            //    (isbn[0] != t && isbn[2] != t && isbn[3] != t && isbn[4] != t && isbn[5] != t && isbn[7] != t && isbn[8] != t && isbn[9] != t && isbn[10] != t && isbn[12] != t);
+            //if (trie==false)
+            //{
+            //    throw new Exception("Неверный формат ISBN");
+            //}
             string number = $"{isbn[0]}{isbn[2]}{isbn[3]}{isbn[4]}{isbn[5]}{isbn[7]}{isbn[8]}{isbn[9]}{isbn[10]}";
             int[] numb = new int[9];
             for (int i = 0; i < number.Length; i++)
@@ -385,15 +387,22 @@ namespace LibraryProjestLibrary
             {
                 summ = summ+numb[i] * koff[i];
             }
-            if (summ % 11 == 10)
+            controlNumb = summ % 11;
+            controlNumb = 11 - controlNumb;
+            string check = "";
+            if (controlNumb==10)
             {
-                controlNumb = summ % 10;
+                check = "X";
+            }
+            else if (controlNumb==11)
+            {
+                check = "0";
             }
             else
             {
-                controlNumb = summ % 11;
+                check = controlNumb.ToString(); 
             }
-            if (isbn.Substring(12,1)!=controlNumb.ToString())
+            if (isbn.Substring(12,1) != check)
             {
                 throw new Exception($"{controlNumb}");
             }

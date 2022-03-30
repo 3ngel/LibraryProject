@@ -222,74 +222,82 @@ namespace LibraryProject.Assets.View.Pages
         private void BookAddButtonClick(object sender, RoutedEventArgs e)
         {
             CheckStringClass check = new CheckStringClass();
+            int books = db.context.Books.Where(x => x.ISBN == ISBNTextBox.Text).Count();
             try
             {
                 if (check.ISBNcheck(ISBNTextBox.Text) == true)
                 {
-                    if (AuthorComboBox.SelectedItem != null)
+                    if (books == 0)
                     {
-                        if (check.TitleCheck(TitleTextBox.Text) == true)
+                        if (AuthorComboBox.SelectedItem != null)
                         {
-                            if (check.YearCheck(YearOfPublicationTextBox.Text) == true)
+                            if (check.TitleCheck(TitleTextBox.Text) == true)
                             {
-                                if (check.PageCountsCheck(PageCountsTextBox.Text) == true)
+                                if (check.YearCheck(YearOfPublicationTextBox.Text) == true)
                                 {
-                                    if (BBKComboBox.SelectedItem != null)
+                                    if (check.PageCountsCheck(PageCountsTextBox.Text) == true)
                                     {
-                                        if (HousePublicationComboBoxox.SelectedItem != null)
+                                        if (BBKComboBox.SelectedItem != null)
                                         {
-                                            if (CityComboBox.SelectedItem != null)
+                                            if (HousePublicationComboBoxox.SelectedItem != null)
                                             {
-                                                Books book = new Books()
+                                                if (CityComboBox.SelectedItem != null)
                                                 {
-                                                    ISBN = ISBNTextBox.Text,
-                                                    Author = indexAuthor[AuthorComboBox.SelectedIndex],
-                                                    Title = TitleTextBox.Text,
-                                                    BBK = indexBBK[BBKComboBox.SelectedIndex],
-                                                    HousePublication = indexHouse[HousePublicationComboBoxox.SelectedIndex],
-                                                    IdCity = indexCity[CityComboBox.SelectedIndex],
-                                                    PageCounts = Convert.ToInt32(PageCountsTextBox.Text),
-                                                    YearOfPublication = Convert.ToInt32(YearOfPublicationTextBox.Text)
-                                                };
-                                                db.context.Books.Add(book);
-                                                try
-                                                {
-                                                    db.context.SaveChanges();
-                                                    if (db.context.SaveChanges() == 0)
+                                                    Books book = new Books()
                                                     {
-                                                        MessageBox.Show("Вы успешно добавили книгу");
-                                                        this.NavigationService.Navigate(new BookPage());
-                                                    }
-                                                }
-                                                catch (DbEntityValidationException ex)
-                                                {
-                                                    foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
+                                                        ISBN = ISBNTextBox.Text.Replace(" ",""),
+                                                        Author = indexAuthor[AuthorComboBox.SelectedIndex],
+                                                        Title = TitleTextBox.Text,
+                                                        BBK = indexBBK[BBKComboBox.SelectedIndex],
+                                                        HousePublication = indexHouse[HousePublicationComboBoxox.SelectedIndex],
+                                                        IdCity = indexCity[CityComboBox.SelectedIndex],
+                                                        PageCounts = Convert.ToInt32(PageCountsTextBox.Text),
+                                                        YearOfPublication = Convert.ToInt32(YearOfPublicationTextBox.Text)
+                                                    };
+                                                    db.context.Books.Add(book);
+                                                    try
                                                     {
-                                                        MessageBox.Show("Object: " + validationError.Entry.Entity.ToString());
-                                                        foreach (DbValidationError err in validationError.ValidationErrors)
+                                                        db.context.SaveChanges();
+                                                        if (db.context.SaveChanges() == 0)
                                                         {
-                                                            MessageBox.Show(err.ErrorMessage + "");
+                                                            MessageBox.Show("Вы успешно добавили книгу");
+                                                            this.NavigationService.Navigate(new BookPage());
                                                         }
                                                     }
+                                                    catch (DbEntityValidationException ex)
+                                                    {
+                                                        foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
+                                                        {
+                                                            MessageBox.Show("Object: " + validationError.Entry.Entity.ToString());
+                                                            foreach (DbValidationError err in validationError.ValidationErrors)
+                                                            {
+                                                                MessageBox.Show(err.ErrorMessage + "");
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    MessageBox.Show("Вы не выбрали город");
                                                 }
                                             }
                                             else
                                             {
-                                                MessageBox.Show("Вы не выбрали город");
+                                                MessageBox.Show("Вы не выбрали дом печати");
                                             }
                                         }
                                         else
                                         {
-                                            MessageBox.Show("Вы не выбрали дом печати");
+                                            MessageBox.Show("Вы не выбрали направление книги");
                                         }
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Вы не выбрали направление книги");
                                     }
                                 }
                             }
                         }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Уже существует книга с данным ISBN кодом");
                     }
                 }
             }

@@ -68,6 +68,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Assets\Dictionaries\ButtonDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Dictionaries\TextDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\View\Pages\NewBookAddPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -210,6 +218,8 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Resource Include="Assets\Dictionaries\Fonts\OpenSans.ttf" />
+    <Resource Include="Assets\Dictionaries\Fonts\Roboto.ttf" />
     <None Include="Assets\Models\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </None>

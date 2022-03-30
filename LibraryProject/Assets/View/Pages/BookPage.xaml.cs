@@ -39,6 +39,7 @@ namespace LibraryProject.Pages
                 UsersTextBlock.Visibility = Visibility.Hidden;
                 PersonalAreaTextBlock.Visibility = Visibility.Hidden;
                 BookAddButton.Visibility = Visibility.Hidden;
+                NewBookAddButton.Visibility = Visibility.Hidden;
             }
             else
             {
@@ -53,6 +54,7 @@ namespace LibraryProject.Pages
                     ReaderBilettsTextBlock.Visibility = Visibility.Hidden;
                     UsersTextBlock.Visibility = Visibility.Hidden;
                     BookAddButton.Visibility = Visibility.Hidden;
+                    NewBookAddButton.Visibility = Visibility.Hidden;
                 }
                 //Библиотекарь
                 if (rank == 2)
@@ -60,6 +62,7 @@ namespace LibraryProject.Pages
                     ReaderBilettsTextBlock.Visibility = Visibility.Visible;
                     UsersTextBlock.Visibility = Visibility.Hidden;
                     BookAddButton.Visibility = Visibility.Visible;
+                    NewBookAddButton.Visibility = Visibility.Visible;
                 }
                 //Администратор
                 else if (rank == 3)
@@ -67,6 +70,7 @@ namespace LibraryProject.Pages
                     UsersTextBlock.Visibility = Visibility.Visible;
                     ReaderBilettsTextBlock.Visibility = Visibility.Visible;
                     BookAddButton.Visibility = Visibility.Visible;
+                    NewBookAddButton.Visibility = Visibility.Visible;
                 }
             }
         }

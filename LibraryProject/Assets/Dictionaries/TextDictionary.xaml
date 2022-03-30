@@ -1,0 +1,49 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <FontFamily x:Key="OpenSans">pack://application:,,,/Assets/Fonts/OpenSans.ttf#Open Sans
+    </FontFamily>
+    <FontFamily x:Key="Roboto">pack://application:,,,/Assets/Fonts/Roboto.ttf#Roboto
+    </FontFamily>
+    <!--Стиль для заголовка в шапке-->
+    <Style x:Key="Title" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource OpenSans}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <!--Стиль слов для меню слева-->
+    <Style x:Key="TextMenu" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource OpenSans}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0 10 0 2"/>
+    </Style>
+    <!--Стиль слова активной страницы-->
+    <Style x:Key="ActivePage" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource OpenSans}"/>
+        <Setter Property="Foreground" Value="#003366"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0 10 0 2"/>
+        <Setter Property="TextDecorations" Value="Underline"/>
+    </Style>
+    <!--Стиль для TextBlock В регестрации и авторизации-->
+    <Style x:Key="AutoTextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource OpenSans}"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Foreground" Value="{StaticResource MainColor}"/>
+    </Style>
+    <!--Стиль для TextBlock, который внутри элемента ListView-->
+    <Style x:Key="LightText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource Roboto}"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Foreground" Value="{StaticResource WhiteColor}"/>
+    </Style>
+    <!--Стиль для TextBox в Регистрации и входа в систему-->
+    <Style x:Key="AutoTextBox" TargetType="TextBox">
+        <Setter Property="Width" Value="150"/>
+        <Setter Property="Margin" Value="0 0 0 10"/>
+        <Setter Property="Background" Value="{StaticResource LightBlueColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource MainColor}"/>
+        <Setter Property="FontFamily" Value="{StaticResource Roboto}"/>
+    </Style>
+</ResourceDictionary>
