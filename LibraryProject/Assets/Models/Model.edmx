@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище LibraryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище LibraryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Author">
           <Key>
             <PropertyRef Name="IdAuthor" />
@@ -43,11 +43,18 @@
           <Key>
             <PropertyRef Name="IdReaderBillet" />
           </Key>
-          <Property Name="IdReaderBillet" Type="int" Nullable="false" />
+          <Property Name="IdReaderBillet" Type="nchar" MaxLength="8" Nullable="false" />
           <Property Name="IdBook" Type="nchar" MaxLength="13" Nullable="false" />
           <Property Name="DateOfIssue" Type="datetime" Nullable="false" />
           <Property Name="ReturnDate" Type="datetime" Nullable="false" />
           <Property Name="IdReader" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Halls">
+          <Key>
+            <PropertyRef Name="IdHall" />
+          </Key>
+          <Property Name="IdHall" Type="int" Nullable="false" />
+          <Property Name="NameHall" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="HousePublication">
           <Key>
@@ -78,6 +85,7 @@
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IdRank" Type="int" Nullable="false" />
+          <Property Name="Hall" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -161,6 +169,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Reader_Halls">
+          <End Role="Halls" Type="Self.Halls" Multiplicity="0..1" />
+          <End Role="Reader" Type="Self.Reader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Halls">
+              <PropertyRef Name="IdHall" />
+            </Principal>
+            <Dependent Role="Reader">
+              <PropertyRef Name="Hall" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Reader_Rank">
           <End Role="Rank" Type="Self.Rank" Multiplicity="1" />
           <End Role="Reader" Type="Self.Reader" Multiplicity="*" />
@@ -179,6 +199,7 @@
           <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Extradition" EntityType="Self.Extradition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Halls" EntityType="Self.Halls" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HousePublication" EntityType="Self.HousePublication" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rank" EntityType="Self.Rank" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reader" EntityType="Self.Reader" Schema="dbo" store:Type="Tables" />
@@ -207,12 +228,17 @@
             <End Role="Reader" EntitySet="Reader" />
             <End Role="Extradition" EntitySet="Extradition" />
           </AssociationSet>
+          <AssociationSet Name="FK_Reader_Halls" Association="Self.FK_Reader_Halls">
+            <End Role="Halls" EntitySet="Halls" />
+            <End Role="Reader" EntitySet="Reader" />
+          </AssociationSet>
           <AssociationSet Name="FK_Reader_Rank" Association="Self.FK_Reader_Rank">
             <End Role="Rank" EntitySet="Rank" />
             <End Role="Reader" EntitySet="Reader" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LibraryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -262,13 +288,21 @@
           <Key>
             <PropertyRef Name="IdReaderBillet" />
           </Key>
-          <Property Name="IdReaderBillet" Type="Int32" Nullable="false" />
+          <Property Name="IdReaderBillet" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="IdBook" Type="String" MaxLength="13" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="DateOfIssue" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ReturnDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IdReader" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Books" Relationship="Self.FK_Extradition_Books" FromRole="Extradition" ToRole="Books" />
           <NavigationProperty Name="Reader" Relationship="Self.FK_Extradition_Reader" FromRole="Extradition" ToRole="Reader" />
+        </EntityType>
+        <EntityType Name="Halls">
+          <Key>
+            <PropertyRef Name="IdHall" />
+          </Key>
+          <Property Name="IdHall" Type="Int32" Nullable="false" />
+          <Property Name="NameHall" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Reader" Relationship="Self.FK_Reader_Halls" FromRole="Halls" ToRole="Reader" />
         </EntityType>
         <EntityType Name="HousePublication">
           <Key>
@@ -301,7 +335,9 @@
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdRank" Type="Int32" Nullable="false" />
+          <Property Name="Hall" Type="Int32" />
           <NavigationProperty Name="Extradition" Relationship="Self.FK_Extradition_Reader" FromRole="Reader" ToRole="Extradition" />
+          <NavigationProperty Name="Halls" Relationship="Self.FK_Reader_Halls" FromRole="Reader" ToRole="Halls" />
           <NavigationProperty Name="Rank" Relationship="Self.FK_Reader_Rank" FromRole="Reader" ToRole="Rank" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -386,6 +422,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Reader_Halls">
+          <End Role="Halls" Type="Self.Halls" Multiplicity="0..1" />
+          <End Role="Reader" Type="Self.Reader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Halls">
+              <PropertyRef Name="IdHall" />
+            </Principal>
+            <Dependent Role="Reader">
+              <PropertyRef Name="Hall" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Reader_Rank">
           <End Role="Rank" Type="Self.Rank" Multiplicity="1" />
           <End Role="Reader" Type="Self.Reader" Multiplicity="*" />
@@ -404,6 +452,7 @@
           <EntitySet Name="Books" EntityType="Self.Books" />
           <EntitySet Name="City" EntityType="Self.City" />
           <EntitySet Name="Extradition" EntityType="Self.Extradition" />
+          <EntitySet Name="Halls" EntityType="Self.Halls" />
           <EntitySet Name="HousePublication" EntityType="Self.HousePublication" />
           <EntitySet Name="Rank" EntityType="Self.Rank" />
           <EntitySet Name="Reader" EntityType="Self.Reader" />
@@ -431,6 +480,10 @@
           <AssociationSet Name="FK_Extradition_Reader" Association="Self.FK_Extradition_Reader">
             <End Role="Reader" EntitySet="Reader" />
             <End Role="Extradition" EntitySet="Extradition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reader_Halls" Association="Self.FK_Reader_Halls">
+            <End Role="Halls" EntitySet="Halls" />
+            <End Role="Reader" EntitySet="Reader" />
           </AssociationSet>
           <AssociationSet Name="FK_Reader_Rank" Association="Self.FK_Reader_Rank">
             <End Role="Rank" EntitySet="Rank" />
@@ -492,6 +545,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Halls">
+            <EntityTypeMapping TypeName="LibraryModel.Halls">
+              <MappingFragment StoreEntitySet="Halls">
+                <ScalarProperty Name="IdHall" ColumnName="IdHall" />
+                <ScalarProperty Name="NameHall" ColumnName="NameHall" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="HousePublication">
             <EntityTypeMapping TypeName="LibraryModel.HousePublication">
               <MappingFragment StoreEntitySet="HousePublication">
@@ -522,6 +583,7 @@
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="IdRank" ColumnName="IdRank" />
+                <ScalarProperty Name="Hall" ColumnName="Hall" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

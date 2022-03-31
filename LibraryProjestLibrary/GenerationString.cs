@@ -61,7 +61,7 @@ namespace LibraryProjestLibrary
         {
             string str = String.Empty;
             Random x = new Random();
-            int one = x.Next(1, 9);
+            int one = 5;
             int two = x.Next(100, 999);
             int three = x.Next(10000, 999999);
             GenerationString obj = new GenerationString();
@@ -91,7 +91,34 @@ namespace LibraryProjestLibrary
             {
                 ost = control % 11;
             }
+            ost = 11 - ost;
             return ost;
+        }
+        public string NumberBilletGeneration(int hall, string year, int count) 
+        {
+            string number = "";
+            //Определяем букву зала
+            if (hall == 1)
+                number = "А";
+            else if (hall == 2)
+                number = "Ч";
+            else if (hall == 3)
+                number = "О";
+            //Определяем порядковый номер
+            string countString = String.Empty;
+            if (count < 9)
+                countString = $"000{count + 1}";
+            else if (count < 99)
+                countString = $"00{count + 1}";
+            else if (count < 999)
+                countString = $"0{count + 1}";
+            else if (count < 9999)
+                countString = $"{count + 1}";
+            else if (count == 9999)
+                countString = "0001";
+            //Склейка и добавление года
+            number = number + countString + "-"+year;
+            return number;
         }
     }
 }

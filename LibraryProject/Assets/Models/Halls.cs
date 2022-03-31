@@ -12,15 +12,18 @@ namespace LibraryProject.Assets.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Extradition
+    public partial class Halls
     {
-        public string IdReaderBillet { get; set; }
-        public string IdBook { get; set; }
-        public System.DateTime DateOfIssue { get; set; }
-        public System.DateTime ReturnDate { get; set; }
-        public int IdReader { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Halls()
+        {
+            this.Reader = new HashSet<Reader>();
+        }
     
-        public virtual Books Books { get; set; }
-        public virtual Reader Reader { get; set; }
+        public int IdHall { get; set; }
+        public string NameHall { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reader> Reader { get; set; }
     }
 }

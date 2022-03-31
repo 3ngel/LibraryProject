@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LibraryProject.Assets.Models;
+using LibraryProjestLibrary;
 
 namespace LibraryProject.Pages
 {
@@ -22,10 +23,11 @@ namespace LibraryProject.Pages
     /// </summary>
     public partial class ReaderBilletsPage : Page
     {
+        Core db = new Core();
         public ReaderBilletsPage()
         {
             InitializeComponent();
-            Core db = new Core();
+            
             Reader arrayReader;
             //Логика отображения вкладок в меню
             //Если пользователь не авторизован, то ему не видны страницы:
@@ -102,21 +104,38 @@ namespace LibraryProject.Pages
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
             LibraryEntities obj = new LibraryEntities();
+            GenerationString generation = new GenerationString(); 
             var billet =
                 from Extradition in obj.Extradition
                 join Reader in obj.Reader on Extradition.IdReader equals Reader.IdReader
                 join Books in obj.Books on Extradition.IdBook equals Books.ISBN
                 join Author in obj.Author on Books.Author equals Author.IdAuthor
-                select new {Extradition.IdReaderBillet, Books.Title, Author.FullNameAuthor,
+                select new { Books.Title, Author.FullNameAuthor,
                     Reader.LastName, Reader.Name, Reader.PatronymicName,
                     Extradition.DateOfIssue, Extradition.ReturnDate};
             if (billet.Count()!=0)
             {
+                Reader reader = new Reader();
+                reader = db.context.Reader.Where(x=>x.Login==Properties.Settings.Default.loginClient).First();
+                int hall = reader.Hall;
+                string year = DateTime.Now.Year.ToString();
+                year = year.Substring(2, 2);
+                int count = db.context.Extradition.ToList().Count();
+                if (count!=0)
+                {
+                    List<Extradition> extradition = db.context.Extradition.ToList();
+                    string numb = extradition[count - 1].IdReaderBillet.Substring(1, 4);
+                    count = Convert.ToInt32(numb);
+                }
+                else
+                {
+                    count = 0;
+                }
                 foreach (var item in billet)
                 {
                     ReaderBillets readerBillets = new ReaderBillets
                     {
-                        IdReaderBillet = item.IdReaderBillet,
+                        IdReaderBillet = generation.NumberBilletGeneration(hall, year, count),
                         Title = item.Title,
                         Author = item.FullNameAuthor,
                         LastName = item.LastName,
@@ -135,7 +154,7 @@ namespace LibraryProject.Pages
             Core db = new Core();
             Button activebutton = sender as Button;
             ReaderBillets activeBillet = activebutton.DataContext as ReaderBillets;
-            int idBillet = activeBillet.IdReaderBillet;
+            string idBillet = activeBillet.IdReaderBillet;
             Extradition extradition = db.context.Extradition.Where(x => x.IdReaderBillet == idBillet).First();
             db.context.Extradition.Remove(extradition);
             db.context.SaveChanges();
@@ -189,7 +208,7 @@ namespace LibraryProject.Pages
     public class ReaderBillets 
     {
         List<Extradition> extraditions = new List<Extradition> { };
-        public int IdReaderBillet { get; set; }
+        public string IdReaderBillet { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
         public string LastName { get; set; }

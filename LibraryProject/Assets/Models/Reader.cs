@@ -31,9 +31,11 @@ namespace LibraryProject.Assets.Models
         public string Login { get; set; }
         public string Password { get; set; }
         public int IdRank { get; set; }
+        public int Hall { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Extradition> Extradition { get; set; }
+        public virtual Halls Halls { get; set; }
         public virtual Rank Rank { get; set; }
     }
 }

@@ -30,6 +30,7 @@ namespace LibraryProject.Assets.Models
         public virtual DbSet<Books> Books { get; set; }
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<Extradition> Extradition { get; set; }
+        public virtual DbSet<Halls> Halls { get; set; }
         public virtual DbSet<HousePublication> HousePublication { get; set; }
         public virtual DbSet<Rank> Rank { get; set; }
         public virtual DbSet<Reader> Reader { get; set; }
