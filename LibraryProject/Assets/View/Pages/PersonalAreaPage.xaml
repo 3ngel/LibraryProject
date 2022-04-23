@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:LibraryProject.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PersonalAreaPage">
+      Title="PersonalAreaPage" Loaded="WindowLoaded">
 
     <Grid Background="{StaticResource WhiteColor}">
         <Grid.ColumnDefinitions>
@@ -14,44 +14,82 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <UniformGrid Rows="15" Background="{StaticResource BlueColor}">
-            <TextBlock x:Name="AboutUsTextBlock" Text="О нас" Style="{StaticResource TextMenu}" MouseLeftButtonDown="AboutUsTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="PersonalAreaTextBlock" Text="Личный кабинет" Style="{StaticResource ActivePage}"/>
-            <TextBlock x:Name="BookTextBlock" Text="Книги" Style="{StaticResource TextMenu}" MouseLeftButtonDown="BookTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="ReaderBilettsTextBlock" Text="Читателские билеты" Style="{StaticResource TextMenu}" MouseLeftButtonDown="ReaderBilletsTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="UsersTextBlock" Text="Пользователи" Style="{StaticResource TextMenu}" MouseLeftButtonDown="UsersTextBlockMouseLeftButtonDown"/>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="AboutUsTextBlock" Text="О нас" Style="{StaticResource TextMenu}" MouseLeftButtonDown="AboutUsTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="PersonalAreaTextBlock" Text="Личный кабинет" Style="{StaticResource ActivePage}"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="BookTextBlock" Text="Книги" Style="{StaticResource TextMenu}" MouseLeftButtonDown="BookTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="ReaderBilettsTextBlock" Text="Читателские билеты" Style="{StaticResource TextMenu}" MouseLeftButtonDown="ReaderBilletsTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="UsersTextBlock" Text="Пользователи" Style="{StaticResource TextMenu}" MouseLeftButtonDown="UsersTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
         </UniformGrid>
         <StackPanel Grid.Column="1">
             <UniformGrid Columns="2" Margin="0 100 0 0" x:Name="InfoUniformGrid">
-                <TextBlock Text="Фамилия" Style="{StaticResource AutoTextBlock}"/>
-                <TextBlock x:Name="LastNameTextBlock" Style="{StaticResource AutoTextBlock}"/>
-                <TextBlock Text="Имя" Style="{StaticResource AutoTextBlock}"/>
-                <TextBlock x:Name="NameTextBlock" Style="{StaticResource AutoTextBlock}"/>
-                <TextBlock Text="Отчество" Style="{StaticResource AutoTextBlock}"/>
-                <TextBlock x:Name="PatronymicNameTextBlock" Style="{StaticResource AutoTextBlock}"/>
-                <TextBlock Text="День рождения" Style="{StaticResource AutoTextBlock}"/>
-                <TextBlock x:Name="BirthDayTextBlock" Style="{StaticResource AutoTextBlock}"/>
-                <TextBlock Text="Адрес" Style="{StaticResource AutoTextBlock}"/>
-                <TextBlock x:Name="AdressTextBlock" Style="{StaticResource AutoTextBlock}"/>
-                <TextBlock Text="Место учёбы/работы" Style="{StaticResource AutoTextBlock}"/>
-                <TextBlock x:Name="StudyOrWorkTextBlock" Style="{StaticResource AutoTextBlock}"/>
-                <TextBlock Text="Номер телефона" Style="{StaticResource AutoTextBlock}"/>
-                <TextBlock x:Name="NumberPhoneTextBlock" Style="{StaticResource AutoTextBlock}"/>
+                <Viewbox MinHeight="15" MaxHeight="24"><TextBlock Text="Фамилия" Style="{StaticResource AutoTextBlock}" HorizontalAlignment="Center"/></Viewbox>
+                <Viewbox MinHeight="15" MaxHeight="24">
+                    <TextBlock x:Name="LastNameTextBlock" Style="{StaticResource AutoTextBlock}"/>
+                </Viewbox>
+                <Viewbox MinHeight="15" MaxHeight="24">
+                        <TextBlock Text="Имя" Style="{StaticResource AutoTextBlock}" HorizontalAlignment="Center"/>
+                    </Viewbox>
+                    <Viewbox MinHeight="15" MaxHeight="24">
+                        <TextBlock x:Name="NameTextBlock" Style="{StaticResource AutoTextBlock}"/>
+                    </Viewbox>
+                <Viewbox MinHeight="15" MaxHeight="24">
+                <TextBlock Text="Отчество" Style="{StaticResource AutoTextBlock}" HorizontalAlignment="Center"/>
+                </Viewbox>
+                <Viewbox MinHeight="15" MaxHeight="24">
+                    <TextBlock x:Name="PatronymicNameTextBlock" Style="{StaticResource AutoTextBlock}"/>
+                </Viewbox>
+                <Viewbox MinHeight="15" MaxHeight="24">
+                    <TextBlock Text="День рождения" Style="{StaticResource AutoTextBlock}" HorizontalAlignment="Center"/>
+                </Viewbox>
+                <Viewbox MinHeight="15" MaxHeight="24">
+                    <TextBlock x:Name="BirthDayTextBlock" Style="{StaticResource AutoTextBlock}"/>
+                </Viewbox>
+                <Viewbox MinHeight="15" MaxHeight="24">
+                    <TextBlock Text="Адрес" Style="{StaticResource AutoTextBlock}" HorizontalAlignment="Center"/>
+                </Viewbox>
+                <Viewbox MinHeight="15" MaxHeight="24">
+                    <TextBlock x:Name="AdressTextBlock" Style="{StaticResource AutoTextBlock}"/>
+                </Viewbox>
+                <Viewbox MinHeight="15" MaxHeight="24">
+                    <TextBlock Text="Место учёбы/работы" Style="{StaticResource AutoTextBlock}" HorizontalAlignment="Center"/>
+                </Viewbox>
+                <Viewbox MinHeight="15" MaxHeight="24">
+                    <TextBlock x:Name="StudyOrWorkTextBlock" Style="{StaticResource AutoTextBlock}"/>
+                </Viewbox>
+                <Viewbox MinHeight="15" MaxHeight="24">
+                    <TextBlock Text="Номер телефона" Style="{StaticResource AutoTextBlock}" HorizontalAlignment="Center"/>
+                </Viewbox>
+                <Viewbox MinHeight="15" MaxHeight="24">
+                    <TextBlock x:Name="NumberPhoneTextBlock" Style="{StaticResource AutoTextBlock}"/>
+                </Viewbox>
             </UniformGrid>
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                 <ListView x:Name="ReaderBilletsListView" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Border>
+                            <Border Background="{StaticResource MainColor}" CornerRadius="15" Padding="10">
                                 <Grid>
                                     <StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <UniformGrid Columns="2">
-                                                <TextBlock Text="Книга" Style="{StaticResource AutoTextBlock}"/>
-                                                <TextBlock x:Name="BookTextBlock" Style="{StaticResource AutoTextBlock}" Text="{Binding IdBook}"/>
-                                                <TextBlock Text="Когда взяли" Style="{StaticResource AutoTextBlock}"/>
-                                                <TextBlock x:Name="DateOfIssueTextBlock" Style="{StaticResource AutoTextBlock}" Text="{Binding DateOfIssue}"/>
-                                                <TextBlock Text="Когда вернуть" Style="{StaticResource AutoTextBlock}"/>
-                                                <TextBlock x:Name="ReturnTextBlock" Style="{StaticResource AutoTextBlock}" Text="{Binding ReturnDate}"/>
+                                                <TextBlock Text="Автор" Style="{StaticResource LightText}"/>
+                                                <TextBlock x:Name="AuthorTextBlock" Style="{StaticResource LightText}" Text="{Binding Author}"/>
+                                                <TextBlock Text="Автор" Style="{StaticResource LightText}"/>
+                                                <TextBlock x:Name="TitleTextBlock" Style="{StaticResource LightText}" Text="{Binding Title}"/>
+                                                <TextBlock Text="Когда взяли" Style="{StaticResource LightText}"/>
+                                                <TextBlock x:Name="DateOfIssueTextBlock" Style="{StaticResource LightText}" Text="{Binding DateOfIssue}"/>
+                                                <TextBlock Text="Когда вернуть" Style="{StaticResource LightText}"/>
+                                                <TextBlock x:Name="ReturnTextBlock" Style="{StaticResource LightText}" Text="{Binding ReturnDate}"/>
                                             </UniformGrid>
                                         </StackPanel>
                                     </StackPanel>

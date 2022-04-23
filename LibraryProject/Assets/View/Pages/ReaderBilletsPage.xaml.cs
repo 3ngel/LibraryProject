@@ -101,6 +101,11 @@ namespace LibraryProject.Pages
             this.NavigationService.Navigate(new UsersPage());
         }
 
+        /// <summary>
+        /// Отображение Таблицы с читательскими билетами в ListView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
             LibraryEntities obj = new LibraryEntities();
@@ -111,31 +116,14 @@ namespace LibraryProject.Pages
                 join Books in obj.Books on Extradition.IdBook equals Books.ISBN
                 join Author in obj.Author on Books.Author equals Author.IdAuthor
                 select new { Books.Title, Author.FullNameAuthor,
-                    Reader.LastName, Reader.Name, Reader.PatronymicName,
+                    Reader.LastName, Reader.Name, Reader.PatronymicName, Extradition.IdReaderBillet,
                     Extradition.DateOfIssue, Extradition.ReturnDate};
             if (billet.Count()!=0)
-            {
-                Reader reader = new Reader();
-                reader = db.context.Reader.Where(x=>x.Login==Properties.Settings.Default.loginClient).First();
-                int hall = reader.Hall;
-                string year = DateTime.Now.Year.ToString();
-                year = year.Substring(2, 2);
-                int count = db.context.Extradition.ToList().Count();
-                if (count!=0)
-                {
-                    List<Extradition> extradition = db.context.Extradition.ToList();
-                    string numb = extradition[count - 1].IdReaderBillet.Substring(1, 4);
-                    count = Convert.ToInt32(numb);
-                }
-                else
-                {
-                    count = 0;
-                }
                 foreach (var item in billet)
                 {
                     ReaderBillets readerBillets = new ReaderBillets
                     {
-                        IdReaderBillet = generation.NumberBilletGeneration(hall, year, count),
+                        IdReaderBillet = item.IdReaderBillet,
                         Title = item.Title,
                         Author = item.FullNameAuthor,
                         LastName = item.LastName,
@@ -147,8 +135,12 @@ namespace LibraryProject.Pages
                     ReaderBilletsListView.Items.Add(readerBillets);
                 }
             }
-        }
 
+        /// <summary>
+        /// Удаление читательского билета по мере возращения книги
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteBilletButtonClick(object sender, RoutedEventArgs e)
         {
             Core db = new Core();
@@ -156,11 +148,13 @@ namespace LibraryProject.Pages
             ReaderBillets activeBillet = activebutton.DataContext as ReaderBillets;
             string idBillet = activeBillet.IdReaderBillet;
             Extradition extradition = db.context.Extradition.Where(x => x.IdReaderBillet == idBillet).First();
+            Books book = db.context.Books.Where(x => x.ISBN == extradition.IdBook).First();
             db.context.Extradition.Remove(extradition);
             db.context.SaveChanges();
-            if (db.context.SaveChanges()==0)
+            if (db.context.SaveChanges() == 0)
             {
                 MessageBox.Show("Читатель вернул книгу");
+                book.BooksCount += 1;
             }
             ReaderBilletsListView.Items.Clear();
             LibraryEntities obj = new LibraryEntities();
@@ -198,11 +192,6 @@ namespace LibraryProject.Pages
                     ReaderBilletsListView.Items.Add(readerBillets);
                 }
             }
-        }
-
-        private void ReaderBilletAddButtonClick(object sender, RoutedEventArgs e)
-        {
-
         }
     }
     public class ReaderBillets 

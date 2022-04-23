@@ -27,8 +27,6 @@ namespace LibraryProject.Pages
         public UsersPage()
         {
             InitializeComponent();
-            arrayUsers = db.context.Reader.ToList();
-            UsersListView.ItemsSource = arrayUsers;
             ShowTable();
         }
         /// <summary>
@@ -36,7 +34,7 @@ namespace LibraryProject.Pages
         /// </summary>
         private void ShowTable()
         {
-            arrayUsers = db.context.Reader.ToList();
+            arrayUsers = db.context.Reader.Where(x=>x.Login!=Properties.Settings.Default.loginClient).ToList();
             UsersListView.ItemsSource = arrayUsers;
         }
         /// <summary>
@@ -74,6 +72,31 @@ namespace LibraryProject.Pages
         private void ReaderBilletsTextBlockMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.NavigationService.Navigate(new ReaderBilletsPage());
+        }
+
+        /// <summary>
+        /// Удаление пользователя
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DeleteUserButtonClick(object sender, RoutedEventArgs e)
+        {
+            Button activeButton = sender as Button;
+            Reader activeReader = activeButton.DataContext as Reader;
+            string fio = $"{activeReader.LastName} {activeReader.Name} {activeReader.PatronymicName}";
+            string message = $"Вы хотите удалить пользователя {fio}?";
+            string title = "Удаление пользователя";
+            MessageBoxResult res = MessageBox.Show(message, title, MessageBoxButton.YesNo);
+            if (res == MessageBoxResult.Yes)
+            {
+                db.context.Reader.Remove(activeReader);
+                db.context.SaveChanges();
+                if (db.context.SaveChanges()==0)
+                {
+                    MessageBox.Show("Удаление пользователя произошло успешно");
+                    ShowTable();
+                }
+            }
         }
     }
 }

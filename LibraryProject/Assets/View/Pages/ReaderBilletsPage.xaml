@@ -14,11 +14,21 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <UniformGrid Rows="15" Background="{StaticResource BlueColor}">
-            <TextBlock x:Name="AboutUsTextBlock" Text="О нас" Style="{StaticResource TextMenu}" MouseLeftButtonDown="AboutUsTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="PersonalAreaTextBlock" Text="Личный кабинет" Style="{StaticResource TextMenu}" MouseLeftButtonDown="PersonalAreaTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="BookTextBlock" Text="Книги" Style="{StaticResource TextMenu}" MouseLeftButtonDown="BookTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="ReaderBilettsTextBlock" Text="Читателские билеты" Style="{StaticResource ActivePage}"/>
-            <TextBlock x:Name="UsersTextBlock" Text="Пользователи" Style="{StaticResource TextMenu}" MouseLeftButtonDown="UsersTextBlockMouseLeftButtonDown"/>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="AboutUsTextBlock" Text="О нас" Style="{StaticResource TextMenu}" MouseLeftButtonDown="AboutUsTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="PersonalAreaTextBlock" Text="Личный кабинет" Style="{StaticResource TextMenu}" MouseLeftButtonDown="PersonalAreaTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="BookTextBlock" Text="Книги" Style="{StaticResource TextMenu}" MouseLeftButtonDown="BookTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="ReaderBilettsTextBlock" Text="Читателские билеты" Style="{StaticResource ActivePage}"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="UsersTextBlock" Text="Пользователи" Style="{StaticResource TextMenu}" MouseLeftButtonDown="UsersTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
         </UniformGrid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -26,7 +36,6 @@
                 <RowDefinition Height="8*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="8">
-                <Button x:Name="ReaderBilletAddButton" Click="ReaderBilletAddButtonClick" Style="{StaticResource RegButton}" Content="   Добавить читательский билет  "/>
                 <TextBlock Text="  Поиск   " VerticalAlignment="Center"/>
                 <TextBox x:Name="SearchTextBox" Background="{StaticResource LightBlueColor}" Height="30" Width="200"/>
             </StackPanel>

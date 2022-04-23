@@ -13,10 +13,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using LibraryProject.Assets.Models; 
+using LibraryProject.Assets.Models;
+using LibraryProjestLibrary;
 
 namespace LibraryProject.Pages
 {
+   
     /// <summary>
     /// Логика взаимодействия для PersonalAreaPage.xaml
     /// </summary>
@@ -27,6 +29,7 @@ namespace LibraryProject.Pages
             InitializeComponent();
             Core db = new Core();
             Reader arrayReader;
+            arrayReader = db.context.Reader.Where(x => x.Login == Properties.Settings.Default.loginClient).First();
             //Логика отображения вкладок в меню
             //Если пользователь не авторизован, то ему не видны страницы:
             //Читательский билет, Пользователи, Личный кабинет
@@ -39,7 +42,7 @@ namespace LibraryProject.Pages
             {
                 //Отображение вкладок в соотвествии с рангом пользователя 
                 //(пользователь, библиотекарь, администратор)
-                arrayReader = db.context.Reader.Where(x => x.Login == Properties.Settings.Default.loginClient).First();
+                
                 int rank = arrayReader.IdRank;
                 //Пользователь
                 if (rank == 1)
@@ -70,10 +73,6 @@ namespace LibraryProject.Pages
             StudyOrWorkTextBlock.Text = arrayReader.StudyOrWork; //Место учёбы или работы
             NumberPhoneTextBlock.Text = arrayReader.NumberPhone; //Номер телефона
             //Вывод взятых книг
-            int ID = arrayReader.IdReader;
-            List<Extradition> arrayBillets;
-            arrayBillets = db.context.Extradition.Where(x=>x.IdReader==ID).ToList();
-            ReaderBilletsListView.ItemsSource = arrayBillets;
         }
         /// <summary>
         /// Событие переноса на страницу "О нас"
@@ -111,5 +110,53 @@ namespace LibraryProject.Pages
         {
             this.NavigationService.Navigate(new UsersPage());
         }
+        //Заполнение таблицы с читательскими билетамии активного пользователя с использованием смежных таблиц
+        private void WindowLoaded(object sender, RoutedEventArgs e)
+        {
+            Core db = new Core();
+            Reader arrayReader;            
+            arrayReader = db.context.Reader.Where(x => x.Login == Properties.Settings.Default.loginClient).First();
+            LibraryEntities obj = new LibraryEntities();
+            GenerationString generation = new GenerationString();
+            var billet =
+                from Extradition in obj.Extradition
+                join Reader in obj.Reader on Extradition.IdReader equals Reader.IdReader
+                join Books in obj.Books on Extradition.IdBook equals Books.ISBN
+                join Author in obj.Author on Books.Author equals Author.IdAuthor
+                where Extradition.IdReader == arrayReader.IdReader
+                select new
+                {
+                    Books.Title,
+                    Author.FullNameAuthor,
+                    Extradition.IdReaderBillet,
+                    Extradition.DateOfIssue,
+                    Extradition.ReturnDate
+                };
+            if (billet.Count() != 0)
+            { 
+                foreach (var item in billet)
+                {
+                    ReaderBillets readerBillets = new ReaderBillets
+                    {
+                        IdReaderBillet = item.IdReaderBillet,
+                        Title = item.Title,
+                        Author = item.FullNameAuthor,
+                        DateOfIssue = item.DateOfIssue,
+                        ReturnDate = item.ReturnDate
+                    };
+                    ReaderBilletsListView.Items.Add(readerBillets);
+                }
+            }
+        }
+    }
+    //Таблица с читательскими билетамии активного пользователя с использованием смежных таблиц
+    public class ReaderBilletsUser
+    {
+        List<Extradition> extraditions = new List<Extradition> { };
+        public string IdReaderBillet { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public DateTime DateOfIssue { get; set; }
+        public DateTime ReturnDate { get; set; }
     }
 }

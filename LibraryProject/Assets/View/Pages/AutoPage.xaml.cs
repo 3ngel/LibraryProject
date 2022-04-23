@@ -62,6 +62,7 @@ namespace LibraryProject.Pages
                 if (countRecord==1)
                 {
                     Properties.Settings.Default.loginClient = LoginTextBox.Text;
+                    Properties.Settings.Default.RoleClient = db.context.Reader.Where(x => x.Login == LoginTextBox.Text).First().IdRank;
                     Properties.Settings.Default.Save();
                     this.NavigationService.Navigate(new AboutUsPage());
                 }

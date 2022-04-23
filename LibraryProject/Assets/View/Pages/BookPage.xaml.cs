@@ -30,6 +30,7 @@ namespace LibraryProject.Pages
         {
             InitializeComponent();
             Reader arrayReader;
+            Console.WriteLine(Properties.Settings.Default.RoleClient);
             //Логика отображения вкладок в меню
             //Если пользователь не авторизован, то ему не видны страницы:
             //Читательский билет, Пользователи, Личный кабинет
@@ -251,64 +252,7 @@ namespace LibraryProject.Pages
         private void BookAddButtonClick(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new BookAddPage());
-        }
-        //Добавление новой книги в читательский билет
-        private void AddBookButtonClick(object sender, RoutedEventArgs e)
-        {
-            //if (Properties.Settings.Default.loginClient!=String.Empty)
-            //{
-            //    //Определить какая кнопку какой книги нажали
-            //    Button activeButton = sender as Button;
-            //    BooksList activeBook = activeButton.DataContext as BooksList;
-            //    string ISBN = activeBook.ISBN;
-            //    Reader activeReader = db.context.Reader.Where(x => x.Login == Properties.Settings.Default.loginClient).First();
-            //    int ID = activeReader.IdReader;
-            //    if (db.context.Extradition.Where(x=>x.IdReader==ID).Count()==0)
-            //    {
-            //        //Какой сегодня день и когда вернуть книгу
-            //        DateTime today = DateTime.Now;
-            //        DateTime returnDate = today.AddDays(14);
-            //        //Подсчёт строк в таблице, потому что я дебил, который забыл поставить автозаполнение
-            //        int count = db.context.Extradition.Count() + 1;
-            //        Extradition extr = new Extradition
-            //        {
-            //            IdReaderBillet = count,
-            //            IdBook = ISBN,
-            //            DateOfIssue = today,
-            //            ReturnDate = returnDate,
-            //            IdReader = ID
-            //        };
-            //        db.context.Extradition.Add(extr);
-            //        try
-            //        {
-            //            db.context.SaveChanges();
-            //            if (db.context.SaveChanges() == 0)
-            //            {
-            //                MessageBox.Show("Книга успешно добавлена");
-            //            }
-            //        }
-            //        catch (DbEntityValidationException ex)
-            //        {
-            //            foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
-            //            {
-            //                MessageBox.Show("Object: " + validationError.Entry.Entity.ToString());
-            //                foreach (DbValidationError err in validationError.ValidationErrors)
-            //                {
-            //                    MessageBox.Show(err.ErrorMessage + "");
-            //                }
-            //            }
-            //        }
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Вы уже читаете данную книгу");
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Чтобы добавить книгу, авторизуйтесь");
-            //}
-        }
+        }        
 
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
@@ -319,7 +263,7 @@ namespace LibraryProject.Pages
                 join HousePublication in obj.HousePublication on Books.HousePublication equals HousePublication.IdHouse
                 join City in obj.City on Books.IdCity equals City.IdCity
                 join Author in obj.Author on Books.Author equals Author.IdAuthor
-                select new {Books.ISBN, Author.FullNameAuthor, Books.Title, BBK.TitleBBK, HousePublication.NameHouse, City.NameCity, Books.YearOfPublication, Books.PageCounts};
+                select new {Books.ISBN, Author.FullNameAuthor, Books.Title, BBK.TitleBBK, HousePublication.NameHouse, City.NameCity, Books.YearOfPublication, Books.PageCounts, Books.BooksCount};
             if (questy.Count() != 0) 
             { 
                 foreach (var item in questy)
@@ -333,7 +277,8 @@ namespace LibraryProject.Pages
                         NameHouse = item.NameHouse,
                         NameCity = item.NameCity,
                         YearOfPublication = item.YearOfPublication,
-                        PageCounts = item.PageCounts
+                        PageCounts = item.PageCounts,
+                        BooksCount = item.BooksCount
                     };
                     BookListView.Items.Add(books);
                 }
@@ -343,6 +288,23 @@ namespace LibraryProject.Pages
         private void NewBookAddButtonClick(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new NewBookAddPage());
+        }
+
+        private void ReaderBilletBookAddButtonClick(object sender, RoutedEventArgs e)
+        {
+            Button activeButton = sender as Button;
+            BooksList activeBook = activeButton.DataContext as BooksList;
+            string ISBN = activeBook.ISBN;
+            Properties.Settings.Default.IdBook = ISBN;
+            Books book = db.context.Books.Where(x => x.ISBN == ISBN).First();
+            if (book.BooksCount!=0)
+            {
+                this.NavigationService.Navigate(new NewReaderBilletPage());
+            }
+            else
+            {
+                MessageBox.Show($"Данной книги пока нет в библиотеке. Подождите, когда другие дочитают");
+            }
         }
     }
 
@@ -357,5 +319,20 @@ namespace LibraryProject.Pages
         public string NameCity {get; set;}
         public int YearOfPublication { get; set;}
         public int PageCounts { get; set;}
+        public int BooksCount { get; set; }
+        public Visibility AdminControlVisibility
+        {
+            get
+            {
+                if (Properties.Settings.Default.RoleClient != 1)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Hidden;
+                }
+            }
+        }
     }
 }

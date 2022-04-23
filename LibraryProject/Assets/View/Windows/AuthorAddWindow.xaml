@@ -1,0 +1,19 @@
+﻿<Window x:Class="LibraryProject.Assets.View.Windows.AuthorAddWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryProject.Assets.View.Windows"
+        mc:Ignorable="d"
+        Title="AuthorAddWindow" Height="450" Width="800">
+    <Grid>
+        <UniformGrid VerticalAlignment="Center" Columns="2" HorizontalAlignment="Center">
+            <TextBox x:Name="AuthorAddTextBox" Style="{StaticResource AutoTextBox}"/>
+            <Button x:Name="AuthorAddButton" Content="Добавить автора" Style="{StaticResource RegButton}" Click="AuthorAddButtonClick"/>
+            <TextBox x:Name="CityAddTextBox" Style="{StaticResource AutoTextBox}"/>
+            <Button x:Name="CityAddButton" Content="Добавить город" Style="{StaticResource RegButton}" Click="CityAddButtonClick"/>
+            <TextBox x:Name="HouseAddTextBox" Style="{StaticResource AutoTextBox}"/>
+            <Button x:Name="HouseAddButton" Content="Добавить дом публикации" Style="{StaticResource RegButton}" Click="HouseAddButtonClick"/>
+        </UniformGrid>
+    </Grid>
+</Window>

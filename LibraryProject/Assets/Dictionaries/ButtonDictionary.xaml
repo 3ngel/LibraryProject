@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--Цвета-->
     <SolidColorBrush x:Key="LightBlueColor" Color="#99ccff"/>
+    <SolidColorBrush x:Key="LightBlueColorOpac" Color="#99ccff" Opacity="0.85"/>
     <SolidColorBrush x:Key="BlueColor" Color="#3399ff"/>
     <SolidColorBrush x:Key="MainColor"  Color="#1164b4"/>
     <SolidColorBrush x:Key="WhiteColor" Color="White"/>
@@ -15,6 +16,13 @@
     <Style x:Key="MainButton" TargetType="Button">
         <Setter Property="Background" Value="{StaticResource WhiteColor}"/>
         <Setter Property="Foreground" Value="#005da8"/>
+        <Setter Property="Margin" Value="8"/>
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="FontFamily" Value="{StaticResource OpenSans}"/>
+    </Style>
+    <Style x:Key="LightButton" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource LightBlueColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource MainColor}"/>
         <Setter Property="Margin" Value="8"/>
         <Setter Property="Height" Value="Auto"/>
         <Setter Property="FontFamily" Value="{StaticResource OpenSans}"/>

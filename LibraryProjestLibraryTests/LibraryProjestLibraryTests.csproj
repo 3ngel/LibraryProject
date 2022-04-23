@@ -49,8 +49,13 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorCheckClass.cs" />
+    <Compile Include="HouseOfPublicationCheckClass.cs" />
     <Compile Include="ISBNCheckTests.cs" />
+    <Compile Include="PageCountsCheckClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TitleCheckClass.cs" />
+    <Compile Include="YearOfPublicationCheckClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

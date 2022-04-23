@@ -1,4 +1,5 @@
 ﻿using LibraryProject.Assets.Models;
+using LibraryProject.Assets.View.Windows;
 using LibraryProject.Models;
 using LibraryProject.Pages;
 using LibraryProjestLibrary;
@@ -252,7 +253,8 @@ namespace LibraryProject.Assets.View.Pages
                                                         HousePublication = indexHouse[HousePublicationComboBoxox.SelectedIndex],
                                                         IdCity = indexCity[CityComboBox.SelectedIndex],
                                                         PageCounts = Convert.ToInt32(PageCountsTextBox.Text),
-                                                        YearOfPublication = Convert.ToInt32(YearOfPublicationTextBox.Text)
+                                                        YearOfPublication = Convert.ToInt32(YearOfPublicationTextBox.Text),
+                                                        BooksCount = Convert.ToInt32(BooksCountTextBox.Text)
                                                     };
                                                     db.context.Books.Add(book);
                                                     try
@@ -305,6 +307,11 @@ namespace LibraryProject.Assets.View.Pages
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void AddButtonClick(object sender, RoutedEventArgs e)
+        {
+            new AuthorAddWindow().ShowDialog();
         }
     }
 }

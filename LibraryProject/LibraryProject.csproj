@@ -80,6 +80,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Assets\View\Pages\NewReaderBilletPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\View\Windows\AuthorAddWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -125,17 +133,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Assets\Models\PartialClasses\Book.cs" />
     <Compile Include="Assets\Models\Rank.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Assets\Models\Reader.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Assets\Models\sysdiagrams.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Assets\ViewModel\UsersClass.cs" />
     <Compile Include="Assets\View\Pages\NewBookAddPage.xaml.cs">
       <DependentUpon>NewBookAddPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\View\Pages\NewReaderBilletPage.xaml.cs">
+      <DependentUpon>NewReaderBilletPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\View\Windows\AuthorAddWindow.xaml.cs">
+      <DependentUpon>AuthorAddWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -248,9 +261,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\View\Windows\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Assets\Images\Library.jpg" />
+    <Resource Include="Assets\Images\three.jpg" />
+    <Resource Include="Assets\Images\two.jpg" />
     <Content Include="Assets\Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>

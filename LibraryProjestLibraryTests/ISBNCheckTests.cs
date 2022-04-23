@@ -19,13 +19,108 @@ namespace LibraryProjestLibraryTests
         [TestMethod]
         public void ISBNCheck_ReghtString_True()
         {
-            //
+            //Accept
             string isbn = "5-7519-0485-0";
-            //
+            //Act
             CheckStringClass obj = new CheckStringClass();
             bool res = obj.ISBNcheck(isbn);
-            //
+            //Assert
             Assert.IsTrue(res);
+        }
+        /// <summary>
+        /// Проверка ISBN номера
+        /// </summary>
+        /// <param>
+        /// 5-7519-0485-1
+        /// </param>
+        /// <return>
+        /// Expostion так как неверная контрольная цифра
+        /// </return>
+        [TestMethod]
+        public void ISBNCheck_ContrlNumberFalse_Expostion()
+        {
+            //Accept
+            string isbn = "5-7519-0485-1";
+            //Act
+            CheckStringClass obj = new CheckStringClass();
+            //Assert
+            Assert.ThrowsException<Exception>(() => obj.ISBNcheck(isbn));
+        }
+        /// <summary>
+        /// Проверка ISBN номера
+        /// </summary>
+        /// <param>
+        /// 5-7519-0485-1
+        /// </param>
+        /// <return>
+        /// Expostion так как длина больше нужной
+        /// </return>
+        [TestMethod]
+        public void ISBNCheck_LongString_Expostion()
+        {
+            //Accept
+            string isbn = "5-7519-0485-12";
+            //Act
+            CheckStringClass obj = new CheckStringClass();
+            //Assert
+            Assert.ThrowsException<Exception>(() => obj.ISBNcheck(isbn));
+        }
+        /// <summary>
+        /// Проверка ISBN номера
+        /// </summary>
+        /// <param>
+        /// 5-7519-0485-1
+        /// </param>
+        /// <return>
+        /// Expostion так как длина меньше нужной
+        /// </return>
+        [TestMethod]
+        public void ISBNCheck_ChortString_Expostion()
+        {
+            //Accept
+            string isbn = "5-7519-0485-";
+            //Act
+            CheckStringClass obj = new CheckStringClass();
+            //Assert
+            Assert.ThrowsException<Exception>(() => obj.ISBNcheck(isbn));
+        }
+        /// <summary>
+        /// Проверка ISBN номера
+        /// </summary>
+        /// <param>
+        /// 5-7519-0485-1
+        /// </param>
+        /// <return>
+        /// Expostion так как пустая строка
+        /// </return>
+        [TestMethod]
+        public void ISBNCheck_StringEmpty_Expostion()
+        {
+            //Accept
+            string isbn = "";
+            //Act
+            CheckStringClass obj = new CheckStringClass();
+            //Assert
+            Assert.ThrowsException<Exception>(() => obj.ISBNcheck(isbn));
+        }
+        /// <summary>
+        /// Проверка ISBN номера
+        /// </summary>
+        /// <param>
+        /// 5-7519-0485-1
+        /// </param>
+        /// <return>
+        /// Expostion так как неверные символы
+        /// </return>
+        [TestMethod]
+        public void ISBNCheck_FalseString_Expostion()
+        {
+            //Accept
+            string isbn = "Asdfgegrhfygt";
+            //Act
+            CheckStringClass obj = new CheckStringClass();
+            //Assert
+            Assert.ThrowsException<Exception>(() => obj.ISBNcheck(isbn));
         }
     }
 }

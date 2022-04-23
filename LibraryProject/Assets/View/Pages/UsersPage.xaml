@@ -14,37 +14,48 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <UniformGrid Rows="15" Background="{StaticResource BlueColor}">
-            <TextBlock x:Name="AboutUsTextBlock" Text="О нас" Style="{StaticResource TextMenu}" MouseLeftButtonDown="AboutUsTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="PersonalAreaTextBlock" Text="Личный кабинет" Style="{StaticResource TextMenu}" MouseLeftButtonDown="PersonalAreaTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="BookTextBlock" Text="Книги" Style="{StaticResource TextMenu}" MouseLeftButtonDown="BookTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="ReaderBilettsTextBlock" Text="Читателские билеты" Style="{StaticResource TextMenu}" MouseLeftButtonDown="ReaderBilletsTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="UsersTextBlock" Text="Пользователи" Style="{StaticResource ActivePage}"/>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="AboutUsTextBlock" Text="О нас" Style="{StaticResource TextMenu}" MouseLeftButtonDown="AboutUsTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="PersonalAreaTextBlock" Text="Личный кабинет" Style="{StaticResource TextMenu}" MouseLeftButtonDown="PersonalAreaTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="BookTextBlock" Text="Книги" Style="{StaticResource TextMenu}" MouseLeftButtonDown="BookTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="ReaderBilettsTextBlock" Text="Читателские билеты" Style="{StaticResource TextMenu}" MouseLeftButtonDown="ReaderBilletsTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="UsersTextBlock" Text="Пользователи" Style="{StaticResource ActivePage}"/>
+            </Viewbox>
         </UniformGrid>
         <StackPanel Grid.Column="1">
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                 <ListView x:Name="UsersListView" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Border Margin="10">
+                            <Border Margin="10" Background="{StaticResource MainColor}" CornerRadius="15" Padding="10">
                                 <Grid>
                                     <StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock x:Name="LastNameTextBlock" Text="{Binding LastName}" Style="{StaticResource AutoTextBlock}"/>
-                                            <TextBlock x:Name="NameTextBlock" Text="{Binding Name}" Style="{StaticResource AutoTextBlock}"/>
-                                            <TextBlock x:Name="PatronymicNameTextBlock" Text="{Binding PatronymicName}" Style="{StaticResource AutoTextBlock}"/>
+                                            <TextBlock x:Name="LastNameTextBlock" Text="{Binding LastName}" Style="{StaticResource LightText}"/>
+                                            <TextBlock x:Name="NameTextBlock" Text="{Binding Name}" Style="{StaticResource LightText}"/>
+                                            <TextBlock x:Name="PatronymicNameTextBlock" Text="{Binding PatronymicName}" Style="{StaticResource LightText}"/>
                                         </StackPanel>
                                         <UniformGrid Columns="2">
-                                            <TextBlock Text="День рождения:" Style="{StaticResource AutoTextBlock}"/>
-                                            <TextBlock x:Name="BirthdayTextBlock" Text="{Binding Birthday}" Style="{StaticResource AutoTextBlock}"/>
-                                            <TextBlock Text="Адресс" Style="{StaticResource AutoTextBlock}"/>
-                                            <TextBlock x:Name="AdressTextBlock" Text="{Binding Adress}" Style="{StaticResource AutoTextBlock}"/>
-                                            <TextBlock Text="Место учёбы или работы:" Style="{StaticResource AutoTextBlock}"/>
-                                            <TextBlock x:Name="StudyOrWorkTextBlock" Text="{Binding StudyOrWork}" Style="{StaticResource AutoTextBlock}"/>
-                                            <TextBlock Text="Номер телефона:" Style="{StaticResource AutoTextBlock}"/>
-                                            <TextBlock x:Name="NumberPhoneTextBlock" Text="{Binding NumberPhone}" Style="{StaticResource AutoTextBlock}"/>
-                                            <TextBlock Text="Ранг доступа" Style="{StaticResource AutoTextBlock}"/>
-                                            <TextBlock x:Name="RankTextBlock" Text="{Binding IdRank}" Style="{StaticResource AutoTextBlock}"/>
+                                            <TextBlock Text="День рождения:" Style="{StaticResource LightText}"/>
+                                            <TextBlock x:Name="BirthdayTextBlock" Text="{Binding Birthday}" Style="{StaticResource LightText}"/>
+                                            <TextBlock Text="Адресс" Style="{StaticResource LightText}"/>
+                                            <TextBlock x:Name="AdressTextBlock" Text="{Binding Adress}" Style="{StaticResource LightText}"/>
+                                            <TextBlock Text="Место учёбы или работы:" Style="{StaticResource LightText}"/>
+                                            <TextBlock x:Name="StudyOrWorkTextBlock" Text="{Binding StudyOrWork}" Style="{StaticResource LightText}"/>
+                                            <TextBlock Text="Номер телефона:" Style="{StaticResource LightText}"/>
+                                            <TextBlock x:Name="NumberPhoneTextBlock" Text="{Binding NumberPhone}" Style="{StaticResource LightText}"/>
+                                            <TextBlock Text="Ранг доступа" Style="{StaticResource LightText}"/>
+                                            <TextBlock x:Name="RankTextBlock" Text="{Binding IdRank}" Style="{StaticResource LightText}"/>
                                         </UniformGrid>
+                                        <Button x:Name="DeleteUserButton" Style="{StaticResource LightButton}" Content="Удалить пользователя" Click="DeleteUserButtonClick"/>
                                     </StackPanel>
                                 </Grid>
                             </Border>

@@ -34,6 +34,5 @@ namespace LibraryProject.Assets.Models
         public virtual DbSet<HousePublication> HousePublication { get; set; }
         public virtual DbSet<Rank> Rank { get; set; }
         public virtual DbSet<Reader> Reader { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

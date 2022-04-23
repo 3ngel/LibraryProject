@@ -15,11 +15,21 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <UniformGrid Rows="15" Background="{StaticResource BlueColor}">
-            <TextBlock x:Name="AboutUsTextBlock" Text="О нас" Style="{StaticResource TextMenu}" MouseLeftButtonDown="AboutUsTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="PersonalAreaTextBlock" Text="Личный кабинет" Style="{StaticResource TextMenu}" MouseLeftButtonDown="PersonalAreaTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="BookTextBlock" Text="Книги" Style="{StaticResource ActivePage}"/>
-            <TextBlock x:Name="ReaderBilettsTextBlock" Text="Читателские билеты" Style="{StaticResource TextMenu}" MouseLeftButtonDown="ReaderBilletsTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="UsersTextBlock" Text="Пользователи" Style="{StaticResource TextMenu}" MouseLeftButtonDown="UsersTextBlockMouseLeftButtonDown"/>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="AboutUsTextBlock" Text="О нас" Style="{StaticResource TextMenu}" MouseLeftButtonDown="AboutUsTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="PersonalAreaTextBlock" Text="Личный кабинет" Style="{StaticResource TextMenu}" MouseLeftButtonDown="PersonalAreaTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="BookTextBlock" Text="Книги" Style="{StaticResource ActivePage}"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="ReaderBilettsTextBlock" Text="Читателские билеты" Style="{StaticResource TextMenu}" MouseLeftButtonDown="ReaderBilletsTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="UsersTextBlock" Text="Пользователи" Style="{StaticResource TextMenu}" MouseLeftButtonDown="UsersTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
         </UniformGrid>
         <StackPanel Grid.Column="1">
             <Grid>
@@ -48,13 +58,12 @@
                         </ComboBoxItem>
                     </ComboBox>
                 </StackPanel>
-                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                    <ListView x:Name="BookListView" Margin="10" >
-                        <ListView.ItemTemplate>
+                <ListView x:Name="BookListView" Margin="10" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+                    <ListView.ItemTemplate>
                             <DataTemplate >
-                                <Border CornerRadius="10" Background="{StaticResource BlueColor}">
+                            <Border CornerRadius="10" Background="{StaticResource BlueColor}" HorizontalAlignment="Center">
                                     <Grid>
-                                        <StackPanel Orientation="Vertical" Margin="15">
+                                        <StackPanel Orientation="Vertical" Margin="15" >
                                             <UniformGrid Columns="2">
                                                 <TextBlock Text="Название " Style="{StaticResource LightText}"/>
                                                 <TextBlock x:Name="TitleTextBlock" Text="{Binding Title}" Style="{StaticResource LightText}"/>
@@ -72,19 +81,21 @@
                                                 <TextBlock x:Name="BBKTextBlock" Text="{Binding TitleBBK}" Style="{StaticResource LightText}"/>
                                                 <TextBlock Text="Индификатор" Style="{StaticResource LightText}"/>
                                                 <TextBlock x:Name="ISBNTextBlock" Text="{Binding ISBN}" Style="{StaticResource LightText}"/>
-                                            </UniformGrid>
+                                                <TextBlock Text="Количество экземпляров" Style="{StaticResource LightText}" Visibility="{Binding AdminControlVisibility}"/>
+                                                <TextBlock x:Name="BookCountTextBlock" Text="{Binding BooksCount}" Style="{StaticResource LightText}" Visibility="{Binding AdminControlVisibility}"/>
+                                        </UniformGrid>
+                                            <Button x:Name="ReaderBilletBookAddButton" Content="Добавить книгу в читательский билет" Click="ReaderBilletBookAddButtonClick" Style="{StaticResource RegButton}" Visibility="{Binding AdminControlVisibility}" Background="{Binding ColorButton}"/>
                                         </StackPanel>
                                     </Grid>
                                 </Border>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                         <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel HorizontalAlignment="Center"/>
+                            <ItemsPanelTemplate> 
+                                <UniformGrid Rows="2" HorizontalAlignment="Center"/>
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
                     </ListView>
-                </ScrollViewer>
             </Grid>
         </StackPanel>
     </Grid>

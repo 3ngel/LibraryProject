@@ -32,6 +32,7 @@ namespace LibraryProject
         private void WindowClosed(object sender, EventArgs e)
         {
             Properties.Settings.Default.loginClient = String.Empty;
+            Properties.Settings.Default.RoleClient = 1;
             Properties.Settings.Default.Save();
         }
 
@@ -96,6 +97,7 @@ namespace LibraryProject
         private void ExitButtonClick(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.loginClient = String.Empty;
+            Properties.Settings.Default.RoleClient = 1;
             Properties.Settings.Default.Save();
             this.NavigatedFrame.Navigate(new AboutUsPage());
         }

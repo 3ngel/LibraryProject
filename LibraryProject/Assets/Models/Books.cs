@@ -28,6 +28,7 @@ namespace LibraryProject.Assets.Models
         public int IdCity { get; set; }
         public int YearOfPublication { get; set; }
         public int PageCounts { get; set; }
+        public int BooksCount { get; set; }
     
         public virtual Author Author1 { get; set; }
         public virtual BBK BBK1 { get; set; }

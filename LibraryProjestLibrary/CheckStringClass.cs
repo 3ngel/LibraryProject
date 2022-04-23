@@ -363,7 +363,6 @@ namespace LibraryProjestLibrary
                 throw new Exception("Длина ISBN невернаая");
             }
             string control = "1234567890-X";
-            char t = '-';
             if (!isbn.All(x=>control.Contains(x)))
             {
                 throw new Exception("В ISBN не корректные символы");

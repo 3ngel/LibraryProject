@@ -1,0 +1,42 @@
+﻿<Page x:Class="LibraryProject.Assets.View.Pages.NewReaderBilletPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LibraryProject.Assets.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="NewReaderBilletPage" Loaded="WindowLoaded">
+
+    <Grid>
+        <ListView x:Name="UsersListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="10" CornerRadius="10" Background="{StaticResource LightBlueColor}">
+                        <Grid>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="LastNameTextBlock" Text="{Binding LastName}" Style="{StaticResource AutoTextBlock}"/>
+                                    <TextBlock x:Name="NameTextBlock" Text="{Binding Name}" Style="{StaticResource AutoTextBlock}"/>
+                                    <TextBlock x:Name="PatronymicNameTextBlock" Text="{Binding PatronymicName}" Style="{StaticResource AutoTextBlock}"/>
+                                </StackPanel>
+                                <UniformGrid Columns="2">
+                                    <TextBlock Text="Номер телефона:" Style="{StaticResource AutoTextBlock}"/>
+                                    <TextBlock x:Name="NumberPhoneTextBlock" Text="{Binding Number}" Style="{StaticResource AutoTextBlock}"/>
+                                    <TextBlock Text="Доступ читателя" Style="{StaticResource AutoTextBlock}"/>
+                                    <TextBlock x:Name="HallTextBlock" Text="{Binding Hall}" Style="{StaticResource AutoTextBlock}"/>
+                                </UniformGrid>
+                                <Button x:Name="ChoiceUserButton" Content="Этот читтатель" Click="ChoiceUserButtonClick" Style="{StaticResource RegButton}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+    </Grid>
+</Page>

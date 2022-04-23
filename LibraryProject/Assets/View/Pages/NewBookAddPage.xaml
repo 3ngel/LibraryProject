@@ -14,11 +14,21 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <UniformGrid Rows="15" Background="{StaticResource BlueColor}">
-            <TextBlock x:Name="AboutUsTextBlock" Text="О нас" Style="{StaticResource TextMenu}" MouseLeftButtonDown="AboutUsTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="PersonalAreaTextBlock" Text="Личный кабинет" Style="{StaticResource TextMenu}" MouseLeftButtonDown="PersonalAreaTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="BookTextBlock" Text="Книги" Style="{StaticResource TextMenu}" MouseLeftButtonDown="BookTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="ReaderBilettsTextBlock" Text="Читателские билеты" Style="{StaticResource TextMenu}" MouseLeftButtonDown="ReaderBilletsTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="UsersTextBlock" Text="Пользователи" Style="{StaticResource TextMenu}" MouseLeftButtonDown="UsersTextBlockMouseLeftButtonDown"/>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="AboutUsTextBlock" Text="О нас" Style="{StaticResource TextMenu}" MouseLeftButtonDown="AboutUsTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="PersonalAreaTextBlock" Text="Личный кабинет" Style="{StaticResource TextMenu}" MouseLeftButtonDown="PersonalAreaTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="BookTextBlock" Text="Книги" Style="{StaticResource TextMenu}" MouseLeftButtonDown="BookTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="ReaderBilettsTextBlock" Text="Читателские билеты" Style="{StaticResource TextMenu}" MouseLeftButtonDown="ReaderBilletsTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="UsersTextBlock" Text="Пользователи" Style="{StaticResource TextMenu}" MouseLeftButtonDown="UsersTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
         </UniformGrid>
         <Grid Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
@@ -44,8 +54,12 @@
                     <ComboBox x:Name="HousePublicationComboBoxox" Style="{StaticResource MainComboBox}"/>
                     <TextBlock Text="Город" Style="{StaticResource AutoTextBlock}"/>
                     <ComboBox x:Name="CityComboBox" Style="{StaticResource MainComboBox}"/>
+                    <TextBlock Text="Количесвто экземпляров" Style="{StaticResource AutoTextBlock}"/>
+                    <TextBox x:Name="BooksCountTextBox" Style="{StaticResource AutoTextBox}"/>
                 </UniformGrid>
                 <Button x:Name="BookAddButton" Style="{StaticResource RegButton}" Content="Добавить книгу" Click="BookAddButtonClick"/>
+                <TextBlock/>
+                <Button x:Name="AddButton" Style="{StaticResource RegButton}" Content="Дополнить списки" Click="AddButtonClick"/>
             </StackPanel>
         </Grid>
     </Grid>

@@ -63,7 +63,7 @@ namespace LibraryProjestLibrary
             Random x = new Random();
             int one = 5;
             int two = x.Next(100, 999);
-            int three = x.Next(10000, 999999);
+            int three = x.Next(10000, 99999);
             GenerationString obj = new GenerationString();
             int control = obj.ControlNumberGeneration($"{one}{two}{three}");
             str = $"{one}-{two}-{three}-{control}";
@@ -93,6 +93,7 @@ namespace LibraryProjestLibrary
             }
             ost = 11 - ost;
             return ost;
+
         }
         public string NumberBilletGeneration(int hall, string year, int count) 
         {
@@ -106,18 +107,19 @@ namespace LibraryProjestLibrary
                 number = "О";
             //Определяем порядковый номер
             string countString = String.Empty;
+            count++;
             if (count < 9)
-                countString = $"000{count + 1}";
+                countString = $"000{count}";
             else if (count < 99)
-                countString = $"00{count + 1}";
+                countString = $"00{count}";
             else if (count < 999)
-                countString = $"0{count + 1}";
+                countString = $"0{count}";
             else if (count < 9999)
-                countString = $"{count + 1}";
+                countString = $"{count}";
             else if (count == 9999)
                 countString = "0001";
             //Склейка и добавление года
-            number = number + countString + "-"+year;
+            number +=countString +"-"+year;
             return number;
         }
     }

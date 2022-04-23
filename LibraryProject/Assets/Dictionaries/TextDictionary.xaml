@@ -46,4 +46,10 @@
         <Setter Property="Foreground" Value="{StaticResource MainColor}"/>
         <Setter Property="FontFamily" Value="{StaticResource Roboto}"/>
     </Style>
+    <!--Стиль тексат на странице "О нас"-->
+    <Style x:Key="AboutUsTextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource OpenSans}"/>
+        <Setter Property="Foreground" Value="{StaticResource MainColor}"/>
+        <Setter Property="Background" Value="{StaticResource LightBlueColorOpac}"/>
+    </Style>
 </ResourceDictionary>

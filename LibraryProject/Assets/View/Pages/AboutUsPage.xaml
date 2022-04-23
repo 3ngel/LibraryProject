@@ -15,14 +15,44 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <UniformGrid Rows="15" Background="{StaticResource BlueColor}" >
-            <TextBlock x:Name="AboutUsTextBlock" Text="О нас" Style="{StaticResource ActivePage}"/>
-            <TextBlock x:Name="PersonalAreaTextBlock" Text="Личный кабинет" Style="{StaticResource TextMenu}" MouseLeftButtonDown="PersonalAreaTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="BookTextBlock" Text="Книги" Style="{StaticResource TextMenu}" MouseLeftButtonDown="BookTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="ReaderBilettsTextBlock" Text="Читателские билеты" Style="{StaticResource TextMenu}" MouseLeftButtonDown="ReaderBilletsTextBlockMouseLeftButtonDown"/>
-            <TextBlock x:Name="UsersTextBlock" Text="Пользователи" Style="{StaticResource TextMenu}" MouseLeftButtonDown="UsersTextBlockMouseLeftButtonDown"/>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="AboutUsTextBlock" Text="О нас" Style="{StaticResource ActivePage}"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="PersonalAreaTextBlock" Text="Личный кабинет" Style="{StaticResource TextMenu}" MouseLeftButtonDown="PersonalAreaTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="BookTextBlock" Text="Книги" Style="{StaticResource TextMenu}" MouseLeftButtonDown="BookTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="ReaderBilettsTextBlock" Text="Читателские билеты" Style="{StaticResource TextMenu}" MouseLeftButtonDown="ReaderBilletsTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
+            <Viewbox MinHeight="16">
+                <TextBlock x:Name="UsersTextBlock" Text="Пользователи" Style="{StaticResource TextMenu}" MouseLeftButtonDown="UsersTextBlockMouseLeftButtonDown"/>
+            </Viewbox>
         </UniformGrid>
-        <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="Страница в разработке"/>
-        </StackPanel>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="/Assets/Images/Library.jpg" HorizontalAlignment="Left" Margin="24 0 0 0"/>
+            <Viewbox MinHeight="16" Grid.ColumnSpan="2" >
+                <TextBlock x:Name="OneTextBlock" Style="{StaticResource AboutUsTextBlock}" Margin="36 12 12 12"/>
+            </Viewbox>
+            <Image Source="/Assets/Images/two.jpg" Grid.Row="1" HorizontalAlignment="Left" Margin="24 0 0 0"/>
+            <Viewbox MinHeight="16" Grid.ColumnSpan="2" Grid.Row="1">
+                <TextBlock x:Name="TwoTextBlock" Style="{StaticResource AboutUsTextBlock}" Margin="36 12 12 12"/>
+            </Viewbox>
+            <Image Source="/Assets/Images/three.jpg" Grid.Row="2" HorizontalAlignment="Left" Margin="24 0 0 0"/>
+            <Viewbox MinHeight="16" Grid.ColumnSpan="2"  Grid.Row="2" SnapsToDevicePixels="True">
+                <TextBlock x:Name="ThreeTextBlock" Style="{StaticResource AboutUsTextBlock}" Margin="36 12 12 12"/>
+            </Viewbox>
+        </Grid>
     </Grid>
 </Page>
