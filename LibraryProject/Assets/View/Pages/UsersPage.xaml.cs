@@ -27,15 +27,6 @@ namespace LibraryProject.Pages
         public UsersPage()
         {
             InitializeComponent();
-            ShowTable();
-        }
-        /// <summary>
-        /// Отображение данных из таблицы "Books"
-        /// </summary>
-        private void ShowTable()
-        {
-            arrayUsers = db.context.Reader.Where(x=>x.Login!=Properties.Settings.Default.loginClient).ToList();
-            UsersListView.ItemsSource = arrayUsers;
         }
         /// <summary>
         /// Событие переноса на страницу "О нас"
@@ -94,9 +85,113 @@ namespace LibraryProject.Pages
                 if (db.context.SaveChanges()==0)
                 {
                     MessageBox.Show("Удаление пользователя произошло успешно");
-                    ShowTable();
+                    UsersListView.Items.Clear();
+                    LibraryEntities obj = new LibraryEntities();
+                    var qery =
+                        from Reader in obj.Reader
+                        join Halls in obj.Halls on Reader.Hall equals Halls.IdHall
+                        join Rank in obj.Rank on Reader.IdRank equals Rank.IdRank
+                        select new { Reader.IdReader, Reader.LastName, Reader.Name, Reader.PatronymicName, Reader.Birthday, Reader.NumberPhone, Reader.Login, Reader.Password, Rank.NameRank, Halls.NameHall };
+                    if (qery.Count() != 0)
+                        foreach (var item in qery)
+                        {
+                            Users user = new Users()
+                            {
+                                IdReader = item.IdReader,
+                                LastName = item.LastName,
+                                Name = item.Name,
+                                PatronymicName = item.PatronymicName,
+                                Birthday = item.Birthday,
+                                NumberPhone = item.NumberPhone,
+                                Login = item.Login,
+                                Password = item.Password,
+                                Rank = item.NameRank,
+                                Hall = item.NameHall
+                            };
+                            UsersListView.Items.Add(user);
+                        }
                 }
             }
         }
+
+        private void WindowLoaded(object sender, RoutedEventArgs e)
+        {
+            LibraryEntities obj = new LibraryEntities();
+            var qery =
+                from Reader in obj.Reader
+                join Halls in obj.Halls on Reader.Hall equals Halls.IdHall
+                join Rank in obj.Rank on Reader.IdRank equals Rank.IdRank
+                select new {Reader.IdReader, Reader.LastName, Reader.Name, Reader.PatronymicName, Reader.Birthday, Reader.NumberPhone, Reader.Login, Reader.Password, Rank.NameRank, Halls.NameHall};
+            if (qery.Count()!=0)
+                foreach (var item in qery)
+                {
+                    Users user = new Users()
+                    {
+                        IdReader = item.IdReader,
+                        LastName = item.LastName,
+                        Name = item.Name,
+                        PatronymicName = item.PatronymicName,
+                        Birthday = item.Birthday,
+                        NumberPhone = item.NumberPhone,
+                        Login = item.Login,
+                        Password = item.Password,
+                        Rank = item.NameRank,
+                        Hall = item.NameHall
+                    };
+                    UsersListView.Items.Add(user);
+                }
+        }
+        /// <summary>
+        /// Поиск на странице Пользователи
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SearchTextBoxTextChanged(object sender, TextChangedEventArgs e)
+        {
+            UsersListView.Items.Clear();
+            string search = SearchTextBox.Text;
+            LibraryEntities obj = new LibraryEntities();
+            var qery =
+                from Reader in obj.Reader
+                join Halls in obj.Halls on Reader.Hall equals Halls.IdHall
+                join Rank in obj.Rank on Reader.IdRank equals Rank.IdRank
+                where Reader.IdReader.ToString().Contains(search) || Reader.LastName.Contains(search) || Reader.Name.Contains(search) || Reader.PatronymicName.Contains(search) 
+                    || Reader.Birthday.ToString().Contains(search) || Reader.NumberPhone.Contains(search) || Reader.Login.Contains(search) 
+                    || Reader.Password.Contains(search) || Rank.NameRank.Contains(search) || Halls.NameHall.Contains(search)
+                select new { Reader.IdReader, Reader.LastName, Reader.Name, Reader.PatronymicName, Reader.Birthday, Reader.NumberPhone, Reader.Login, Reader.Password, Rank.NameRank, Halls.NameHall };
+            if (qery.Count() != 0)
+                foreach (var item in qery)
+                {
+                    Users user = new Users()
+                    {
+                        IdReader = item.IdReader,
+                        LastName = item.LastName,
+                        Name = item.Name,
+                        PatronymicName = item.PatronymicName,
+                        Birthday = item.Birthday,
+                        NumberPhone = item.NumberPhone,
+                        Login = item.Login,
+                        Password = item.Password,
+                        Rank = item.NameRank,
+                        Hall = item.NameHall
+                    };
+                    UsersListView.Items.Add(user);
+                }
+        }
+    }
+    public class Users
+    {
+        public int IdReader { get; set; }
+        public string LastName { get; set; }
+        public string Name { get; set; }
+        public string PatronymicName { get; set;}
+        public DateTime Birthday { get; set;}
+        public string NumberPhone { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public string Rank { get; set; }
+        public string Hall { get; set; }
+
+
     }
 }

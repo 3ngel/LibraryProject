@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:LibraryProject.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="UsersPage">
+      Title="UsersPage" Loaded="WindowLoaded">
 
     <Grid Background="{StaticResource WhiteColor}">
         <Grid.ColumnDefinitions>
@@ -30,7 +30,15 @@
                 <TextBlock x:Name="UsersTextBlock" Text="Пользователи" Style="{StaticResource ActivePage}"/>
             </Viewbox>
         </UniformGrid>
-        <StackPanel Grid.Column="1">
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="6*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Поиск"/>
+                <TextBox x:Name="SearchTextBox" Style="{StaticResource AutoTextBox}" TextChanged="SearchTextBoxTextChanged"/>
+            </StackPanel>
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                 <ListView x:Name="UsersListView" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.ItemTemplate>
@@ -46,14 +54,16 @@
                                         <UniformGrid Columns="2">
                                             <TextBlock Text="День рождения:" Style="{StaticResource LightText}"/>
                                             <TextBlock x:Name="BirthdayTextBlock" Text="{Binding Birthday}" Style="{StaticResource LightText}"/>
-                                            <TextBlock Text="Адресс" Style="{StaticResource LightText}"/>
-                                            <TextBlock x:Name="AdressTextBlock" Text="{Binding Adress}" Style="{StaticResource LightText}"/>
-                                            <TextBlock Text="Место учёбы или работы:" Style="{StaticResource LightText}"/>
-                                            <TextBlock x:Name="StudyOrWorkTextBlock" Text="{Binding StudyOrWork}" Style="{StaticResource LightText}"/>
+                                            <TextBlock Text="Место чтения" Style="{StaticResource LightText}"/>
+                                            <TextBlock x:Name="AdressTextBlock" Text="{Binding Hall}" Style="{StaticResource LightText}"/>
+                                            <TextBlock Text="Логин" Style="{StaticResource LightText}"/>
+                                            <TextBlock x:Name="LoginTextBlock" Text="{Binding Login}" Style="{StaticResource LightText}"/>
+                                            <TextBlock Text="Пароль" Style="{StaticResource LightText}"/>
+                                            <TextBlock x:Name="PasswordTextBlock" Text="{Binding Password}" Style="{StaticResource LightText}"/>
                                             <TextBlock Text="Номер телефона:" Style="{StaticResource LightText}"/>
                                             <TextBlock x:Name="NumberPhoneTextBlock" Text="{Binding NumberPhone}" Style="{StaticResource LightText}"/>
                                             <TextBlock Text="Ранг доступа" Style="{StaticResource LightText}"/>
-                                            <TextBlock x:Name="RankTextBlock" Text="{Binding IdRank}" Style="{StaticResource LightText}"/>
+                                            <TextBlock x:Name="RankTextBlock" Text="{Binding Rank}" Style="{StaticResource LightText}"/>
                                         </UniformGrid>
                                         <Button x:Name="DeleteUserButton" Style="{StaticResource LightButton}" Content="Удалить пользователя" Click="DeleteUserButtonClick"/>
                                     </StackPanel>
@@ -68,6 +78,6 @@
                     </ListView.ItemsPanel>
                 </ListView>
             </ScrollViewer>
-        </StackPanel>
+        </Grid>
     </Grid>
 </Page>
