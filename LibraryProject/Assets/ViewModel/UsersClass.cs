@@ -86,5 +86,73 @@ namespace LibraryProject.Assets.ViewModel
             }
             return true;
         }
+        public bool EditUser(string lastname, string name, string patronymicname, string number, string password, int hall, int rank)
+        {
+            Core db = new Core();
+            CheckStringClass check = new CheckStringClass();
+            Reader read = db.context.Reader.Where(x => x.Login == Properties.Settings.Default.loginUser).First();
+            try
+            {
+                if (check.NameCheck(lastname) == true)
+                {
+                    if (check.NameCheck(name) == true)
+                    {
+                        if (check.NameCheck(patronymicname) == true)
+                        {
+                            if (check.NumberCheck(number) == true)
+                            {
+                                if (check.ReliabilityPassword(password) == true)
+                                {
+                                    read.LastName = lastname;
+                                    read.Name = name;
+                                    read.PatronymicName = patronymicname;
+                                    read.NumberPhone = number;
+                                    read.Password = password;
+                                    read.IdRank = rank;
+                                    read.Hall = hall;
+                                    db.context.SaveChanges();
+                                    if (db.context.SaveChanges()==0)
+                                    {
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return true; 
+        }
+        public bool AutoUser(string login, string password)
+        {
+            Core db = new Core();
+            List<Reader> arrayReader;
+            arrayReader = db.context.Reader.ToList();
+            int acount = arrayReader.Where(x => x.Login == login).Count();
+            int countRecord = 0;
+            //Проверка на наличие логина
+            if (acount == 1)
+            {
+                arrayReader = db.context.Reader.Where(x => x.Login == login).ToList();
+                //Если есть данный логин, проверка пароля при этом логине 
+                countRecord = arrayReader.Where(x => x.Login == login && x.Password == password).Count();
+            }
+            //При совпдании занесение логина в запись приложения и переход на главную страницу
+            if (countRecord == 1)
+            {
+                Properties.Settings.Default.loginClient = login;
+                Properties.Settings.Default.RoleClient = db.context.Reader.Where(x => x.Login == login).First().IdRank;
+                Properties.Settings.Default.Save();
+                return true;
+            }
+            else
+            {
+                throw new Exception("Неверный пароль или логин");
+            }       
+        }
     }
 }

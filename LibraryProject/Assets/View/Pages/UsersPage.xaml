@@ -44,8 +44,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Border Margin="10" Background="{StaticResource MainColor}" CornerRadius="15" Padding="10">
-                                <Grid>
-                                    <StackPanel>
+                                <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock x:Name="LastNameTextBlock" Text="{Binding LastName}" Style="{StaticResource LightText}"/>
                                             <TextBlock x:Name="NameTextBlock" Text="{Binding Name}" Style="{StaticResource LightText}"/>
@@ -64,10 +63,10 @@
                                             <TextBlock x:Name="NumberPhoneTextBlock" Text="{Binding NumberPhone}" Style="{StaticResource LightText}"/>
                                             <TextBlock Text="Ранг доступа" Style="{StaticResource LightText}"/>
                                             <TextBlock x:Name="RankTextBlock" Text="{Binding Rank}" Style="{StaticResource LightText}"/>
+                                            <Button x:Name="DeleteUserButton" Style="{StaticResource LightButton}" Content="Удалить пользователя" Click="DeleteUserButtonClick"/>
+                                            <Button x:Name="EditButton" Style="{StaticResource LightButton}" Content="Редактировать" Click="EditButtonClick"/>
                                         </UniformGrid>
-                                        <Button x:Name="DeleteUserButton" Style="{StaticResource LightButton}" Content="Удалить пользователя" Click="DeleteUserButtonClick"/>
-                                    </StackPanel>
-                                </Grid>
+                                </StackPanel>
                             </Border>
                         </DataTemplate>
                     </ListView.ItemTemplate>

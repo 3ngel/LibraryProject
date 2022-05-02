@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LibraryProject.Assets.Models;
+using LibraryProject.Assets.ViewModel;
 
 namespace LibraryProject.Pages
 {
@@ -44,36 +45,17 @@ namespace LibraryProject.Pages
         /// <param name="e"></param>
         private void EntranceButtonClick(object sender, RoutedEventArgs e)
         {
-            Core db = new Core();
-            List<Reader> arrayReader;
-            arrayReader = db.context.Reader.ToList();
-            int acount = arrayReader.Where(x=>x.Login==LoginTextBox.Text).Count();
-            int countRecord = 0;
             try
             {
-                //Проверка на наличие логина
-                if (acount==1)
+                UsersClass obj = new UsersClass();
+                if (obj.AutoUser(LoginTextBox.Text, PasswordTextBox.Password)==true)
                 {
-                    arrayReader = db.context.Reader.Where(x => x.Login == LoginTextBox.Text).ToList();
-                    //Если есть данный логин, проверка пароля при этом логине 
-                    countRecord = arrayReader.Where(x => x.Login == LoginTextBox.Text && x.Password == PasswordTextBox.Password).Count();
-                }
-                //При совпдании занесение логина в запись приложения и переход на главную страницу
-                if (countRecord==1)
-                {
-                    Properties.Settings.Default.loginClient = LoginTextBox.Text;
-                    Properties.Settings.Default.RoleClient = db.context.Reader.Where(x => x.Login == LoginTextBox.Text).First().IdRank;
-                    Properties.Settings.Default.Save();
                     this.NavigationService.Navigate(new AboutUsPage());
                 }
-                else
-                {
-                    MessageBox.Show("Неверный пароль или логин");
-                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                MessageBox.Show(ex.Message);
             }
         }
     }

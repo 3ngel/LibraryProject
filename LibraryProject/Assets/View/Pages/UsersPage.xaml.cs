@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LibraryProject.Assets.Models;
+using LibraryProject.Assets.View.Windows;
 
 namespace LibraryProject.Pages
 {
@@ -91,6 +92,7 @@ namespace LibraryProject.Pages
                         from Reader in obj.Reader
                         join Halls in obj.Halls on Reader.Hall equals Halls.IdHall
                         join Rank in obj.Rank on Reader.IdRank equals Rank.IdRank
+                        where Reader.Login !=Properties.Settings.Default.loginClient
                         select new { Reader.IdReader, Reader.LastName, Reader.Name, Reader.PatronymicName, Reader.Birthday, Reader.NumberPhone, Reader.Login, Reader.Password, Rank.NameRank, Halls.NameHall };
                     if (qery.Count() != 0)
                         foreach (var item in qery)
@@ -121,6 +123,7 @@ namespace LibraryProject.Pages
                 from Reader in obj.Reader
                 join Halls in obj.Halls on Reader.Hall equals Halls.IdHall
                 join Rank in obj.Rank on Reader.IdRank equals Rank.IdRank
+                where Reader.Login != Properties.Settings.Default.loginClient
                 select new {Reader.IdReader, Reader.LastName, Reader.Name, Reader.PatronymicName, Reader.Birthday, Reader.NumberPhone, Reader.Login, Reader.Password, Rank.NameRank, Halls.NameHall};
             if (qery.Count()!=0)
                 foreach (var item in qery)
@@ -155,6 +158,7 @@ namespace LibraryProject.Pages
                 from Reader in obj.Reader
                 join Halls in obj.Halls on Reader.Hall equals Halls.IdHall
                 join Rank in obj.Rank on Reader.IdRank equals Rank.IdRank
+                where Reader.Login != Properties.Settings.Default.loginClient
                 where Reader.IdReader.ToString().Contains(search) || Reader.LastName.Contains(search) || Reader.Name.Contains(search) || Reader.PatronymicName.Contains(search) 
                     || Reader.Birthday.ToString().Contains(search) || Reader.NumberPhone.Contains(search) || Reader.Login.Contains(search) 
                     || Reader.Password.Contains(search) || Rank.NameRank.Contains(search) || Halls.NameHall.Contains(search)
@@ -177,6 +181,14 @@ namespace LibraryProject.Pages
                     };
                     UsersListView.Items.Add(user);
                 }
+        }
+
+        private void EditButtonClick(object sender, RoutedEventArgs e)
+        {
+            Button activeButton = sender as Button;
+            Users activeUsers = activeButton.DataContext as Users;
+            Properties.Settings.Default.loginUser = activeUsers.Login;
+            new UserWindow().ShowDialog();
         }
     }
     public class Users
