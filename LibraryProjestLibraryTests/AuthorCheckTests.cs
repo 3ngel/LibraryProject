@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace LibraryProjestLibraryTests
 {
     [TestClass]
-    public class AuthorCheckClass
+    public class AuthorCheckTests
     {
         /// <summary>
         /// Проверка корректности автора

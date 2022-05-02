@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryProjestLibraryTests
 {
-    class PageCountsCheckClass
+    class LoginCheckTests
     {
     }
 }

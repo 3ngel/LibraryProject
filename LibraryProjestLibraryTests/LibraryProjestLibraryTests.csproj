@@ -49,13 +49,21 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthorCheckClass.cs" />
-    <Compile Include="HouseOfPublicationCheckClass.cs" />
+    <Compile Include="AdressCheckTests.cs" />
+    <Compile Include="AuthorCheckTests.cs" />
+    <Compile Include="BirthdayCheckTests.cs" />
+    <Compile Include="CityCheckTests.cs" />
+    <Compile Include="HouseOfPublicationCheckTests.cs" />
     <Compile Include="ISBNCheckTests.cs" />
-    <Compile Include="PageCountsCheckClass.cs" />
+    <Compile Include="LoginCheckTests.cs" />
+    <Compile Include="NameCheckTests.cs" />
+    <Compile Include="NumberCheckTests.cs" />
+    <Compile Include="PageCountsCheckTests.cs" />
+    <Compile Include="PasswordCheckTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TitleCheckClass.cs" />
-    <Compile Include="YearOfPublicationCheckClass.cs" />
+    <Compile Include="TitleCheckTests.cs" />
+    <Compile Include="UsersClassTests.cs" />
+    <Compile Include="YearOfPublicationCheckTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

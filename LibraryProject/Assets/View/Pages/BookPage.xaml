@@ -81,7 +81,8 @@
                                     <TextBlock x:Name="ISBNTextBlock" Text="{Binding ISBN}" Style="{StaticResource LightText}"/>
                                     <TextBlock Text="Количество экземпляров" Style="{StaticResource LightText}" Visibility="{Binding AdminControlVisibility}"/>
                                     <TextBlock x:Name="BookCountTextBlock" Text="{Binding BooksCount}" Style="{StaticResource LightText}" Visibility="{Binding AdminControlVisibility}"/>
-                                    <Button x:Name="ReaderBilletBookAddButton" Content="Добавить книгу в читательский билет" Click="ReaderBilletBookAddButtonClick" Style="{StaticResource RegButton}" Visibility="{Binding AdminControlVisibility}" Background="{Binding ColorButton}"/>
+                                    <Button x:Name="ReaderBilletBookAddButton" Content="Добавить книгу в ч/б" Click="ReaderBilletBookAddButtonClick" Style="{StaticResource RegButton}" Visibility="{Binding AdminControlVisibility}" Background="{Binding ColorButton}"/>
+                                    <Button x:Name="DeleteBookButton" Content="Удалить книгу" Click="DeleteBookButtonClick" Style="{StaticResource RegButton}" Visibility="{Binding AdminControlVisibility}" Background="{Binding ColorButton}"/>
                                 </UniformGrid>
                             </Border>
                         </DataTemplate>

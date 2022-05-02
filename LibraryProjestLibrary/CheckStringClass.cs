@@ -166,8 +166,8 @@ namespace LibraryProjestLibrary
         {
             char startHouse = house[0];
             house = house.ToLower();
-            string correctSymbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя-";
-            string correctSymbolsLat = "qazxswedcvfrtgbnhyujmkiolp-";
+            string correctSymbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя- ";
+            string correctSymbolsLat = "qazxswedcvfrtgbnhyujmkiolp- ";
             if (!house.All(x => correctSymbols.Contains(x)) && !house.All(x => correctSymbolsLat.Contains(x)))
             {
                 throw new Exception("Название дома публикации содержит недоступные символы. Писать на кириллице или на латинице (не смешивать)");
@@ -186,6 +186,11 @@ namespace LibraryProjestLibrary
             }
             return true;
         }
+        /// <summary>
+        /// Проверка корректности ввода названия города
+        /// </summary>
+        /// <param name="city"></param>
+        /// <returns></returns>
         public bool CityCheck (string city)
         {
             string correctSymbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя-";

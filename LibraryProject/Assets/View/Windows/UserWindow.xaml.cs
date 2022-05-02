@@ -47,6 +47,7 @@ namespace LibraryProject.Assets.View.Windows
                     PasswordTextBox.Text, HallComboBox.SelectedIndex+1, RankComboBox.SelectedIndex+1)==true)
                 {
                     MessageBox.Show("Изменения успешно сохранены");
+                    Properties.Settings.Default.loginUser = String.Empty;
                     this.Close();
                 }
             }

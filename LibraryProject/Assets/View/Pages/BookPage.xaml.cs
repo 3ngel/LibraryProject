@@ -346,6 +346,52 @@ namespace LibraryProject.Pages
                 }
             }
         }
+
+        private void DeleteBookButtonClick(object sender, RoutedEventArgs e)
+        {
+            string message = "Вы уверены, что хотите удалить книгу?";
+            string title = "Удаление книги";
+            MessageBoxResult res = MessageBox.Show(message, title, MessageBoxButton.YesNo);
+            if (res == MessageBoxResult.Yes)
+            {
+                Button activeButton = sender as Button;
+                BooksList activeBook = activeButton.DataContext as BooksList;
+                string ISBN = activeBook.ISBN;
+                Books book = db.context.Books.Where(x => x.ISBN == ISBN).First();
+                db.context.Books.Remove(book);
+                db.context.SaveChanges();
+                if (db.context.SaveChanges() == 0)
+                    MessageBox.Show("Вы успешно удалили книгу");
+                BookListView.Items.Clear();
+                LibraryEntities obj = new LibraryEntities();
+                var questy =
+                    from Books in obj.Books
+                    join BBK in obj.BBK on Books.BBK equals BBK.IdBBK
+                    join HousePublication in obj.HousePublication on Books.HousePublication equals HousePublication.IdHouse
+                    join City in obj.City on Books.IdCity equals City.IdCity
+                    join Author in obj.Author on Books.Author equals Author.IdAuthor
+                    select new { Books.ISBN, Author.FullNameAuthor, Books.Title, BBK.TitleBBK, HousePublication.NameHouse, City.NameCity, Books.YearOfPublication, Books.PageCounts, Books.BooksCount };
+                if (questy.Count() != 0)
+                {
+                    foreach (var item in questy)
+                    {
+                        BooksList books = new BooksList()
+                        {
+                            ISBN = item.ISBN,
+                            Title = item.Title,
+                            Author = item.FullNameAuthor,
+                            TitleBBK = item.TitleBBK,
+                            NameHouse = item.NameHouse,
+                            NameCity = item.NameCity,
+                            YearOfPublication = item.YearOfPublication,
+                            PageCounts = item.PageCounts,
+                            BooksCount = item.BooksCount
+                        };
+                        BookListView.Items.Add(books);
+                    }
+                }
+            }
+        }
     }
 
     public class BooksList

@@ -47,7 +47,7 @@
                                 <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock x:Name="LastNameTextBlock" Text="{Binding LastName}" Style="{StaticResource LightText}"/>
-                                            <TextBlock x:Name="NameTextBlock" Text="{Binding Name}" Style="{StaticResource LightText}"/>
+                                            <TextBlock x:Name="NameTextBlock" Text="{Binding Name}" Style="{StaticResource LightText}" Margin="5 0"/>
                                             <TextBlock x:Name="PatronymicNameTextBlock" Text="{Binding PatronymicName}" Style="{StaticResource LightText}"/>
                                         </StackPanel>
                                         <UniformGrid Columns="2">
