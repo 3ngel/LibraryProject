@@ -40,7 +40,7 @@
                     <Button x:Name="NewBookAddButton" Content="Добавить книгу" Style="{StaticResource RegButton}" Click="NewBookAddButtonClick"/>
                     <Button x:Name="BookAddButton" Click="BookAddButtonClick" Style="{StaticResource RegButton}" Content="Зарегистрировать книгу"/>
                     <TextBlock Text="Поиск" VerticalAlignment="Center"/>
-                    <TextBox x:Name="SearchTextBox" Background="{StaticResource LightBlueColor}" Height="30" Width="200"/>
+                    <TextBox x:Name="SearchTextBox" Background="{StaticResource LightBlueColor}" Height="30" Width="200" TextChanged="SearchTextBoxTextChanged"/>
                     <TextBlock Text="Сортировать по" VerticalAlignment="Center"/>
                     <ComboBox Width="200" Height="30" Background="{StaticResource LightBlueColor}" x:Name="SortingComboBox" SelectionChanged="SortingComboBoxSelectionChanged">
                         <ComboBoxItem>

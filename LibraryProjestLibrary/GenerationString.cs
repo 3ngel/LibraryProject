@@ -98,12 +98,11 @@ namespace LibraryProjestLibrary
         public string NumberBilletGeneration(int hall, string year, int count) 
         {
             string number = "";
-            //Определяем букву зала
             if (hall == 1)
                 number = "А";
-            else if (hall == 2)
+            if (hall == 2)
                 number = "Ч";
-            else if (hall == 3)
+            if (hall == 3)
                 number = "О";
             //Определяем порядковый номер
             string countString = String.Empty;
@@ -118,8 +117,7 @@ namespace LibraryProjestLibrary
                 countString = $"{count}";
             else if (count == 9999)
                 countString = "0001";
-            //Склейка и добавление года
-            number +=countString +"-"+year;
+            number += $"{countString}-" + year;
             return number;
         }
     }

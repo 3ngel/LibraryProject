@@ -52,4 +52,12 @@
         <Setter Property="Foreground" Value="{StaticResource MainColor}"/>
         <Setter Property="Background" Value="{StaticResource LightBlueColorOpac}"/>
     </Style>
+    <!--Стиль для записи "ПРОСРОЧЕНО"-->
+    <Style x:Key="RedText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource OpenSans}"/>
+        <Setter Property="Foreground" Value="Red"/>
+        <Setter Property="Background" Value="{StaticResource WhiteColor}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
 </ResourceDictionary>

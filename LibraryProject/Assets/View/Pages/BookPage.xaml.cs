@@ -306,6 +306,46 @@ namespace LibraryProject.Pages
                 MessageBox.Show($"Данной книги пока нет в библиотеке. Подождите, когда другие дочитают");
             }
         }
+
+        /// <summary>
+        /// Поиск на странице "Книги"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SearchTextBoxTextChanged(object sender, TextChangedEventArgs e)
+        {
+            BookListView.Items.Clear();
+            string search = SearchTextBox.Text;
+            LibraryEntities obj = new LibraryEntities();
+            var questy =
+                from Books in obj.Books
+                join BBK in obj.BBK on Books.BBK equals BBK.IdBBK
+                join HousePublication in obj.HousePublication on Books.HousePublication equals HousePublication.IdHouse
+                join City in obj.City on Books.IdCity equals City.IdCity
+                join Author in obj.Author on Books.Author equals Author.IdAuthor
+                where Books.ISBN.Contains(search) || Author.FullNameAuthor.Contains(search) || Books.Title.Contains(search) || BBK.TitleBBK.Contains(search) || 
+                    HousePublication.NameHouse.Contains(search) || City.NameCity.Contains(search) || Books.YearOfPublication.ToString().Contains(search) || Books.PageCounts.ToString().Contains(search) 
+                select new { Books.ISBN, Author.FullNameAuthor, Books.Title, BBK.TitleBBK, HousePublication.NameHouse, City.NameCity, Books.YearOfPublication, Books.PageCounts, Books.BooksCount };
+            if (questy.Count() != 0)
+            {
+                foreach (var item in questy)
+                {
+                    BooksList books = new BooksList()
+                    {
+                        ISBN = item.ISBN,
+                        Title = item.Title,
+                        Author = item.FullNameAuthor,
+                        TitleBBK = item.TitleBBK,
+                        NameHouse = item.NameHouse,
+                        NameCity = item.NameCity,
+                        YearOfPublication = item.YearOfPublication,
+                        PageCounts = item.PageCounts,
+                        BooksCount = item.BooksCount
+                    };
+                    BookListView.Items.Add(books);
+                }
+            }
+        }
     }
 
     public class BooksList

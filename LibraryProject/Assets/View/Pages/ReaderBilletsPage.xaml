@@ -37,7 +37,13 @@
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="8">
                 <TextBlock Text="  Поиск   " VerticalAlignment="Center"/>
-                <TextBox x:Name="SearchTextBox" Background="{StaticResource LightBlueColor}" Height="30" Width="200"/>
+                <TextBox x:Name="SearchTextBox" Background="{StaticResource LightBlueColor}" Height="30" Width="200" TextChanged="SearchTextBoxTextChanged"/>
+                <TextBlock Text="Сортировать" VerticalAlignment="Center"/>
+                <ComboBox x:Name="SortingComboBox" Width="100" SelectionChanged="SortingComboBoxSelectionChanged">
+                    <ComboBoxItem Content="Просроченые"/>
+                    <ComboBoxItem Content="Не просроченные"/>
+                    <ComboBoxItem Content="Все"/>                    
+                </ComboBox>
             </StackPanel>
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible">
                 <ListView x:Name="ReaderBilletsListView" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
@@ -45,6 +51,8 @@
                         <DataTemplate>
                             <Border CornerRadius="10" Background="{StaticResource LightBlueColor}" Width="400">
                                 <UniformGrid Columns="2" Background="{StaticResource LightBlueColor}" Margin="15">
+                                    <TextBlock Text="Код билета" Style="{StaticResource LightText}"/>
+                                    <TextBlock Text="{Binding IdReaderBillet}" Style="{StaticResource LightText}"/>
                                     <TextBlock Text="Автор" Style="{StaticResource LightText}"/>
                                     <TextBlock x:Name="AuthorTextBlock" Style="{StaticResource LightText}" Text="{Binding Author}" TextWrapping="Wrap"/>
                                     <TextBlock Text="Название" Style="{StaticResource LightText}"/>
@@ -59,7 +67,7 @@
                                     <TextBlock x:Name="DateOfIssueTextBlock" Style="{StaticResource LightText}" Text="{Binding DateOfIssue}"/>
                                     <TextBlock Text="Когда вернуть" Style="{StaticResource LightText}"/>
                                     <TextBlock x:Name="ReturnTextBlock" Style="{StaticResource LightText}" Text="{Binding ReturnDate}"/>
-
+                                    <TextBlock Text="ПРОСРОЧЕНО" Visibility="{Binding ReaderBilletsCheck}" Style="{StaticResource RedText}"/>
                                     <Button x:Name="DeleteBilletButton" Click="DeleteBilletButtonClick" Style="{StaticResource RegButton}" Content="Вернул(а)"/>
                                 </UniformGrid>
                             </Border>

@@ -134,7 +134,7 @@ namespace LibraryProject.Pages
                     };
                     ReaderBilletsListView.Items.Add(readerBillets);
                 }
-            }
+        }
 
         /// <summary>
         /// Удаление читательского билета по мере возращения книги
@@ -193,6 +193,180 @@ namespace LibraryProject.Pages
                 }
             }
         }
+        /// <summary>
+        /// ComboBox сортирующий читательские билеты
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SortingComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ReaderBilletsListView.Items.Clear();
+            //Сортировка по просроченнным читательским билетам
+            if (SortingComboBox.SelectedIndex==0)
+            {
+                
+                LibraryEntities obj = new LibraryEntities();
+                GenerationString generation = new GenerationString();
+                var billet =
+                    from Extradition in obj.Extradition
+                    join Reader in obj.Reader on Extradition.IdReader equals Reader.IdReader
+                    join Books in obj.Books on Extradition.IdBook equals Books.ISBN
+                    join Author in obj.Author on Books.Author equals Author.IdAuthor
+                    where Extradition.ReturnDate<DateTime.Now
+                    select new
+                    {
+                        Books.Title,
+                        Author.FullNameAuthor,
+                        Reader.LastName,
+                        Reader.Name,
+                        Reader.PatronymicName,
+                        Extradition.IdReaderBillet,
+                        Extradition.DateOfIssue,
+                        Extradition.ReturnDate
+                    };
+                if (billet.Count() != 0)
+                    foreach (var item in billet)
+                    {
+                        ReaderBillets readerBillets = new ReaderBillets
+                        {
+                            IdReaderBillet = item.IdReaderBillet,
+                            Title = item.Title,
+                            Author = item.FullNameAuthor,
+                            LastName = item.LastName,
+                            Name = item.Name,
+                            PatronymicName = item.PatronymicName,
+                            DateOfIssue = item.DateOfIssue,
+                            ReturnDate = item.ReturnDate
+                        };
+                        ReaderBilletsListView.Items.Add(readerBillets);
+                    }
+            }
+            //Сортировка по не просроченнным читательским билетам
+            if (SortingComboBox.SelectedIndex == 1)
+            {
+                
+                LibraryEntities obj = new LibraryEntities();
+                GenerationString generation = new GenerationString();
+                var billet =
+                    from Extradition in obj.Extradition
+                    join Reader in obj.Reader on Extradition.IdReader equals Reader.IdReader
+                    join Books in obj.Books on Extradition.IdBook equals Books.ISBN
+                    join Author in obj.Author on Books.Author equals Author.IdAuthor
+                    where Extradition.ReturnDate > DateTime.Now
+                    select new
+                    {
+                        Books.Title,
+                        Author.FullNameAuthor,
+                        Reader.LastName,
+                        Reader.Name,
+                        Reader.PatronymicName,
+                        Extradition.IdReaderBillet,
+                        Extradition.DateOfIssue,
+                        Extradition.ReturnDate
+                    };
+                if (billet.Count() != 0)
+                    foreach (var item in billet)
+                    {
+                        ReaderBillets readerBillets = new ReaderBillets
+                        {
+                            IdReaderBillet = item.IdReaderBillet,
+                            Title = item.Title,
+                            Author = item.FullNameAuthor,
+                            LastName = item.LastName,
+                            Name = item.Name,
+                            PatronymicName = item.PatronymicName,
+                            DateOfIssue = item.DateOfIssue,
+                            ReturnDate = item.ReturnDate
+                        };
+                        ReaderBilletsListView.Items.Add(readerBillets);
+                    }
+            }
+            //Обнуляет сортировку
+            if (SortingComboBox.SelectedIndex == 2)
+            {
+                
+                LibraryEntities obj = new LibraryEntities();
+                GenerationString generation = new GenerationString();
+                var billet =
+                    from Extradition in obj.Extradition
+                    join Reader in obj.Reader on Extradition.IdReader equals Reader.IdReader
+                    join Books in obj.Books on Extradition.IdBook equals Books.ISBN
+                    join Author in obj.Author on Books.Author equals Author.IdAuthor
+                    select new
+                    {
+                        Books.Title,
+                        Author.FullNameAuthor,
+                        Reader.LastName,
+                        Reader.Name,
+                        Reader.PatronymicName,
+                        Extradition.IdReaderBillet,
+                        Extradition.DateOfIssue,
+                        Extradition.ReturnDate
+                    };
+                if (billet.Count() != 0)
+                    foreach (var item in billet)
+                    {
+                        ReaderBillets readerBillets = new ReaderBillets
+                        {
+                            IdReaderBillet = item.IdReaderBillet,
+                            Title = item.Title,
+                            Author = item.FullNameAuthor,
+                            LastName = item.LastName,
+                            Name = item.Name,
+                            PatronymicName = item.PatronymicName,
+                            DateOfIssue = item.DateOfIssue,
+                            ReturnDate = item.ReturnDate
+                        };
+                        ReaderBilletsListView.Items.Add(readerBillets);
+                    }
+            }
+        }
+        /// <summary>
+        /// Поиск
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SearchTextBoxTextChanged(object sender, TextChangedEventArgs e)
+        {
+            ReaderBilletsListView.Items.Clear();
+            LibraryEntities obj = new LibraryEntities();
+            GenerationString generation = new GenerationString();
+            string search = SearchTextBox.Text;
+            var billet =
+                from Extradition in obj.Extradition
+                join Reader in obj.Reader on Extradition.IdReader equals Reader.IdReader
+                join Books in obj.Books on Extradition.IdBook equals Books.ISBN
+                join Author in obj.Author on Books.Author equals Author.IdAuthor
+                where Books.Title.Contains(search) || Author.FullNameAuthor.Contains(search) || Reader.LastName.Contains(search) || Reader.Name.Contains(search)
+                    || Reader.PatronymicName.Contains(search) || Extradition.IdReaderBillet.Contains(search)
+                select new
+                {
+                    Books.Title,
+                    Author.FullNameAuthor,
+                    Reader.LastName,
+                    Reader.Name,
+                    Reader.PatronymicName,
+                    Extradition.IdReaderBillet,
+                    Extradition.DateOfIssue,
+                    Extradition.ReturnDate
+                };
+            if (billet.Count() != 0)
+                foreach (var item in billet)
+                {
+                    ReaderBillets readerBillets = new ReaderBillets
+                    {
+                        IdReaderBillet = item.IdReaderBillet,
+                        Title = item.Title,
+                        Author = item.FullNameAuthor,
+                        LastName = item.LastName,
+                        Name = item.Name,
+                        PatronymicName = item.PatronymicName,
+                        DateOfIssue = item.DateOfIssue,
+                        ReturnDate = item.ReturnDate
+                    };
+                    ReaderBilletsListView.Items.Add(readerBillets);
+                }
+        }
     }
     public class ReaderBillets 
     {
@@ -205,5 +379,19 @@ namespace LibraryProject.Pages
         public string PatronymicName { get; set; }
         public DateTime DateOfIssue { get; set; }
         public DateTime ReturnDate { get; set; }
+        public Visibility ReaderBilletsCheck
+        {
+            get
+            {
+                if (ReturnDate<DateTime.Now)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Hidden;
+                }
+            }
+        }
     }
 }

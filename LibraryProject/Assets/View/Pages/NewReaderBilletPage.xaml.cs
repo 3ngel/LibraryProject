@@ -49,7 +49,8 @@ namespace LibraryProject.Assets.View.Pages
                         Name = item.Name,
                         PatronymicName = item.PatronymicName,
                         Number = item.NumberPhone,
-                        Hall = item.NameHall
+                        Hall = item.NameHall,
+                        IdHall = item.IdHall
                     };
                     UsersListView.Items.Add(user);
                 }
@@ -80,11 +81,12 @@ namespace LibraryProject.Assets.View.Pages
                 ReturnDate = DateTime.Now.AddDays(14)
             };
             //Избежание повтора первичного ключа, если удалялись билеты
-            int ext = 1;
+            int ext = db.context.Extradition.Where(x => x.IdReaderBillet == extradition.IdReaderBillet).ToList().Count(); ;
             while (ext!=0)
             {
+                count++;
+                extradition.IdReaderBillet = generation.NumberBilletGeneration(hall, Convert.ToString(y).Substring(2, 2), count);
                 ext = db.context.Extradition.Where(x => x.IdReaderBillet == extradition.IdReaderBillet).ToList().Count();
-                extradition.IdReaderBillet = generation.NumberBilletGeneration(hall, Convert.ToString(y).Substring(2, 2), count+1);
             }
             db.context.Extradition.Add(extradition);
             db.context.SaveChanges();
