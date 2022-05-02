@@ -39,46 +39,39 @@
                 <TextBlock Text="  Поиск   " VerticalAlignment="Center"/>
                 <TextBox x:Name="SearchTextBox" Background="{StaticResource LightBlueColor}" Height="30" Width="200"/>
             </StackPanel>
-            <StackPanel Grid.Row="1">
-                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible">
-                    <ListView x:Name="ReaderBilletsListView" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Border CornerRadius="10" Background="{StaticResource BlueColor}">
-                                    <Grid>
-                                        <StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <UniformGrid Columns="2" Background="{StaticResource LightBlueColor}">
-                                                    <TextBlock Text="Автор" Style="{StaticResource LightText}"/>
-                                                    <TextBlock x:Name="AuthorTextBlock" Style="{StaticResource LightText}" Text="{Binding Author}"/>
-                                                    <TextBlock Text="Название" Style="{StaticResource LightText}"/>
-                                                    <TextBlock x:Name="TitleTextBlock" Style="{StaticResource LightText}" Text="{Binding Title}"/>
-                                                    <TextBlock Text="Кто взял" Style="{StaticResource LightText}"/>
-                                                    <StackPanel Orientation="Vertical">
-                                                        <TextBlock Text="{Binding LastName}" Style="{StaticResource LightText}"/>
-                                                        <TextBlock Text="{Binding Name}" Style="{StaticResource LightText}"/>
-                                                        <TextBlock Text="{Binding PatronymicName}" Style="{StaticResource LightText}"/>
-                                                    </StackPanel>
-                                                    <TextBlock Text="Когда взяли" Style="{StaticResource LightText}"/>
-                                                    <TextBlock x:Name="DateOfIssueTextBlock" Style="{StaticResource LightText}" Text="{Binding DateOfIssue}"/>
-                                                    <TextBlock Text="Когда вернуть" Style="{StaticResource LightText}"/>
-                                                    <TextBlock x:Name="ReturnTextBlock" Style="{StaticResource LightText}" Text="{Binding ReturnDate}"/>
-                                                </UniformGrid>
-                                                <Button x:Name="DeleteBilletButton" Click="DeleteBilletButtonClick" Style="{StaticResource RegButton}" Content="Вернул(а)"/>
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </Grid>
-                                </Border>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel HorizontalAlignment="Center"/>
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                    </ListView>
-                </ScrollViewer>
-            </StackPanel>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible">
+                <ListView x:Name="ReaderBilletsListView" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border CornerRadius="10" Background="{StaticResource LightBlueColor}" Width="400">
+                                <UniformGrid Columns="2" Background="{StaticResource LightBlueColor}" Margin="15">
+                                    <TextBlock Text="Автор" Style="{StaticResource LightText}"/>
+                                    <TextBlock x:Name="AuthorTextBlock" Style="{StaticResource LightText}" Text="{Binding Author}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="Название" Style="{StaticResource LightText}"/>
+                                    <TextBlock x:Name="TitleTextBlock" Style="{StaticResource LightText}" Text="{Binding Title}"/>
+                                    <TextBlock Text="Кто взял" Style="{StaticResource LightText}"/>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding LastName}" Style="{StaticResource LightText}"/>
+                                        <TextBlock Text="{Binding Name}" Style="{StaticResource LightText}"/>
+                                        <TextBlock Text="{Binding PatronymicName}" Style="{StaticResource LightText}"/>
+                                    </StackPanel>
+                                    <TextBlock Text="Когда взяли" Style="{StaticResource LightText}"/>
+                                    <TextBlock x:Name="DateOfIssueTextBlock" Style="{StaticResource LightText}" Text="{Binding DateOfIssue}"/>
+                                    <TextBlock Text="Когда вернуть" Style="{StaticResource LightText}"/>
+                                    <TextBlock x:Name="ReturnTextBlock" Style="{StaticResource LightText}" Text="{Binding ReturnDate}"/>
+
+                                    <Button x:Name="DeleteBilletButton" Click="DeleteBilletButtonClick" Style="{StaticResource RegButton}" Content="Вернул(а)"/>
+                                </UniformGrid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </Page>

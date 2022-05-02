@@ -32,7 +32,7 @@ namespace LibraryProjestLibrary
             {
                 throw new Exception("Вы не ввели ФИО полностью");
             }
-            if (name.EndsWith("-") & name.StartsWith("-"))
+            if (name.EndsWith("-") || name.StartsWith("-"))
             {
                 throw new Exception("ФИО содержит знак 'дефис' только в середине");
             }
@@ -67,7 +67,7 @@ namespace LibraryProjestLibrary
             {
                 throw new Exception("Вы не ввели ФИО автора");
             }
-            if (name.EndsWith("-") & name.StartsWith("-"))
+            if (name.EndsWith("-") || name.StartsWith("-"))
             {
                 throw new Exception("ФИО автора содержит знак 'дефис' только в середине");
             }
@@ -102,12 +102,17 @@ namespace LibraryProjestLibrary
             {
                 throw new Exception("Вы не ввели Название");
             }
-            if (name.EndsWith("-") & name.StartsWith("-"))
+            if (name.EndsWith("-") || name.StartsWith("-"))
             {
                 throw new Exception("Название содержит знак 'дефис' только в середине");
             }
             return true;
         }
+        /// <summary>
+        /// Проверка года выхода книги
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns></returns>
         public bool YearCheck(string year) 
         {
             if (year == String.Empty)
@@ -130,17 +135,69 @@ namespace LibraryProjestLibrary
             }
             return true;
         }
+        /// <summary>
+        /// Проверка кол-ва книг
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns></returns>
         public bool PageCountsCheck(string year)
         {
             string correct = "1234567890";
             if (!year.All(x => correct.Contains(x)))
             {
-                throw new Exception("Не корректный год");
+                throw new Exception("Не корректное кол-во страниц");
             }
             if (year==String.Empty)
             {
                 throw new Exception("Вы не ввели кол-во страниц");
             }
+            if(Convert.ToInt32(year)<5)
+            {
+                throw new Exception("Слишком мало страниц");
+            }
+            return true;
+        }
+        /// <summary>
+        /// Проверка строки дом публикации
+        /// </summary>
+        /// <param name="house"></param>
+        /// <returns></returns>
+        public bool HousePublicationCheck(string house)
+        {
+            char startHouse = house[0];
+            house = house.ToLower();
+            string correctSymbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя-";
+            string correctSymbolsLat = "qazxswedcvfrtgbnhyujmkiolp-";
+            if (!house.All(x => correctSymbols.Contains(x)) && !house.All(x => correctSymbolsLat.Contains(x)))
+            {
+                throw new Exception("Название дома публикации содержит недоступные символы. Писать на кириллице или на латинице (не смешивать)");
+            }
+            if (house == String.Empty)
+            {
+                throw new Exception("Вы не ввели дом публикации");
+            }
+            if (house.EndsWith("-") || house.StartsWith("-"))
+            {
+                throw new Exception("Название дома публикации содержит знак 'дефис' только в середине");
+            }
+            if (Char.IsLower(startHouse))
+            {
+                throw new Exception("Название дома публикации начинается с заглавной буквы");
+            }
+            return true;
+        }
+        public bool CityCheck (string city)
+        {
+            string correctSymbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя-";
+            city = city.ToLower();
+            if (!city.All(x => correctSymbols.Contains(x)))
+            {
+                throw new Exception("Название города содержит недоступные символы. Писать на кириллице");
+            }
+            if (city==String.Empty)
+            {
+                throw new Exception("Вы не ввели название города");
+            }            
             return true;
         }
         /// <summary>

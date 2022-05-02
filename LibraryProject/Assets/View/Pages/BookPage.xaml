@@ -31,9 +31,8 @@
                 <TextBlock x:Name="UsersTextBlock" Text="Пользователи" Style="{StaticResource TextMenu}" MouseLeftButtonDown="UsersTextBlockMouseLeftButtonDown"/>
             </Viewbox>
         </UniformGrid>
-        <StackPanel Grid.Column="1">
-            <Grid>
-                <Grid.RowDefinitions>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
@@ -58,45 +57,42 @@
                         </ComboBoxItem>
                     </ComboBox>
                 </StackPanel>
-                <ListView x:Name="BookListView" Margin="10" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Grid.Row="1">
+                <ListView x:Name="BookListView" Margin="10" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible">
                     <ListView.ItemTemplate>
-                            <DataTemplate >
-                            <Border CornerRadius="10" Background="{StaticResource BlueColor}" HorizontalAlignment="Center">
-                                    <Grid>
-                                        <StackPanel Orientation="Vertical" Margin="15" >
-                                            <UniformGrid Columns="2">
-                                                <TextBlock Text="Название " Style="{StaticResource LightText}"/>
-                                                <TextBlock x:Name="TitleTextBlock" Text="{Binding Title}" Style="{StaticResource LightText}"/>
-                                                <TextBlock Text="Автор " Style="{StaticResource LightText}"/>
-                                                <TextBlock x:Name="AuthorTextBlock" Text="{Binding Author}" Style="{StaticResource LightText}"/>
-                                                <TextBlock Text="Дом публикации " Style="{StaticResource LightText}"/>
-                                                <TextBlock x:Name="HousePublication" Text="{Binding NameHouse}" Style="{StaticResource LightText}"/>
-                                                <TextBlock Text="Город " Style="{StaticResource LightText}"/>
-                                                <TextBlock x:Name="CityTextBlock" Text="{Binding NameCity}" Style="{StaticResource LightText}"/>
-                                                <TextBlock Text="Год выхода " Style="{StaticResource LightText}"/>
-                                                <TextBlock x:Name="YearTextBlock" Text="{Binding YearOfPublication}" Style="{StaticResource LightText}"/>
-                                                <TextBlock Text="Количество страниц " Style="{StaticResource LightText}"/>
-                                                <TextBlock x:Name="PageCountsTextBlock" Text="{Binding PageCounts}" Style="{StaticResource LightText}"/>
-                                                <TextBlock Text="Направление" Style="{StaticResource LightText}"/>
-                                                <TextBlock x:Name="BBKTextBlock" Text="{Binding TitleBBK}" Style="{StaticResource LightText}"/>
-                                                <TextBlock Text="Индификатор" Style="{StaticResource LightText}"/>
-                                                <TextBlock x:Name="ISBNTextBlock" Text="{Binding ISBN}" Style="{StaticResource LightText}"/>
-                                                <TextBlock Text="Количество экземпляров" Style="{StaticResource LightText}" Visibility="{Binding AdminControlVisibility}"/>
-                                                <TextBlock x:Name="BookCountTextBlock" Text="{Binding BooksCount}" Style="{StaticResource LightText}" Visibility="{Binding AdminControlVisibility}"/>
-                                        </UniformGrid>
-                                            <Button x:Name="ReaderBilletBookAddButton" Content="Добавить книгу в читательский билет" Click="ReaderBilletBookAddButtonClick" Style="{StaticResource RegButton}" Visibility="{Binding AdminControlVisibility}" Background="{Binding ColorButton}"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </Border>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate> 
-                                <UniformGrid Rows="2" HorizontalAlignment="Center"/>
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                    </ListView>
-            </Grid>
-        </StackPanel>
+                        <DataTemplate>
+                            <Border CornerRadius="10" Background="{StaticResource BlueColor}" HorizontalAlignment="Center" Width="400">
+                                <UniformGrid Columns="2" Margin="15">
+                                    <TextBlock Text="Название " Style="{StaticResource LightText}"/>
+                                    <TextBlock x:Name="TitleTextBlock" Text="{Binding Title}" Style="{StaticResource LightText}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="Автор " Style="{StaticResource LightText}"/>
+                                    <TextBlock x:Name="AuthorTextBlock" Text="{Binding Author}" Style="{StaticResource LightText}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="Дом публикации " Style="{StaticResource LightText}"/>
+                                    <TextBlock x:Name="HousePublication" Text="{Binding NameHouse}" Style="{StaticResource LightText}"/>
+                                    <TextBlock Text="Город " Style="{StaticResource LightText}"/>
+                                    <TextBlock x:Name="CityTextBlock" Text="{Binding NameCity}" Style="{StaticResource LightText}"/>
+                                    <TextBlock Text="Год выхода " Style="{StaticResource LightText}"/>
+                                    <TextBlock x:Name="YearTextBlock" Text="{Binding YearOfPublication}" Style="{StaticResource LightText}"/>
+                                    <TextBlock Text="Количество страниц " Style="{StaticResource LightText}"/>
+                                    <TextBlock x:Name="PageCountsTextBlock" Text="{Binding PageCounts}" Style="{StaticResource LightText}"/>
+                                    <TextBlock Text="Направление" Style="{StaticResource LightText}"/>
+                                    <TextBlock x:Name="BBKTextBlock" Text="{Binding TitleBBK}" Style="{StaticResource LightText}"/>
+                                    <TextBlock Text="Индификатор" Style="{StaticResource LightText}"/>
+                                    <TextBlock x:Name="ISBNTextBlock" Text="{Binding ISBN}" Style="{StaticResource LightText}"/>
+                                    <TextBlock Text="Количество экземпляров" Style="{StaticResource LightText}" Visibility="{Binding AdminControlVisibility}"/>
+                                    <TextBlock x:Name="BookCountTextBlock" Text="{Binding BooksCount}" Style="{StaticResource LightText}" Visibility="{Binding AdminControlVisibility}"/>
+                                    <Button x:Name="ReaderBilletBookAddButton" Content="Добавить книгу в читательский билет" Click="ReaderBilletBookAddButtonClick" Style="{StaticResource RegButton}" Visibility="{Binding AdminControlVisibility}" Background="{Binding ColorButton}"/>
+                                </UniformGrid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Page>
