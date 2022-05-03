@@ -52,7 +52,7 @@
                                         </StackPanel>
                                         <UniformGrid Columns="2">
                                             <TextBlock Text="День рождения:" Style="{StaticResource LightText}"/>
-                                            <TextBlock x:Name="BirthdayTextBlock" Text="{Binding Birthday}" Style="{StaticResource LightText}"/>
+                                            <TextBlock x:Name="BirthdayTextBlock" Text="{Binding Birthday, StringFormat=dd.MM.yyyy}" Style="{StaticResource LightText}"/>
                                             <TextBlock Text="Место чтения" Style="{StaticResource LightText}"/>
                                             <TextBlock x:Name="AdressTextBlock" Text="{Binding Hall}" Style="{StaticResource LightText}"/>
                                             <TextBlock Text="Логин" Style="{StaticResource LightText}"/>

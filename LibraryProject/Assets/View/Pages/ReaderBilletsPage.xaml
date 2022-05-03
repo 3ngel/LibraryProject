@@ -64,9 +64,9 @@
                                         <TextBlock Text="{Binding PatronymicName}" Style="{StaticResource LightText}"/>
                                     </StackPanel>
                                     <TextBlock Text="Когда взяли" Style="{StaticResource LightText}"/>
-                                    <TextBlock x:Name="DateOfIssueTextBlock" Style="{StaticResource LightText}" Text="{Binding DateOfIssue}"/>
+                                    <TextBlock x:Name="DateOfIssueTextBlock" Style="{StaticResource LightText}" Text="{Binding DateOfIssue, StringFormat=dd.MM.yyyy}"/>
                                     <TextBlock Text="Когда вернуть" Style="{StaticResource LightText}"/>
-                                    <TextBlock x:Name="ReturnTextBlock" Style="{StaticResource LightText}" Text="{Binding ReturnDate}"/>
+                                    <TextBlock x:Name="ReturnTextBlock" Style="{StaticResource LightText}" Text="{Binding ReturnDate,  StringFormat=dd.MM.yyyy}"/>
                                     <TextBlock Text="ПРОСРОЧЕНО" Visibility="{Binding ReaderBilletsCheck}" Style="{StaticResource RedText}"/>
                                     <Button x:Name="DeleteBilletButton" Click="DeleteBilletButtonClick" Style="{StaticResource RegButton}" Content="Вернул(а)"/>
                                 </UniformGrid>

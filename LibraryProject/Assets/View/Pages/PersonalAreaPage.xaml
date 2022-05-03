@@ -87,9 +87,9 @@
                                                 <TextBlock Text="Автор" Style="{StaticResource LightText}"/>
                                                 <TextBlock x:Name="TitleTextBlock" Style="{StaticResource LightText}" Text="{Binding Title}"/>
                                                 <TextBlock Text="Когда взяли" Style="{StaticResource LightText}"/>
-                                                <TextBlock x:Name="DateOfIssueTextBlock" Style="{StaticResource LightText}" Text="{Binding DateOfIssue}"/>
+                                                <TextBlock x:Name="DateOfIssueTextBlock" Style="{StaticResource LightText}" Text="{Binding DateOfIssue, StringFormat=dd.MM.yyyy}"/>
                                                 <TextBlock Text="Когда вернуть" Style="{StaticResource LightText}"/>
-                                                <TextBlock x:Name="ReturnTextBlock" Style="{StaticResource LightText}" Text="{Binding ReturnDate}"/>
+                                                <TextBlock x:Name="ReturnTextBlock" Style="{StaticResource LightText}" Text="{Binding ReturnDate, StringFormat=dd.MM.yyyy}"/>
                                             </UniformGrid>
                                         </StackPanel>
                                     </StackPanel>

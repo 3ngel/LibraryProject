@@ -61,6 +61,7 @@
     <Compile Include="PageCountsCheckTests.cs" />
     <Compile Include="PasswordCheckTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StudyOfWorkCheckTests.cs" />
     <Compile Include="TitleCheckTests.cs" />
     <Compile Include="UsersClassTests.cs" />
     <Compile Include="YearOfPublicationCheckTests.cs" />

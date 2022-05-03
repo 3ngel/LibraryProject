@@ -270,9 +270,9 @@ namespace LibraryProjestLibrary
             {
                 throw new Exception("Такого числа не существует");
             }
-            if (today<birthday)
+            if (year>(today.Year-14))
             {
-                throw new Exception("Мы не дожил до этого дня, чтоб вы родились");
+                throw new Exception("Вы слишком молоды");
             }
             if (year<1903)
             {
@@ -381,14 +381,18 @@ namespace LibraryProjestLibrary
                 throw new Exception("Длина пароля должна быть от 8 до 20 символов");
             return true;
         }
-        //Проверка корректности ввода места жительства
+        /// <summary>
+        /// Проверка корректности ввода места жительства
+        /// </summary>
+        /// <param name="adress"></param>
+        /// <returns></returns>
         public bool AdressCheck(string adress)
         {
             if (adress == String.Empty)
             {
                 throw new Exception("Вы не введи адрес");
             }
-            string correctSymbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя1234567890, ";
+            string correctSymbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя1234567890,./ ";
             adress = adress.ToLower();
             if (!adress.All(x => correctSymbols.Contains(x)))
             {
@@ -396,14 +400,18 @@ namespace LibraryProjestLibrary
             }
             return true;
         }
-        //Проверка корректности ввода места учёбы/работы
+        /// <summary>
+        ///Проверка корректности ввода места учёбы/работы 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public bool StudyOrWorkCheck(string text) 
         {
             if (text == String.Empty)
             {
                 throw new Exception("Вы не введи место учёбы/работы");
             }
-            string correctSymbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя ,1234567890";
+            string correctSymbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя1234567890,./' ";
             text = text.ToLower();
             if (!text.All(x => correctSymbols.Contains(x)))
             {

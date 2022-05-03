@@ -37,12 +37,20 @@ namespace LibraryProject.Pages
             try
             {
                 UsersClass obj = new UsersClass();
-                bool res = obj.RegUsers(LastNameTextBox.Text, NameTextBox.Text, FastNameTextBox.Text, NumberPhoneTextBox.Text, BirthdayDatePicker.DisplayDate, StudyOrWorkTextBox.Text, AdressTextBox.Text, LoginTextBox.Text,PasswordTextBox.Text, ReturnPasswordTextBox.Text);
-                if (res == true)
+                if (BirthdayDatePicker.SelectedDate!=null)
                 {
-                    MessageBox.Show("Вы успешно зарегистрировались");
-                    this.NavigationService.Navigate(new AboutUsPage());
+                    bool res = obj.RegUsers(LastNameTextBox.Text, NameTextBox.Text, FastNameTextBox.Text, NumberPhoneTextBox.Text, BirthdayDatePicker.DisplayDate, StudyOrWorkTextBox.Text, AdressTextBox.Text, LoginTextBox.Text, PasswordTextBox.Text, ReturnPasswordTextBox.Text);
+                    if (res == true)
+                    {
+                        MessageBox.Show("Вы успешно зарегистрировались");
+                        this.NavigationService.Navigate(new AboutUsPage());
+                    }
                 }
+                else
+                {
+                    MessageBox.Show("Вы не ввели дату рождения");
+                }
+                
             }
             catch (Exception ex)
             {

@@ -9,30 +9,30 @@ using System.Threading.Tasks;
 namespace LibraryProjestLibraryTests
 {
     [TestClass]
-    public class AdressCheckTests
+    public class StudyOfWorkCheckTests
     {
         /// <summary>
-        /// Проверка корректности введённого адреса
+        /// Проверка корректности введённого места учёбы или работы
         /// </summary>
         /// <param>
-        /// Екатеринбург, улица 8 марта 7/12
+        /// Екатеринбург, улица 8 марта 7/12 'ЕЭТК'
         /// </param>
         /// <return>
         /// true
         /// </return>
         [TestMethod]
-        public void AdressCheck_RightString_True()
+        public void StudyOrWorkCheck_RightString_True()
         {
             //Accept
-            string adress = "Екатеринбург, улица 8 марта 7/12";
+            string adress = "Екатеринбург, улица 8 марта 7/12 'ЕЭТК'";
             //Act
             CheckStringClass obj = new CheckStringClass();
-            bool res = obj.AdressCheck(adress);
+            bool res = obj.StudyOrWorkCheck(adress);
             //Assert
             Assert.IsTrue(res);
         }
         /// <summary>
-        /// Проверка корректности введённого адреса
+        /// Проверка корректности введённого места учёбы или работы
         /// </summary>
         /// <param>
         /// String.Empty
@@ -41,17 +41,17 @@ namespace LibraryProjestLibraryTests
         /// Expostion так как пустая строка
         /// </return>
         [TestMethod]
-        public void AuthorCheck_StringEmpty_Expostion()
+        public void StudyOrWorkCheck_StringEmpty_Expostion()
         {
             //Accept
             string adress = String.Empty;
             //Act
             CheckStringClass obj = new CheckStringClass();
             //Assert
-            Assert.ThrowsException<Exception>(() => obj.AdressCheck(adress));
+            Assert.ThrowsException<Exception>(() => obj.StudyOrWorkCheck(adress));
         }
         /// <summary>
-        /// Проверка корректности введённого адреса
+        /// Проверка корректности введённого места учёбы или работы
         /// </summary>
         /// <param>
         /// Ekaterunburg
@@ -60,14 +60,14 @@ namespace LibraryProjestLibraryTests
         /// Expostion так как не корректные символы
         /// </return>
         [TestMethod]
-        public void AuthorCheck_FalseString_Expostion()
+        public void StudyOrWorkCheck_FalseString_Expostion()
         {
             //Accept
             string adress = "Ekaterunburg";
             //Act
             CheckStringClass obj = new CheckStringClass();
             //Assert
-            Assert.ThrowsException<Exception>(() => obj.AdressCheck(adress));
+            Assert.ThrowsException<Exception>(() => obj.StudyOrWorkCheck(adress));
         }
     }
 }
