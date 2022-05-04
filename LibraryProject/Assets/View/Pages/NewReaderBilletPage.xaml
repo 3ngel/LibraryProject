@@ -8,35 +8,45 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="NewReaderBilletPage" Loaded="WindowLoaded">
 
-    <Grid>
-        <ListView x:Name="UsersListView">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border Margin="10" CornerRadius="10" Background="{StaticResource LightBlueColor}">
-                        <Grid>
-                            <StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock x:Name="LastNameTextBlock" Text="{Binding LastName}" Style="{StaticResource AutoTextBlock}"/>
-                                    <TextBlock x:Name="NameTextBlock" Text="{Binding Name}" Style="{StaticResource AutoTextBlock}"/>
-                                    <TextBlock x:Name="PatronymicNameTextBlock" Text="{Binding PatronymicName}" Style="{StaticResource AutoTextBlock}"/>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="6*"/>            
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal" Margin=" 0 0 10 0">
+            <TextBlock VerticalAlignment="Center">Поиск</TextBlock>
+            <TextBox x:Name="SearchTextBox" Style="{StaticResource AutoTextBox}" TextChanged="SearchTextBoxTextChanged" VerticalAlignment="Center" Margin="0"/>
+        </StackPanel>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" Grid.Row="1">
+            <ListView x:Name="UsersListView" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="10" CornerRadius="10" Background="{StaticResource LightBlueColor}">
+                            <Grid>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock x:Name="LastNameTextBlock" Text="{Binding LastName}" Style="{StaticResource AutoTextBlock}"/>
+                                        <TextBlock x:Name="NameTextBlock" Text="{Binding Name}" Style="{StaticResource AutoTextBlock}"/>
+                                        <TextBlock x:Name="PatronymicNameTextBlock" Text="{Binding PatronymicName}" Style="{StaticResource AutoTextBlock}"/>
+                                    </StackPanel>
+                                    <UniformGrid Columns="2">
+                                        <TextBlock Text="Номер телефона:" Style="{StaticResource AutoTextBlock}"/>
+                                        <TextBlock x:Name="NumberPhoneTextBlock" Text="{Binding Number}" Style="{StaticResource AutoTextBlock}"/>
+                                        <TextBlock Text="Доступ читателя" Style="{StaticResource AutoTextBlock}"/>
+                                        <TextBlock x:Name="HallTextBlock" Text="{Binding Hall}" Style="{StaticResource AutoTextBlock}"/>
+                                    </UniformGrid>
+                                    <Button x:Name="ChoiceUserButton" Content="Этот читтатель" Click="ChoiceUserButtonClick" Style="{StaticResource RegButton}"/>
                                 </StackPanel>
-                                <UniformGrid Columns="2">
-                                    <TextBlock Text="Номер телефона:" Style="{StaticResource AutoTextBlock}"/>
-                                    <TextBlock x:Name="NumberPhoneTextBlock" Text="{Binding Number}" Style="{StaticResource AutoTextBlock}"/>
-                                    <TextBlock Text="Доступ читателя" Style="{StaticResource AutoTextBlock}"/>
-                                    <TextBlock x:Name="HallTextBlock" Text="{Binding Hall}" Style="{StaticResource AutoTextBlock}"/>
-                                </UniformGrid>
-                                <Button x:Name="ChoiceUserButton" Content="Этот читтатель" Click="ChoiceUserButtonClick" Style="{StaticResource RegButton}"/>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel HorizontalAlignment="Center"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-        </ListView>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+        </ScrollViewer>
     </Grid>
 </Page>

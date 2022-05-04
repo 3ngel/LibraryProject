@@ -100,6 +100,41 @@ namespace LibraryProject.Assets.View.Pages
                 this.NavigationService.Navigate(new BookPage());
             }
         }
+        /// <summary>
+        /// Поиск на странице где пользователю прикрепляется книга
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SearchTextBoxTextChanged(object sender, TextChangedEventArgs e)
+        {
+            UsersListView.Items.Clear();
+            string search = SearchTextBox.Text;
+            LibraryEntities obj = new LibraryEntities();
+            var quer =
+                from Reader in obj.Reader
+                join Halls in obj.Halls on Reader.Hall equals Halls.IdHall
+                where Reader.Login != Properties.Settings.Default.loginClient
+                where Reader.LastName.Contains(search) || Reader.Name.Contains(search) || Reader.PatronymicName.Contains(search) || Reader.NumberPhone.Contains(search) 
+                    || Halls.NameHall.Contains(search) || Reader.IdReader.ToString().Contains(search)
+                select new {Reader.LastName, Reader.Name, Reader.PatronymicName, Reader.NumberPhone, Halls.NameHall, Halls.IdHall, Reader.IdReader};
+            if (quer.Count() != 0)
+            {
+                foreach (var item in quer)
+                {
+                    UserList user = new UserList()
+                    {
+                        Role = item.IdReader,
+                        LastName = item.LastName,
+                        Name = item.Name,
+                        PatronymicName = item.PatronymicName,
+                        Number = item.NumberPhone,
+                        Hall = item.NameHall,
+                        IdHall = item.IdHall
+                    };
+                    UsersListView.Items.Add(user);
+                }
+            }
+        }
     }
     public class UserList
     {
