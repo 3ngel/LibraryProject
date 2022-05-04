@@ -106,6 +106,12 @@ namespace LibraryProjestLibrary
             {
                 throw new Exception("Название содержит знак 'дефис' только в середине");
             }
+            name = nameOne;
+            char symbol = name[0];
+            if (Char.IsLower(symbol))
+            {
+                throw new Exception("Название должно начинаться с заглавной буквы");
+            }
             return true;
         }
         /// <summary>
