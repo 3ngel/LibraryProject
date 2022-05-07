@@ -24,7 +24,6 @@ namespace LibraryProject.Pages
     public partial class UsersPage : Page
     {
         Core db = new Core();
-        List<Reader> arrayUsers; 
         public UsersPage()
         {
             InitializeComponent();

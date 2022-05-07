@@ -35,6 +35,8 @@ namespace LibraryProject.Assets.View.Windows
             LoginTextBlock.Text = read.Login;
             PasswordTextBox.Text = read.Password;
             NumberPhoneTextBox.Text = read.NumberPhone;
+            AdressTextBox.Text = read.Adress;
+            StudyOrWorkTextBox.Text = read.StudyOrWork;
             HallComboBox.SelectedIndex = read.Hall - 1;
             RankComboBox.SelectedIndex = read.IdRank - 1;
         }
@@ -44,7 +46,7 @@ namespace LibraryProject.Assets.View.Windows
             try
             {
                 if (obj.EditUser(LastNameTextBox.Text, NameTextBox.Text, PatronymicNameTextBox.Text, NumberPhoneTextBox.Text, 
-                    PasswordTextBox.Text, HallComboBox.SelectedIndex+1, RankComboBox.SelectedIndex+1)==true)
+                    PasswordTextBox.Text, HallComboBox.SelectedIndex+1, RankComboBox.SelectedIndex+1, AdressTextBox.Text, StudyOrWorkTextBox.Text, Properties.Settings.Default.loginUser)==true)
                 {
                     MessageBox.Show("Изменения успешно сохранены");
                     Properties.Settings.Default.loginUser = String.Empty;

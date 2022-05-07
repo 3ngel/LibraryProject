@@ -10,12 +10,13 @@ using System.Threading.Tasks;
 
 namespace LibraryProject.Assets.ViewModel
 {
-    class UsersClass
+    public class UsersClass
     {
         Core db = new Core();
         CheckStringClass obj = new CheckStringClass();
         public bool RegUsers(string lastName, string name, string fastName, string number, DateTime birthday, string studyOfWork, string adress, string login, string password, string returnPassword)
         {
+            
             if (obj.NameCheck(lastName) == true && obj.NameCheck(name) == true && obj.NameCheck(fastName) == true)
             {
                 if (obj.NumberCheck(number) == true)
@@ -86,11 +87,11 @@ namespace LibraryProject.Assets.ViewModel
             }
             return true;
         }
-        public bool EditUser(string lastname, string name, string patronymicname, string number, string password, int hall, int rank)
+        public bool EditUser(string lastname, string name, string patronymicname, string number, string password, int hall, int rank, string adress, string study, string login)
         {
             Core db = new Core();
             CheckStringClass check = new CheckStringClass();
-            Reader read = db.context.Reader.Where(x => x.Login == Properties.Settings.Default.loginUser).First();
+            Reader read = db.context.Reader.Where(x => x.Login == login).First();
             try
             {
                 if (check.NameCheck(lastname) == true)
@@ -103,18 +104,26 @@ namespace LibraryProject.Assets.ViewModel
                             {
                                 if (check.ReliabilityPassword(password) == true)
                                 {
-                                    read.LastName = lastname;
-                                    read.Name = name;
-                                    read.PatronymicName = patronymicname;
-                                    read.NumberPhone = number;
-                                    read.Password = password;
-                                    read.IdRank = rank;
-                                    read.Hall = hall;
-                                    db.context.SaveChanges();
-                                    if (db.context.SaveChanges()==0)
+                                    if (check.AdressCheck(adress)==true)
                                     {
-                                        return true;
-                                    }
+                                        if (check.StudyOrWorkCheck(study)==true)
+                                        {
+                                            read.LastName = lastname;
+                                            read.Name = name;
+                                            read.PatronymicName = patronymicname;
+                                            read.NumberPhone = number;
+                                            read.Password = password;
+                                            read.Adress = adress;
+                                            read.StudyOrWork = study;
+                                            read.IdRank = rank;
+                                            read.Hall = hall;
+                                            db.context.SaveChanges();
+                                            if (db.context.SaveChanges() == 0)
+                                            {
+                                                return true;
+                                            }
+                                        }
+                                    }                                    
                                 }
                             }
                         }
@@ -134,12 +143,20 @@ namespace LibraryProject.Assets.ViewModel
             arrayReader = db.context.Reader.ToList();
             int acount = arrayReader.Where(x => x.Login == login).Count();
             int countRecord = 0;
+            if (login == String.Empty || password == String.Empty)
+            {
+                throw new Exception("Вы не ввели логин или пароль");
+            }
             //Проверка на наличие логина
             if (acount == 1)
             {
                 arrayReader = db.context.Reader.Where(x => x.Login == login).ToList();
                 //Если есть данный логин, проверка пароля при этом логине 
                 countRecord = arrayReader.Where(x => x.Login == login && x.Password == password).Count();
+            }
+            else
+            {
+                throw new Exception("Нет пользователя с таким логиным");
             }
             //При совпдании занесение логина в запись приложения и переход на главную страницу
             if (countRecord == 1)

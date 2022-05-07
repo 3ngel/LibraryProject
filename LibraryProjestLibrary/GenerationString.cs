@@ -120,5 +120,18 @@ namespace LibraryProjestLibrary
             number += $"{countString}-" + year;
             return number;
         }
+        public string LoginGeneration()
+        {
+            string login = "";
+            string alf = "qazwsxedcvfrtgbnhyujmkiolpQAZXSWEDCVFRTGBNHYUJMKIOLP";
+            Random x = new Random();
+            int count = x.Next(3, 15);
+            int lenght = x.Next(alf.Length);
+            for (int i = 0; i < count; i++)
+            {
+                login += alf[lenght];
+            }
+            return login;
+        }
     }
 }

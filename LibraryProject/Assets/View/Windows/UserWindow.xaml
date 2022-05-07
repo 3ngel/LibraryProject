@@ -20,6 +20,10 @@
             <TextBlock x:Name="LoginTextBlock" Style="{StaticResource AutoTextBlock}" Background="{StaticResource LightBlueColor}"/>
             <TextBlock Text="Пароль" Style="{StaticResource AutoTextBlock}"/>
             <TextBox x:Name="PasswordTextBox" Style="{StaticResource AutoTextBox}"/>
+            <TextBlock Text="Адрес" Style="{StaticResource AutoTextBlock}"/>
+            <TextBox x:Name="AdressTextBox" Style="{StaticResource AutoTextBox}"/>
+            <TextBlock Text="Место учёбы/работы" Style="{StaticResource AutoTextBlock}"/>
+            <TextBox x:Name="StudyOrWorkTextBox" Style="{StaticResource AutoTextBox}"/>
             <TextBlock Text="Место чтения" Style="{StaticResource AutoTextBlock}"/>
             <ComboBox x:Name="HallComboBox" Margin="0 0 0 10">
                 <ComboBoxItem Content="Абонимент"/>
