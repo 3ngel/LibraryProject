@@ -41,7 +41,7 @@ namespace LibraryProjestLibraryTests
         /// Expostion так как пустая строка
         /// </return>
         [TestMethod]
-        public void NameCheck_StringEmpty_Expostion()
+        public void NameCheck_StringEmpty_Exception()
         {
             //Accept
             string author = String.Empty;
@@ -60,7 +60,7 @@ namespace LibraryProjestLibraryTests
         /// Expostion так как ввод со строчной буквы
         /// </return>
         [TestMethod]
-        public void NameCheck_LowerString_Expostion()
+        public void NameCheck_LowerString_Exception()
         {
             //Accept
             string author = "александр";
@@ -79,7 +79,7 @@ namespace LibraryProjestLibraryTests
         /// Expostion так как "p" из латинского алфавита
         /// </return>
         [TestMethod]
-        public void NameCheck_FalseString_Expostion()
+        public void NameCheck_FalseString_Exception()
         {
             //Accept
             string author = "Александp";
@@ -98,7 +98,7 @@ namespace LibraryProjestLibraryTests
         /// Expostion так как начинается с дефис
         /// </return>
         [TestMethod]
-        public void NameCheck_StartDefis_Expostion()
+        public void NameCheck_StartDefis_Exception()
         {
             //Accept
             string author = "-Александр";

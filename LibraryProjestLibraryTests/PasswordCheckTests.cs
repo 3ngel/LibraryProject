@@ -15,7 +15,7 @@ namespace LibraryProjestLibraryTests
         /// Ввод пустой строки
         /// </summary>
         [TestMethod]
-        public void PasswordCheck_EmptyString_ThrowReturnd()
+        public void PasswordCheck_EmptyString_Exception()
         {
             //Arrange
             string inputText = String.Empty;
@@ -28,7 +28,7 @@ namespace LibraryProjestLibraryTests
         /// Ввод строки отличную от допустимых
         /// </summary>
         [TestMethod]
-        public void PasswordCheck_RandomString_ThrowReturnd()
+        public void PasswordCheck_RandomString_Exception()
         {
             //Arrange
             string inputText = "Фторник";
@@ -41,7 +41,7 @@ namespace LibraryProjestLibraryTests
         /// Ввод строки с точкой на конце
         /// </summary>
         [TestMethod]
-        public void PasswordCheck_PontEndString_ThrowReturnd()
+        public void PasswordCheck_PontEndString_Exception()
         {
             //Arrange
             string inputText = "Angel.";
@@ -54,7 +54,7 @@ namespace LibraryProjestLibraryTests
         /// Ввод короткого пароля
         /// </summary>
         [TestMethod]
-        public void PasswordCheck_ShortLenghtString_ThrowReturnd()
+        public void PasswordCheck_ShortLenghtString_Exception()
         {
             //Arrange
             string inputText = "Ab*1";
@@ -67,7 +67,7 @@ namespace LibraryProjestLibraryTests
         /// Ввод Верной строки
         /// </summary>
         [TestMethod]
-        public void PasswordCheck_TrueString_TrueReturnd()
+        public void PasswordCheck_TrueString_True()
         {
             //Arrange
             string inputText = "1568493AbC*";

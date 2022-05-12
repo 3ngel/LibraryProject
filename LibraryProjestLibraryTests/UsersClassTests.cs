@@ -49,7 +49,7 @@ namespace LibraryProjestLibraryTests
             /// Exposition так как не введён логин
             /// </return>
             [TestMethod]
-            public void AutoUser_LoginEmpty_Exposition()
+            public void AutoUser_LoginEmpty_Exception()
             {
                 //Accept
                 string login = String.Empty;
@@ -70,7 +70,7 @@ namespace LibraryProjestLibraryTests
             /// Exposition так как пароль от другого логина
             /// </return>
             [TestMethod]
-            public void AutoUser_DifferentString_Exposition()
+            public void AutoUser_DifferentString_Exception()
             {
                 //Accept
                 string login = "ReeLune";
@@ -91,7 +91,7 @@ namespace LibraryProjestLibraryTests
             /// Exposition так как не существует пользователя с таким логином
             /// </return>
             [TestMethod]
-            public void AutoUser_NotExistLogin_Exposition()
+            public void AutoUser_NotExistLogin_Exception()
             {
                 //Accept
                 string login = "3nge1";
@@ -158,7 +158,7 @@ namespace LibraryProjestLibraryTests
             /// Expositionn так как пароли не совпадают
             /// </return>
             [TestMethod]
-            public void RegUserTest_DefikPassword_Exposition()
+            public void RegUserTest_DefikPassword_Exception()
             {
                 //Accept
                 string lastname = "Иванов";
@@ -193,7 +193,7 @@ namespace LibraryProjestLibraryTests
             /// Expositionn так как пароли не совпадают
             /// </return>
             [TestMethod]
-            public void RegUserTest_HaveLogin_Exposition()
+            public void RegUserTest_HaveLogin_Exception()
             {
                 //Accept
                 string lastname = "Иванов";
@@ -267,7 +267,7 @@ namespace LibraryProjestLibraryTests
             /// Exposition так как пустая строка с адресом
             /// </return>
             [TestMethod]
-            public void ExitUser_AdressEmpty_Exposition()
+            public void ExitUser_AdressEmpty_Exception()
             {
                 //Accept
                 string lastname = "Верный";

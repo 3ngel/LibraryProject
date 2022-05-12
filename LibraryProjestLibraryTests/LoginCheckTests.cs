@@ -21,7 +21,7 @@ namespace LibraryProjestLibraryTests
         /// true
         /// </return>
         [TestMethod]
-        public void AdressCheck_RightString_True()
+        public void LoginCheck_RightString_True()
         {
             //Accept
             string adress = "Login";
@@ -41,7 +41,7 @@ namespace LibraryProjestLibraryTests
         /// Expostion так как пустая строка
         /// </return>
         [TestMethod]
-        public void AuthorCheck_StringEmpty_Expostion()
+        public void LoginCheck_StringEmpty_Exception()
         {
             //Accept
             string adress = String.Empty;
@@ -54,13 +54,13 @@ namespace LibraryProjestLibraryTests
         /// Проверка корректности логина
         /// </summary>
         /// <param>
-        /// String.Empty
+        /// Lоgin
         /// </param>
         /// <return>
         /// Expostion так как неккоректные символы "о" взята из кириллицы
         /// </return>
         [TestMethod]
-        public void AuthorCheck_FalseString_Expostion()
+        public void LoginCheck_FalseString_Exception()
         {
             //Accept
             string adress = "Lоgin";
@@ -79,7 +79,7 @@ namespace LibraryProjestLibraryTests
         /// Expostion так как точка на конце
         /// </return>
         [TestMethod]
-        public void AuthorCheck_PointEnd_Expostion()
+        public void LoginCheck_PointEnd_Exception()
         {
             //Accept
             string adress = "Login.";

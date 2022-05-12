@@ -61,7 +61,7 @@ namespace LibraryProjestLibraryTests
         /// Expostion так как пустая строка
         /// </return>
         [TestMethod]
-        public void HousePublicationCheck_StringEmpty_Expostion()
+        public void HousePublicationCheck_StringEmpty_Exception()
         {
             //Accept
             string house = String.Empty;
@@ -80,7 +80,7 @@ namespace LibraryProjestLibraryTests
         /// Expostion так как использованы два альфавита вместе
         /// </return>
         [TestMethod]
-        public void HousePublicationCheck_KirAndLat_Expostion()
+        public void HousePublicationCheck_KirAndLat_Exception()
         {
             //Accept
             string house = "House Романовых";
@@ -99,7 +99,7 @@ namespace LibraryProjestLibraryTests
         /// Expostion так как неккоректные символы
         /// </return>
         [TestMethod]
-        public void HousePublicationCheck_FalseString_Expostion()
+        public void HousePublicationCheck_FalseString_Exception()
         {
             //Accept
             string house = "Романовых123";
@@ -118,7 +118,7 @@ namespace LibraryProjestLibraryTests
         /// Expostion так как написано со строчной буквы
         /// </return>
         [TestMethod]
-        public void HousePublicationCheck_LowerStart_Expostion()
+        public void HousePublicationCheck_LowerStart_Exception()
         {
             //Accept
             string house = "романовых";
@@ -137,7 +137,7 @@ namespace LibraryProjestLibraryTests
         /// Expostion так как дефис в начале
         /// </return>
         [TestMethod]
-        public void HousePublicationCheck_DefisStart_Expostion()
+        public void HousePublicationCheck_DefisStart_Exception()
         {
             //Accept
             string house = "-Романовых";

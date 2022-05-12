@@ -32,7 +32,7 @@ namespace LibraryProject.Assets.View.Windows
             LastNameTextBox.Text = read.LastName;
             NameTextBox.Text = read.Name;
             PatronymicNameTextBox.Text = read.PatronymicName;
-            LoginTextBlock.Text = read.Login;
+            LoginTextBox.Text = read.Login;
             PasswordTextBox.Text = read.Password;
             NumberPhoneTextBox.Text = read.NumberPhone;
             AdressTextBox.Text = read.Adress;
@@ -46,7 +46,7 @@ namespace LibraryProject.Assets.View.Windows
             try
             {
                 if (obj.EditUser(LastNameTextBox.Text, NameTextBox.Text, PatronymicNameTextBox.Text, NumberPhoneTextBox.Text, 
-                    PasswordTextBox.Text, HallComboBox.SelectedIndex+1, RankComboBox.SelectedIndex+1, AdressTextBox.Text, StudyOrWorkTextBox.Text, Properties.Settings.Default.loginUser)==true)
+                    PasswordTextBox.Text, HallComboBox.SelectedIndex+1, RankComboBox.SelectedIndex+1, AdressTextBox.Text, StudyOrWorkTextBox.Text, LoginTextBox.Text)==true)
                 {
                     MessageBox.Show("Изменения успешно сохранены");
                     Properties.Settings.Default.loginUser = String.Empty;

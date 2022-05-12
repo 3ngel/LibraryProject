@@ -15,7 +15,7 @@ namespace LibraryProjestLibraryTests
         /// Ввод пустой строки
         /// </summary>
         [TestMethod]
-        public void NumberCheck_EmptyString_ThrowReturnd()
+        public void NumberCheck_EmptyString_Exception()
         {
             //Arrange
             string inputText = String.Empty;
@@ -28,7 +28,7 @@ namespace LibraryProjestLibraryTests
         /// Ввод строки отличную от допустимых
         /// </summary>
         [TestMethod]
-        public void NumberCheck_RandomString_ThrowReturnd()
+        public void NumberCheck_RandomString_Exception()
         {
             //Arrange
             string inputText = "Andf1239999";
@@ -41,7 +41,7 @@ namespace LibraryProjestLibraryTests
         /// Ввод номера с кол-вом чисел меньше 11
         /// </summary>
         [TestMethod]
-        public void NumberCheck_4NumberString_ThrowReturnd()
+        public void NumberCheck_4NumberString_Exception()
         {
             //Arrange
             string inputText = "8982";
@@ -55,7 +55,7 @@ namespace LibraryProjestLibraryTests
         /// Ввод номера с кол-вом чисел больше 13
         /// </summary>
         [TestMethod]
-        public void NumberCheck_13NumberString_ThrowReturnd()
+        public void NumberCheck_13NumberString_Exception()
         {
             //Arrange
             string inputText = "8982263540283";
@@ -68,7 +68,7 @@ namespace LibraryProjestLibraryTests
         /// Ввод номера с цифры не равное 8
         /// </summary>
         [TestMethod]
-        public void NumberCheck_StartNotEightString_ThrowReturnd()
+        public void NumberCheck_StartNotEightString_Exception()
         {
             //Arrange
             string inputText = "23456789123";
@@ -81,7 +81,7 @@ namespace LibraryProjestLibraryTests
         /// Ввод верной строки
         /// </summary>
         [TestMethod]
-        public void NumberCheck_TrueString_TrueReturnd()
+        public void NumberCheck_TrueString_True()
         {
             //Arrange
             string inputText = "+7 (982) 739-62-50";

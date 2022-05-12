@@ -17,7 +17,7 @@
             <TextBlock Text="Номер телефона" Style="{StaticResource AutoTextBlock}"/>
             <TextBox x:Name="NumberPhoneTextBox" Style="{StaticResource AutoTextBox}"/>
             <TextBlock Text="Логин" Style="{StaticResource AutoTextBlock}"/>
-            <TextBlock x:Name="LoginTextBlock" Style="{StaticResource AutoTextBlock}" Background="{StaticResource LightBlueColor}"/>
+            <TextBox x:Name="LoginTextBox" Style="{StaticResource AutoTextBox}" Background="{StaticResource LightBlueColor}"/>
             <TextBlock Text="Пароль" Style="{StaticResource AutoTextBlock}"/>
             <TextBox x:Name="PasswordTextBox" Style="{StaticResource AutoTextBox}"/>
             <TextBlock Text="Адрес" Style="{StaticResource AutoTextBlock}"/>

@@ -41,7 +41,7 @@ namespace LibraryProjestLibraryTests
         /// Exposition так как не корректные символы
         /// </return>
         [TestMethod]
-        public void YearOfPublicationCheck_FalseString_Exposition()
+        public void YearOfPublicationCheck_FalseString_Exception()
         {
             //Accept
             string count = "123f";
@@ -60,7 +60,7 @@ namespace LibraryProjestLibraryTests
         /// Exposition так как не может быть книгу такого года выпсука
         /// </return>
         [TestMethod]
-        public void YearOfPublicationCheck_OldString_Exposition()
+        public void YearOfPublicationCheck_OldString_Exception()
         {
             //Accept
             string count = "3000";
@@ -79,7 +79,7 @@ namespace LibraryProjestLibraryTests
         /// Exposition так как пустая строка
         /// </return>
         [TestMethod]
-        public void YearOfPublicationCheck_StringEmpty_Exposition()
+        public void YearOfPublicationCheck_StringEmpty_Exception()
         {
             //Accept
             string count = String.Empty;

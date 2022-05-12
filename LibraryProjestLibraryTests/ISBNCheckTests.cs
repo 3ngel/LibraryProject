@@ -37,7 +37,7 @@ namespace LibraryProjestLibraryTests
         /// Expostion так как неверная контрольная цифра
         /// </return>
         [TestMethod]
-        public void ISBNCheck_ContrlNumberFalse_Expostion()
+        public void ISBNCheck_ContrlNumberFalse_Exception()
         {
             //Accept
             string isbn = "5-7519-0485-1";
@@ -50,13 +50,13 @@ namespace LibraryProjestLibraryTests
         /// Проверка ISBN номера
         /// </summary>
         /// <param>
-        /// 5-7519-0485-1
+        /// 5-7519-0485-12
         /// </param>
         /// <return>
         /// Expostion так как длина больше нужной
         /// </return>
         [TestMethod]
-        public void ISBNCheck_LongString_Expostion()
+        public void ISBNCheck_LongString_Exception()
         {
             //Accept
             string isbn = "5-7519-0485-12";
@@ -69,13 +69,13 @@ namespace LibraryProjestLibraryTests
         /// Проверка ISBN номера
         /// </summary>
         /// <param>
-        /// 5-7519-0485-1
+        /// 5-7519-0485-
         /// </param>
         /// <return>
         /// Expostion так как длина меньше нужной
         /// </return>
         [TestMethod]
-        public void ISBNCheck_ChortString_Expostion()
+        public void ISBNCheck_ChortString_Exception()
         {
             //Accept
             string isbn = "5-7519-0485-";
@@ -88,13 +88,13 @@ namespace LibraryProjestLibraryTests
         /// Проверка ISBN номера
         /// </summary>
         /// <param>
-        /// 5-7519-0485-1
+        /// String.Empty
         /// </param>
         /// <return>
         /// Expostion так как пустая строка
         /// </return>
         [TestMethod]
-        public void ISBNCheck_StringEmpty_Expostion()
+        public void ISBNCheck_StringEmpty_Exception()
         {
             //Accept
             string isbn = "";
@@ -107,13 +107,13 @@ namespace LibraryProjestLibraryTests
         /// Проверка ISBN номера
         /// </summary>
         /// <param>
-        /// 5-7519-0485-1
+        /// Asdfgegrhfygt
         /// </param>
         /// <return>
         /// Expostion так как неверные символы
         /// </return>
         [TestMethod]
-        public void ISBNCheck_FalseString_Expostion()
+        public void ISBNCheck_FalseString_Exception()
         {
             //Accept
             string isbn = "Asdfgegrhfygt";

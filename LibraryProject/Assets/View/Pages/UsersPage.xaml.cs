@@ -73,14 +73,15 @@ namespace LibraryProject.Pages
         private void DeleteUserButtonClick(object sender, RoutedEventArgs e)
         {
             Button activeButton = sender as Button;
-            Reader activeReader = activeButton.DataContext as Reader;
+            Users activeReader = activeButton.DataContext as Users;
             string fio = $"{activeReader.LastName} {activeReader.Name} {activeReader.PatronymicName}";
             string message = $"Вы хотите удалить пользователя {fio}?";
             string title = "Удаление пользователя";
+            Reader reader = db.context.Reader.Where(x=>x.Login==activeReader.Login).First();
             MessageBoxResult res = MessageBox.Show(message, title, MessageBoxButton.YesNo);
             if (res == MessageBoxResult.Yes)
             {
-                db.context.Reader.Remove(activeReader);
+                db.context.Reader.Remove(reader);
                 db.context.SaveChanges();
                 if (db.context.SaveChanges()==0)
                 {

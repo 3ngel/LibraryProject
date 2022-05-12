@@ -125,6 +125,7 @@ namespace LibraryProject.Assets.ViewModel
                                             read.StudyOrWork = study;
                                             read.IdRank = rank;
                                             read.Hall = hall;
+                                            read.Login = login;
                                             db.context.SaveChanges();
                                             if (db.context.SaveChanges() == 0)
                                             {

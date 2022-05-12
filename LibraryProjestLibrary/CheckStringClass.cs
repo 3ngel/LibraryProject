@@ -258,6 +258,10 @@ namespace LibraryProjestLibrary
         public bool BirthdayCheck(DateTime birthday)
         {
             DateTime today = DateTime.Now;
+            if (birthday==null)
+            {
+                throw new Exception("Вы не выбрали дату рождения");
+            }
             int yearNow = today.Year;
             int monthNow = today.Month;
             int dayNow = today.Day;

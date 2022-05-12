@@ -41,7 +41,7 @@ namespace LibraryProjestLibraryTests
         /// Exposition так как не корректные символы
         /// </return>
         [TestMethod]
-        public void PageCountsCheck_FalseString_Exposition()
+        public void PageCountsCheck_FalseString_Exception()
         {
             //Accept
             string count = "123f";
@@ -60,7 +60,7 @@ namespace LibraryProjestLibraryTests
         /// Exposition так как мало страниц
         /// </return>
         [TestMethod]
-        public void PageCountsCheck_ShortString_Exposition()
+        public void PageCountsCheck_ShortString_Exception()
         {
             //Accept
             string count = "3";
@@ -79,7 +79,7 @@ namespace LibraryProjestLibraryTests
         /// Exposition так как пустая строка
         /// </return>
         [TestMethod]
-        public void PageCountsCheck_StringEmpty_Exposition()
+        public void PageCountsCheck_StringEmpty_Exception()
         {
             //Accept
             string count = String.Empty;

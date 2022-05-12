@@ -41,7 +41,7 @@ namespace LibraryProjestLibraryTests
         /// Expostion так как пустая строка
         /// </return>
         [TestMethod]
-        public void AuthorCheck_StringEmpty_Expostion()
+        public void AuthorCheck_StringEmpty_Exception()
         {
             //Accept
             string adress = String.Empty;
@@ -60,7 +60,7 @@ namespace LibraryProjestLibraryTests
         /// Expostion так как не корректные символы
         /// </return>
         [TestMethod]
-        public void AuthorCheck_FalseString_Expostion()
+        public void AuthorCheck_FalseString_Exception()
         {
             //Accept
             string adress = "Ekaterunburg";
