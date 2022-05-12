@@ -31,8 +31,11 @@ namespace LibraryProject
         /// </summary>
         private void WindowClosed(object sender, EventArgs e)
         {
+            //Обнуление всех данных внутри приложения
             Properties.Settings.Default.loginClient = String.Empty;
             Properties.Settings.Default.RoleClient = 1;
+            Properties.Settings.Default.loginUser = String.Empty;
+            Properties.Settings.Default.IdBook = String.Empty;
             Properties.Settings.Default.Save();
         }
 
@@ -96,8 +99,11 @@ namespace LibraryProject
         /// <param name="e"></param>
         private void ExitButtonClick(object sender, RoutedEventArgs e)
         {
+            //Обнуление всех данных в приложении
             Properties.Settings.Default.loginClient = String.Empty;
             Properties.Settings.Default.RoleClient = 1;
+            Properties.Settings.Default.loginUser = String.Empty;
+            Properties.Settings.Default.IdBook = String.Empty;
             Properties.Settings.Default.Save();
             this.NavigatedFrame.Navigate(new AboutUsPage());
         }

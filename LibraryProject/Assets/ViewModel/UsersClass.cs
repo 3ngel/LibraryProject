@@ -31,49 +31,57 @@ namespace LibraryProject.Assets.ViewModel
                                 int control = db.context.Reader.Where(x => x.Login ==login).Count();
                                 if (control == 0)
                                 {
-                                    //Тот же ли пароль при повторном вводе
-                                    if (password == returnPassword)
+                                    control = db.context.Reader.Where(x => x.NumberPhone == number).Count();
+                                    if (control == 0)
                                     {
-                                        if (obj.ReliabilityPassword(password) == true)
+                                        //Тот же ли пароль при повторном вводе
+                                        if (password == returnPassword)
                                         {
-                                            Reader red = new Reader
+                                            if (obj.ReliabilityPassword(password) == true)
                                             {
-                                                LastName = lastName,
-                                                Name = name,
-                                                PatronymicName = fastName,
-                                                NumberPhone = number,
-                                                Birthday = birthday,
-                                                StudyOrWork = studyOfWork,
-                                                Adress = adress,
-                                                Login = login,
-                                                Password = password,
-                                                IdRank = 1,
-                                                Hall = 1
-                                            };
-                                            db.context.Reader.Add(red);
-                                            try
-                                            {
-                                                db.context.SaveChanges();
-                                                if (db.context.SaveChanges() == 0)
+                                                Reader red = new Reader
                                                 {
-                                                    return true;
-                                                }
-                                            }
-                                            catch (DbEntityValidationException ex)
-                                            {
-                                                foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
+                                                    LastName = lastName,
+                                                    Name = name,
+                                                    PatronymicName = fastName,
+                                                    NumberPhone = number,
+                                                    Birthday = birthday,
+                                                    StudyOrWork = studyOfWork,
+                                                    Adress = adress,
+                                                    Login = login,
+                                                    Password = password,
+                                                    IdRank = 1,
+                                                    Hall = 1
+                                                };
+                                                db.context.Reader.Add(red);
+                                                try
                                                 {
-                                                    foreach (DbValidationError err in validationError.ValidationErrors)
+                                                    db.context.SaveChanges();
+                                                    if (db.context.SaveChanges() == 0)
                                                     {
-                                                        throw new Exception(err.ErrorMessage + "");
+                                                        return true;
+                                                    }
+                                                }
+                                                catch (DbEntityValidationException ex)
+                                                {
+                                                    foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
+                                                    {
+                                                        foreach (DbValidationError err in validationError.ValidationErrors)
+                                                        {
+                                                            throw new Exception(err.ErrorMessage + "");
+                                                        }
                                                     }
                                                 }
                                             }
                                         }
+                                        else
+                                        {
+                                            throw new Exception("Пароли не совпадают");
+                                        }
                                     }
                                     else
                                     {
-                                        throw new Exception("Пароли не совпадают");
+                                        throw new Exception("Данный номер телефона уже занят");
                                     }
                                 }
                                 else

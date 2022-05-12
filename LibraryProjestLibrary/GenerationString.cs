@@ -133,5 +133,16 @@ namespace LibraryProjestLibrary
             }
             return login;
         }
+        public string NumberPhoneGeneration()
+        {
+            string number = "89";
+            Random x = new Random();
+            for (int i = 0; i < 9; i++)
+            {
+                number+= x.Next(0,9).ToString();
+            }
+            Console.WriteLine(number);
+            return number;
+        }
     }
 }

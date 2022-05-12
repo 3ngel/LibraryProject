@@ -124,14 +124,14 @@ namespace LibraryProjestLibraryTests
             public void RegUserTest_RightString_True()
             {
                 //Accept
+                GenerationString gen = new GenerationString();
                 string lastname = "Иванов";
                 string name = "Иван";
                 string pathname = "Иванович";
-                string phone = "89123456789";
+                string phone = gen.NumberPhoneGeneration();
                 DateTime birthday = new DateTime(2000,1,1,0,0,0);
                 string adress = "Екатеринбург";
                 string studyOrWork = "ЕМК";
-                GenerationString gen = new GenerationString();
                 string login = gen.LoginGeneration();
                 string password = "1234Abb**";
                 string returnPassword = "1234Abb**";
