@@ -61,13 +61,13 @@ namespace LibraryProject.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string loginUser {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int idUser {
             get {
-                return ((string)(this["loginUser"]));
+                return ((int)(this["idUser"]));
             }
             set {
-                this["loginUser"] = value;
+                this["idUser"] = value;
             }
         }
     }

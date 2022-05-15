@@ -39,6 +39,9 @@ namespace LibraryProject.Assets.ViewModel
                                         {
                                             if (obj.ReliabilityPassword(password) == true)
                                             {
+                                                number = number.Replace("+7", "8").Trim(); ;
+                                                number = number.Replace("7", "8");
+                                                number = number.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
                                                 Reader red = new Reader
                                                 {
                                                     LastName = lastName,
@@ -99,7 +102,7 @@ namespace LibraryProject.Assets.ViewModel
         {
             Core db = new Core();
             CheckStringClass check = new CheckStringClass();
-            Reader read = db.context.Reader.Where(x => x.Login == login).First();
+            Reader read = db.context.Reader.Where(x => x.Login==login).First();
             try
             {
                 if (check.NameCheck(lastname) == true)
@@ -116,6 +119,9 @@ namespace LibraryProject.Assets.ViewModel
                                     {
                                         if (check.StudyOrWorkCheck(study)==true)
                                         {
+                                            number = number.Replace("+7", "8").Trim(); ;
+                                            number = number.Replace("7", "8");
+                                            number = number.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
                                             read.LastName = lastname;
                                             read.Name = name;
                                             read.PatronymicName = patronymicname;
@@ -125,7 +131,6 @@ namespace LibraryProject.Assets.ViewModel
                                             read.StudyOrWork = study;
                                             read.IdRank = rank;
                                             read.Hall = hall;
-                                            read.Login = login;
                                             db.context.SaveChanges();
                                             if (db.context.SaveChanges() == 0)
                                             {
@@ -165,7 +170,7 @@ namespace LibraryProject.Assets.ViewModel
             }
             else
             {
-                throw new Exception("Нет пользователя с таким логиным");
+                throw new Exception("Нет пользователя с таким логином");
             }
             //При совпдании занесение логина в запись приложения и переход на главную страницу
             if (countRecord == 1)
@@ -179,6 +184,14 @@ namespace LibraryProject.Assets.ViewModel
             {
                 throw new Exception("Неверный пароль или логин");
             }       
+        }
+        public bool DeleteUser(string login)
+        {
+            Core db = new Core();
+            Reader read = db.context.Reader.Where(x => x.Login == login).First();
+            db.context.Reader.Remove(read);
+            db.context.SaveChanges();
+            return true;
         }
     }
 }

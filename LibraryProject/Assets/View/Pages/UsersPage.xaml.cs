@@ -187,7 +187,7 @@ namespace LibraryProject.Pages
         {
             Button activeButton = sender as Button;
             Users activeUsers = activeButton.DataContext as Users;
-            Properties.Settings.Default.loginUser = activeUsers.Login;
+            Properties.Settings.Default.idUser = activeUsers.IdReader;
             new UserWindow().ShowDialog();
         }
     }

@@ -15,7 +15,7 @@ namespace LibraryProjestLibraryTests
         /// Проверка корректности ФИО
         /// </summary>
         /// <param>
-        /// Александр Сергеевич Пушкин
+        /// Александр 
         /// </param>
         /// <return>
         /// true

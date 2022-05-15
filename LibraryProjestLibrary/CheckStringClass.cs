@@ -262,24 +262,7 @@ namespace LibraryProjestLibrary
             {
                 throw new Exception("Вы не выбрали дату рождения");
             }
-            int yearNow = today.Year;
-            int monthNow = today.Month;
-            int dayNow = today.Day;
             int year = birthday.Year;
-            int month = birthday.Month;
-            int day = birthday.Day;
-            if (month==2 && day>29)
-            {
-                throw new Exception("Такого числа не существует");
-            }
-            if ((month==4 || month==6 || month==9 || month==11) && day>=31)
-            {
-                throw new Exception("Такого числа не существует");
-            }
-            if ((month == 1 || month == 3 || month == 5 || month == 7 || month==8 || month==10 || month==12) && day > 31)
-            {
-                throw new Exception("Такого числа не существует");
-            }
             if (year>(today.Year-14))
             {
                 throw new Exception("Вы слишком молоды");
@@ -421,7 +404,7 @@ namespace LibraryProjestLibrary
             {
                 throw new Exception("Вы не введи место учёбы/работы");
             }
-            string correctSymbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя1234567890,./' ";
+            string correctSymbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя1234567890,./' \"";
             text = text.ToLower();
             if (!text.All(x => correctSymbols.Contains(x)))
             {
@@ -438,6 +421,10 @@ namespace LibraryProjestLibrary
         {
             isbn = isbn.Replace(" ", "");
             isbn = isbn.Replace("x", "X").Replace("х","X").Replace("Х","X");
+            if (isbn ==String.Empty)
+            {
+                throw new Exception("Вы не ввели ISBN");
+            }
             if (isbn.Length!=13)
             {
                 throw new Exception("Длина ISBN невернаая");
@@ -447,12 +434,6 @@ namespace LibraryProjestLibrary
             {
                 throw new Exception("В ISBN не корректные символы");
             }
-            //bool trie = (isbn[1]==t && isbn[6] == t && isbn[11] == t) &&
-            //    (isbn[0] != t && isbn[2] != t && isbn[3] != t && isbn[4] != t && isbn[5] != t && isbn[7] != t && isbn[8] != t && isbn[9] != t && isbn[10] != t && isbn[12] != t);
-            //if (trie==false)
-            //{
-            //    throw new Exception("Неверный формат ISBN");
-            //}
             string number = $"{isbn[0]}{isbn[2]}{isbn[3]}{isbn[4]}{isbn[5]}{isbn[7]}{isbn[8]}{isbn[9]}{isbn[10]}";
             int[] numb = new int[9];
             for (int i = 0; i < number.Length; i++)
@@ -483,7 +464,7 @@ namespace LibraryProjestLibrary
             }
             if (isbn.Substring(12,1) != check)
             {
-                throw new Exception($"{controlNumb}");
+                throw new Exception($"Неверное контрольное число");
             }
             return true;
         }

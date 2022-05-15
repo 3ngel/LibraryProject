@@ -110,11 +110,11 @@ namespace LibraryProjestLibraryTests
             /// </summary>
             /// <param>
             ///  Иван Иванович Иванов
-            ///  89123456789
+            ///  генерация номера
             ///  01.01.2000
             ///  Екатеринбург
             ///  ЕМК
-            ///  Defik
+            ///  генерация логина
             ///  1234Abb** 1234Abb**
             /// </param>
             /// <return>
@@ -140,6 +140,8 @@ namespace LibraryProjestLibraryTests
                 bool res = obj.RegUsers(lastname,name, pathname, phone, birthday, studyOrWork, adress, login, password, returnPassword);
                 //Assert
                 Assert.IsTrue(res);
+                //After
+                bool delete = obj.DeleteUser(login);
 
             }
             /// <summary>
@@ -227,6 +229,7 @@ namespace LibraryProjestLibraryTests
             ///  ЕМК
             ///  Vern
             ///  BGYp?6Sf
+            ///  Абонент, библиотекарь
             /// </param>
             /// <return>
             /// true
@@ -234,22 +237,37 @@ namespace LibraryProjestLibraryTests
             [TestMethod]
             public void ExitUser_TrueString_True()
             {
-                //Accept
+                //Before
+                Core db = new Core();
+                GenerationString gen = new GenerationString();
+                UsersClass obj = new UsersClass();
                 string lastname = "Верный";
                 string name = "Виктор";
                 string pathname = "Владимирович";
-                string phone = "89123456788";
-                string password = "BGYp?6Sf";
+                string phone = gen.NumberPhoneGeneration();
+                DateTime birthday = new DateTime(2000, 1, 1, 0, 0, 0);
                 string adress = "Екатеринбург";
                 string studyOrWork = "ЕМК";
                 string login = "Vern";
+                string password = "1234Abb**";
+                string returnPassword = "1234Abb**";
+                bool add = obj.RegUsers(lastname, name, pathname, phone, birthday, studyOrWork, adress, login, password, returnPassword);
+                //Accept
+                lastname = "Верный";
+                name = "Виктор";
+                pathname = "Владимирович";
+                password = "BGYp?6Sf";
+                adress = "Екатеринбург";
+                studyOrWork = "ЕМК";
                 int hall = 1;
                 int rank = 2;
                 //Act
-                UsersClass obj = new UsersClass();
                 bool res = obj.EditUser(lastname,name,pathname,phone,password,hall,rank,adress,studyOrWork,login);
                 //Assert
+                bool delete = obj.DeleteUser(login);
                 Assert.IsTrue(res);
+                //After
+                
             }
             /// <summary>
             /// Проверка метода редактирования пользователя
@@ -269,21 +287,35 @@ namespace LibraryProjestLibraryTests
             [TestMethod]
             public void ExitUser_AdressEmpty_Exception()
             {
-                //Accept
+                //Before
+                Core db = new Core();
+                GenerationString gen = new GenerationString();
+                UsersClass obj = new UsersClass();
                 string lastname = "Верный";
                 string name = "Виктор";
                 string pathname = "Владимирович";
-                string phone = "89123456788";
-                string password = "BGYp?6Sf";
-                string adress = String.Empty;
+                string phone = gen.NumberPhoneGeneration();
+                DateTime birthday = new DateTime(2000, 1, 1, 0, 0, 0);
+                string adress = "Екатеринбург";
                 string studyOrWork = "ЕМК";
-                string login = "Vern";
+                string login = gen.LoginGeneration();
+                string password = "1234Abb**";
+                string returnPassword = "1234Abb**";
+                bool add = obj.RegUsers(lastname, name, pathname, phone, birthday, studyOrWork, adress, login, password, returnPassword);
+                //Accept
+                lastname = "Верный";
+                name = "Виктор";
+                pathname = "Владимирович";
+                password = "BGYp?6Sf";
+                adress = String.Empty;
+                studyOrWork = "ЕМК";
                 int hall = 1;
                 int rank = 2;
-                //Act
-                UsersClass obj = new UsersClass();
                 //Assert
                 Assert.ThrowsException<Exception>(() => obj.EditUser(lastname, name, pathname, phone, password, hall, rank, adress, studyOrWork, login));
+                bool delete = obj.DeleteUser(login);
+                //After
+
             }
         }
     }

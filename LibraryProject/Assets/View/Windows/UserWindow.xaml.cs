@@ -28,11 +28,11 @@ namespace LibraryProject.Assets.View.Windows
         public UserWindow()
         {
             InitializeComponent();
-            read = db.context.Reader.Where(x => x.Login == Properties.Settings.Default.loginUser).First();
+            read = db.context.Reader.Where(x => x.IdReader == Properties.Settings.Default.idUser).First();
             LastNameTextBox.Text = read.LastName;
             NameTextBox.Text = read.Name;
             PatronymicNameTextBox.Text = read.PatronymicName;
-            LoginTextBox.Text = read.Login;
+            LoginTextBlock.Text = read.Login;
             PasswordTextBox.Text = read.Password;
             NumberPhoneTextBox.Text = read.NumberPhone;
             AdressTextBox.Text = read.Adress;
@@ -46,10 +46,10 @@ namespace LibraryProject.Assets.View.Windows
             try
             {
                 if (obj.EditUser(LastNameTextBox.Text, NameTextBox.Text, PatronymicNameTextBox.Text, NumberPhoneTextBox.Text, 
-                    PasswordTextBox.Text, HallComboBox.SelectedIndex+1, RankComboBox.SelectedIndex+1, AdressTextBox.Text, StudyOrWorkTextBox.Text, LoginTextBox.Text)==true)
+                    PasswordTextBox.Text, HallComboBox.SelectedIndex+1, RankComboBox.SelectedIndex+1, AdressTextBox.Text, StudyOrWorkTextBox.Text, LoginTextBlock.Text)==true)
                 {
                     MessageBox.Show("Изменения успешно сохранены");
-                    Properties.Settings.Default.loginUser = String.Empty;
+                    Properties.Settings.Default.idUser = -1;
                     this.Close();
                 }
             }

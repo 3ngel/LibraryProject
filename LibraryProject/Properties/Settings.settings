@@ -11,8 +11,8 @@
     <Setting Name="IdBook" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="loginUser" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="idUser" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>
