@@ -8,6 +8,6 @@ namespace LibraryProjestLibraryTests.Model
 {
     class Core
     {
-        public LibraryEntities context = new LibraryEntities();
+        public LibraryEntitiesTests context = new LibraryEntitiesTests();
     }
 }

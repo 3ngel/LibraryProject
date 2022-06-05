@@ -81,37 +81,45 @@ namespace LibraryProject.Pages
             MessageBoxResult res = MessageBox.Show(message, title, MessageBoxButton.YesNo);
             if (res == MessageBoxResult.Yes)
             {
-                db.context.Reader.Remove(reader);
-                db.context.SaveChanges();
-                if (db.context.SaveChanges()==0)
+                int count = db.context.Extradition.Where(x => x.IdReader == reader.IdReader).ToList().Count();
+                if (count == 0)
                 {
-                    MessageBox.Show("Удаление пользователя произошло успешно");
-                    UsersListView.Items.Clear();
-                    LibraryEntities obj = new LibraryEntities();
-                    var qery =
-                        from Reader in obj.Reader
-                        join Halls in obj.Halls on Reader.Hall equals Halls.IdHall
-                        join Rank in obj.Rank on Reader.IdRank equals Rank.IdRank
-                        where Reader.Login !=Properties.Settings.Default.loginClient
-                        select new { Reader.IdReader, Reader.LastName, Reader.Name, Reader.PatronymicName, Reader.Birthday, Reader.NumberPhone, Reader.Login, Reader.Password, Rank.NameRank, Halls.NameHall };
-                    if (qery.Count() != 0)
-                        foreach (var item in qery)
-                        {
-                            Users user = new Users()
+                    db.context.Reader.Remove(reader);
+                    db.context.SaveChanges();
+                    if (db.context.SaveChanges() == 0)
+                    {
+                        MessageBox.Show("Удаление пользователя произошло успешно");
+                        UsersListView.Items.Clear();
+                        LibraryEntities obj = new LibraryEntities();
+                        var qery =
+                            from Reader in obj.Reader
+                            join Halls in obj.Halls on Reader.Hall equals Halls.IdHall
+                            join Rank in obj.Rank on Reader.IdRank equals Rank.IdRank
+                            where Reader.Login != Properties.Settings.Default.loginClient
+                            select new { Reader.IdReader, Reader.LastName, Reader.Name, Reader.PatronymicName, Reader.Birthday, Reader.NumberPhone, Reader.Login, Reader.Password, Rank.NameRank, Halls.NameHall };
+                        if (qery.Count() != 0)
+                            foreach (var item in qery)
                             {
-                                IdReader = item.IdReader,
-                                LastName = item.LastName,
-                                Name = item.Name,
-                                PatronymicName = item.PatronymicName,
-                                Birthday = item.Birthday,
-                                NumberPhone = item.NumberPhone,
-                                Login = item.Login,
-                                Password = item.Password,
-                                Rank = item.NameRank,
-                                Hall = item.NameHall
-                            };
-                            UsersListView.Items.Add(user);
-                        }
+                                Users user = new Users()
+                                {
+                                    IdReader = item.IdReader,
+                                    LastName = item.LastName,
+                                    Name = item.Name,
+                                    PatronymicName = item.PatronymicName,
+                                    Birthday = item.Birthday,
+                                    NumberPhone = item.NumberPhone,
+                                    Login = item.Login,
+                                    Password = item.Password,
+                                    Rank = item.NameRank,
+                                    Hall = item.NameHall
+                                };
+                                UsersListView.Items.Add(user);
+                            }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Вы не можете удалить пользователя, так как он не вернул все книги");
                 }
             }
         }

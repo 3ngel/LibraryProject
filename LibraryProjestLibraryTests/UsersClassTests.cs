@@ -314,8 +314,6 @@ namespace LibraryProjestLibraryTests
                 //Assert
                 Assert.ThrowsException<Exception>(() => obj.EditUser(lastname, name, pathname, phone, password, hall, rank, adress, studyOrWork, login));
                 bool delete = obj.DeleteUser(login);
-                //After
-
             }
         }
     }

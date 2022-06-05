@@ -13,10 +13,10 @@ namespace LibraryProjestLibraryTests.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LibraryEntities : DbContext
+    public partial class LibraryEntitiesTests : DbContext
     {
-        public LibraryEntities()
-            : base("name=LibraryEntities")
+        public LibraryEntitiesTests()
+            : base("name=LibraryEntitiesTests")
         {
         }
     

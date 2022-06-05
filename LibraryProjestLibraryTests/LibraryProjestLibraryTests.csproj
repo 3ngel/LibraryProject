@@ -68,36 +68,36 @@
     <Compile Include="ISBNCheckTests.cs" />
     <Compile Include="LoginCheckTests.cs" />
     <Compile Include="Model\Author.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelTests.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\BBK.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelTests.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Books.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelTests.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\City.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelTests.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Core.cs" />
     <Compile Include="Model\Extradition.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelTests.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Halls.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelTests.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\HousePublication.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Model.Context.cs">
+    <Compile Include="Model\ModelTests.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Context.tt</DependentUpon>
+      <DependentUpon>ModelTests.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Model.cs">
+    <Compile Include="Model\ModelTests.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelTests.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ModelTests.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -105,10 +105,10 @@
       <DependentUpon>ModelTests.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\Rank.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelTests.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Reader.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelTests.tt</DependentUpon>
     </Compile>
     <Compile Include="NameCheckTests.cs" />
     <Compile Include="NumberCheckTests.cs" />
@@ -145,15 +145,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\Model.Context.tt">
+    <Content Include="Model\ModelTests.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelTests.edmx</DependentUpon>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
+      <LastGenOutput>ModelTests.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\Model.tt">
+    <Content Include="Model\ModelTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelTests.edmx</DependentUpon>
-      <LastGenOutput>Model.cs</LastGenOutput>
+      <LastGenOutput>ModelTests.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
